@@ -1,5 +1,6 @@
 import React from "react";
 import "./DragNDrop.css";
+import { Marriage } from "./Nodes/Marriage";
 
 export const DragNDrop = () => {
   const onDragStart = (event: any, nodeType: any) => {
@@ -33,6 +34,9 @@ export const DragNDrop = () => {
       >
         Output Node
       </div>
+      <Marriage
+        onDragStart={(event: any) => onDragStart(event, "marriage")}
+      />
     </aside>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState, useMemo } from "react";
 import ReactFlow, {
   Background,
   useNodesState,
@@ -8,10 +8,13 @@ import ReactFlow, {
   BackgroundVariant,
   Position,
   ReactFlowProvider,
+  Edge,
+  Connection,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
+import { Marriage } from "./Nodes/Marriage";
 
 const initialNodes = [
   {
@@ -28,11 +31,6 @@ const initialNodes = [
     targetPosition: Position.Left,
     targetHandles: [{ id: "shamusWife-handle-4", position: "left" }],
   },
-  {
-    id: "shamusDaughter",
-    position: { x: 0, y: 100 },
-    data: { label: "Shamu's daughter" },
-  },
 ];
 
 let id = 0;
@@ -44,10 +42,15 @@ export default function Pedigree() {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
-  const onConnect = useCallback(
-    (params: any) => setEdges((eds) => addEdge(params, eds)),
-    []
-  );
+  const nodeTypes = useMemo(() => ({ marriage: Marriage }), []);
+
+  const onConnect = useCallback((connection: Edge | Connection) => {
+    console.log(connection);
+    return setEdges((eds) => {
+      console.log(eds);
+      return addEdge(connection, eds);
+    });
+  }, []);
 
   const onDragOver = useCallback((event: any) => {
     event.preventDefault();
@@ -102,6 +105,7 @@ export default function Pedigree() {
             onDragOver={onDragOver}
             onDrop={onDrop}
             onInit={setReactFlowInstance}
+            nodeTypes={nodeTypes}
           >
             <NodeToolbar />
             <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
