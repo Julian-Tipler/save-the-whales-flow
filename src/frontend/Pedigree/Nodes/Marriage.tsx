@@ -4,8 +4,7 @@ import { Handle, Position } from "reactflow";
 export const Marriage = ({ onDragStart }: any) => {
   return (
     <>
-      <Handle type="target" position={Position.Right} />
-      <Handle type="target" position={Position.Left} />
+      <Handle type="target" position={Position.Top} />
       <Handle type="source" position={Position.Bottom}/>
       <div
         className="dndnode output"
