@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState, useMemo } from "react";
 import ReactFlow, {
   Background,
   useNodesState,
@@ -8,30 +8,28 @@ import ReactFlow, {
   BackgroundVariant,
   Position,
   ReactFlowProvider,
+  Edge,
+  Connection,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
+import { Marriage } from "./Nodes/Marriage";
 
 const initialNodes = [
   {
     id: "shamu",
     position: { x: 0, y: 0 },
     data: { label: "Shamu" },
-    sourcePosition: Position.Right,
+    sourcePosition: Position.Bottom,
     sourceHandles: [{ id: "shamu-handle-1", position: "right" }],
   },
   {
     id: "shamusWife",
     position: { x: 300, y: 0 },
     data: { label: "Shamu's Wife" },
-    targetPosition: Position.Left,
+    targetPosition: Position.Bottom,
     targetHandles: [{ id: "shamusWife-handle-4", position: "left" }],
-  },
-  {
-    id: "shamusDaughter",
-    position: { x: 0, y: 100 },
-    data: { label: "Shamu's daughter" },
   },
 ];
 
@@ -44,10 +42,15 @@ export default function Pedigree() {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
-  const onConnect = useCallback(
-    (params: any) => setEdges((eds) => addEdge(params, eds)),
-    []
-  );
+  const nodeTypes = useMemo(() => ({ marriage: Marriage }), []);
+
+  const onConnect = useCallback((connection: Edge | Connection) => {
+    console.log(connection);
+    return setEdges((eds) => {
+      const newEdge = { ...connection, type: "step" };
+      return addEdge(newEdge, eds);
+    });
+  }, []);
 
   const onDragOver = useCallback((event: any) => {
     event.preventDefault();
@@ -102,6 +105,7 @@ export default function Pedigree() {
             onDragOver={onDragOver}
             onDrop={onDrop}
             onInit={setReactFlowInstance}
+            nodeTypes={nodeTypes}
           >
             <NodeToolbar />
             <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
