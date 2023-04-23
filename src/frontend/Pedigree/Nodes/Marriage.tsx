@@ -1,11 +1,11 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import "./Marriage.css"
+import "./Marriage.css";
 
 export const Marriage = ({ onDragStart }: any) => {
   return (
     <>
-      {/* targets */}
+      {/* left */}
       <Handle
         id="marriage-left-source"
         type="source"
@@ -16,6 +16,7 @@ export const Marriage = ({ onDragStart }: any) => {
         type="target"
         position={Position.Left}
       />
+      {/* right */}
       <Handle
         id="marriage-right-source"
         type="source"
@@ -26,7 +27,7 @@ export const Marriage = ({ onDragStart }: any) => {
         type="target"
         position={Position.Right}
       />
-      {/* sources */}
+      {/* bottom */}
       <Handle
         id="marriage-bottom-source"
         type="source"

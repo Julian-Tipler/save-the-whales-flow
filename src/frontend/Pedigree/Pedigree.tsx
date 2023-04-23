@@ -1,56 +1,35 @@
-import React, { useCallback, useRef, useState, useMemo } from "react";
+import React, {
+  useCallback,
+  useRef,
+  useState,
+  useMemo,
+  useContext,
+} from "react";
 import ReactFlow, {
   Background,
-  useNodesState,
-  useEdgesState,
-  addEdge,
   NodeToolbar,
   BackgroundVariant,
-  Position,
   ReactFlowProvider,
-  Edge,
-  Connection,
+  Node,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
 import { Marriage } from "./Nodes/Marriage";
-
-const initialNodes = [
-  {
-    id: "shamu",
-    position: { x: 0, y: 0 },
-    data: { label: "Shamu" },
-    sourcePosition: Position.Bottom,
-    sourceHandles: [{ id: "shamu-handle-1", position: "right" }],
-  },
-  {
-    id: "shamusWife",
-    position: { x: 300, y: 0 },
-    data: { label: "Shamu's Wife" },
-    targetPosition: Position.Bottom,
-    targetHandles: [{ id: "shamusWife-handle-4", position: "left" }],
-  },
-];
+import PedigreeContext from "./Context/PedigreeContext";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 export default function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange, onConnect } =
+    useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
   const nodeTypes = useMemo(() => ({ marriage: Marriage }), []);
 
-  const onConnect = useCallback((connection: Edge | Connection) => {
-    console.log(connection);
-    return setEdges((eds) => {
-      const newEdge = { ...connection, type: "step" };
-      return addEdge(newEdge, eds);
-    });
-  }, []);
+
 
   const onDragOver = useCallback((event: any) => {
     event.preventDefault();
@@ -80,13 +59,14 @@ export default function Pedigree() {
         data: { label: `${type} node` },
       };
 
-      setNodes((nds) => nds.concat(newNode));
+      setNodes((nds: Node[]) => nds.concat(newNode));
     },
     [reactFlowInstance]
   );
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
+      {/* Don't think I need ReactFlowProvider */}
       <ReactFlowProvider>
         <div
           className="reactflow-wrapper"
@@ -94,18 +74,18 @@ export default function Pedigree() {
           style={{ width: "100vw", height: "50vh" }}
         >
           <ReactFlow
+            nodeTypes={nodeTypes}
             nodes={nodes}
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            fitView
-            zoomOnScroll={false}
-            onNodeClick={(event, node) => console.log(event, node)}
             onDragOver={onDragOver}
             onDrop={onDrop}
+            onNodeClick={(event, node) => console.log(event, node)}
             onInit={setReactFlowInstance}
-            nodeTypes={nodeTypes}
+            zoomOnScroll={false}
+            fitView
           >
             <NodeToolbar />
             <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
