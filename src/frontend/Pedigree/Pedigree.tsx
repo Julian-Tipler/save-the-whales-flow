@@ -7,12 +7,9 @@ import React, {
 } from "react";
 import ReactFlow, {
   Background,
-  addEdge,
   NodeToolbar,
   BackgroundVariant,
   ReactFlowProvider,
-  Edge,
-  Connection,
   Node,
 } from "reactflow";
 
@@ -26,18 +23,13 @@ const getId = () => `dndnode_${id++}`;
 
 export default function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
-  const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
+  const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange, onConnect } =
     useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
   const nodeTypes = useMemo(() => ({ marriage: Marriage }), []);
 
-  const onConnect = useCallback((connection: Edge | Connection) => {
-    return setEdges((eds: Edge[]) => {
-      const newEdge = { ...connection, type: "step" };
-      return addEdge(newEdge, eds);
-    });
-  }, []);
+
 
   const onDragOver = useCallback((event: any) => {
     event.preventDefault();
@@ -74,6 +66,7 @@ export default function Pedigree() {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
+      {/* Don't think I need ReactFlowProvider */}
       <ReactFlowProvider>
         <div
           className="reactflow-wrapper"
@@ -81,18 +74,18 @@ export default function Pedigree() {
           style={{ width: "100vw", height: "50vh" }}
         >
           <ReactFlow
+            nodeTypes={nodeTypes}
             nodes={nodes}
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            fitView
-            zoomOnScroll={false}
-            onNodeClick={(event, node) => console.log(event, node)}
             onDragOver={onDragOver}
             onDrop={onDrop}
+            onNodeClick={(event, node) => console.log(event, node)}
             onInit={setReactFlowInstance}
-            nodeTypes={nodeTypes}
+            zoomOnScroll={false}
+            fitView
           >
             <NodeToolbar />
             <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
