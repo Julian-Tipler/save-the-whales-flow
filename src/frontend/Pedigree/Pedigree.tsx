@@ -1,52 +1,39 @@
-import React, { useCallback, useRef, useState, useMemo } from "react";
+import React, {
+  useCallback,
+  useRef,
+  useState,
+  useMemo,
+  useContext,
+} from "react";
 import ReactFlow, {
   Background,
-  useNodesState,
-  useEdgesState,
   addEdge,
   NodeToolbar,
   BackgroundVariant,
-  Position,
   ReactFlowProvider,
   Edge,
   Connection,
+  Node,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
 import { Marriage } from "./Nodes/Marriage";
-
-const initialNodes = [
-  {
-    id: "shamu",
-    position: { x: 0, y: 0 },
-    data: { label: "Shamu" },
-    sourcePosition: Position.Bottom,
-    sourceHandles: [{ id: "shamu-handle-1", position: "right" }],
-  },
-  {
-    id: "shamusWife",
-    position: { x: 300, y: 0 },
-    data: { label: "Shamu's Wife" },
-    targetPosition: Position.Bottom,
-    targetHandles: [{ id: "shamusWife-handle-4", position: "left" }],
-  },
-];
+import PedigreeContext from "./Context/PedigreeContext";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 export default function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
+    useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
   const nodeTypes = useMemo(() => ({ marriage: Marriage }), []);
 
   const onConnect = useCallback((connection: Edge | Connection) => {
-    console.log(connection);
-    return setEdges((eds) => {
+    return setEdges((eds: Edge[]) => {
       const newEdge = { ...connection, type: "step" };
       return addEdge(newEdge, eds);
     });
@@ -80,7 +67,7 @@ export default function Pedigree() {
         data: { label: `${type} node` },
       };
 
-      setNodes((nds) => nds.concat(newNode));
+      setNodes((nds: Node[]) => nds.concat(newNode));
     },
     [reactFlowInstance]
   );
