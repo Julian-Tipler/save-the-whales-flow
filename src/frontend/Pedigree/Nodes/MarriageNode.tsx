@@ -1,8 +1,8 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import "./Marriage.css";
+import "./MarriageNode.css";
 
-export const Marriage = ({ onDragStart }: any) => {
+export const MarriageNode = ({ onDragStart }: any) => {
   return (
     <>
       {/* left */}
@@ -34,11 +34,11 @@ export const Marriage = ({ onDragStart }: any) => {
         position={Position.Bottom}
       />
       <div
-        className="dndnode output"
+        className="dndnode marriage"
         onDragStart={(event) => onDragStart(event, "mockCustom")}
         draggable
       >
-        ...
+        M
       </div>
     </>
   );

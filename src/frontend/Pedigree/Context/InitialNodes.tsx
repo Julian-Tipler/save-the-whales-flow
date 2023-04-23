@@ -7,6 +7,7 @@ export const initialNodes = [
     data: { label: "Shamu" },
     sourcePosition: Position.Bottom,
     sourceHandles: [{ id: "shamu-handle-1", position: "right" }],
+    type: "whale",
   },
   {
     id: "shamusWife",
@@ -14,5 +15,6 @@ export const initialNodes = [
     data: { label: "Shamu's Wife" },
     targetPosition: Position.Bottom,
     targetHandles: [{ id: "shamusWife-handle-4", position: "left" }],
+    type: "whale",
   },
 ];
