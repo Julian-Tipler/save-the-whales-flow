@@ -21,14 +21,14 @@ const initialNodes = [
     id: "shamu",
     position: { x: 0, y: 0 },
     data: { label: "Shamu" },
-    sourcePosition: Position.Right,
+    sourcePosition: Position.Bottom,
     sourceHandles: [{ id: "shamu-handle-1", position: "right" }],
   },
   {
     id: "shamusWife",
     position: { x: 300, y: 0 },
     data: { label: "Shamu's Wife" },
-    targetPosition: Position.Left,
+    targetPosition: Position.Bottom,
     targetHandles: [{ id: "shamusWife-handle-4", position: "left" }],
   },
 ];
@@ -47,8 +47,8 @@ export default function Pedigree() {
   const onConnect = useCallback((connection: Edge | Connection) => {
     console.log(connection);
     return setEdges((eds) => {
-      console.log(eds);
-      return addEdge(connection, eds);
+      const newEdge = { ...connection, type: "step" };
+      return addEdge(newEdge, eds);
     });
   }, []);
 
