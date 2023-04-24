@@ -1,6 +1,7 @@
 import React from "react";
 import "./DragNDrop.css";
-import { Marriage } from "./Nodes/Marriage";
+import { MarriageNode } from "./Nodes/MarriageNode";
+import { WhaleNode } from "./Nodes/WhaleNode";
 
 export const DragNDrop = () => {
   const onDragStart = (event: any, nodeType: any) => {
@@ -14,14 +15,10 @@ export const DragNDrop = () => {
         You can drag these nodes to the pane on the right.
       </div>
       {/* // TODO replace with custom whale node */}
-      <div
-        className="dndnode"
-        onDragStart={(event) => onDragStart(event, "default")}
-        draggable
-      >
-        Whale Node
-      </div>
-      <Marriage onDragStart={(event: any) => onDragStart(event, "marriage")} />
+      <WhaleNode onDragStart={(event: any) => onDragStart(event, "whale")} />
+      <MarriageNode
+        onDragStart={(event: any) => onDragStart(event, "marriage")}
+      />
     </aside>
   );
 };

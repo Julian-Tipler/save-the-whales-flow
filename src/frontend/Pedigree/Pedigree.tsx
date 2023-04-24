@@ -15,7 +15,7 @@ import ReactFlow, {
 
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
-import { Marriage } from "./Nodes/Marriage";
+import { MarriageNode, WhaleNode } from "./Nodes";
 import PedigreeContext from "./Context/PedigreeContext";
 
 let id = 0;
@@ -23,13 +23,21 @@ const getId = () => `dndnode_${id++}`;
 
 export default function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
-  const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange, onConnect } =
-    useContext(PedigreeContext);
+  const {
+    nodes,
+    setNodes,
+    onNodesChange,
+    edges,
+    setEdges,
+    onEdgesChange,
+    onConnect,
+  } = useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
-  const nodeTypes = useMemo(() => ({ marriage: Marriage }), []);
-
-
+  const nodeTypes = useMemo(
+    () => ({ marriage: MarriageNode, whale: WhaleNode }),
+    []
+  );
 
   const onDragOver = useCallback((event: any) => {
     event.preventDefault();
