@@ -1,6 +1,15 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import { Box, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import "./WhaleNode.css";
 
 export const WhaleNode = ({ onDragStart }: any) => {
@@ -19,9 +28,16 @@ export const WhaleNode = ({ onDragStart }: any) => {
         onDragStart={(event) => onDragStart(event, "mockCustom")}
         draggable
       >
-        <Box>
-          <Text>Whale </Text>
-        </Box>
+        <Card size="sm" backgroundColor={"gray.100"} borderRadius={"2xl"}>
+          <CardHeader>
+            <Heading size="xs">Shamu</Heading>
+          </CardHeader>
+          <CardFooter>
+            <Button variant="solid" colorScheme="blue" size="sm">
+              Details
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     </>
   );
