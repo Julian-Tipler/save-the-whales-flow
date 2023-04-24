@@ -14,7 +14,6 @@ export const DragNDrop = () => {
       <div className="description">
         You can drag these nodes to the pane on the right.
       </div>
-      {/* // TODO replace with custom whale node */}
       <WhaleNode onDragStart={(event: any) => onDragStart(event, "whale")} />
       <MarriageNode
         onDragStart={(event: any) => onDragStart(event, "marriage")}
