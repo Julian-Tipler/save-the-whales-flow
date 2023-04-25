@@ -4,7 +4,7 @@ import "./MarriageNode.css";
 
 export const MarriageNode = ({ onDragStart }: any) => {
   return (
-    <>
+    <div>
       {/* left */}
       <Handle
         id="marriage-left-source"
@@ -34,12 +34,9 @@ export const MarriageNode = ({ onDragStart }: any) => {
         position={Position.Bottom}
       />
       <div
-        className="dndnode marriage"
-        onDragStart={(event) => onDragStart(event, "mockCustom")}
-        draggable
       >
         M
       </div>
-    </>
+    </div>
   );
 };

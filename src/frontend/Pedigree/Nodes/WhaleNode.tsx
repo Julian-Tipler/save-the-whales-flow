@@ -14,7 +14,7 @@ import "./WhaleNode.css";
 
 export const WhaleNode = ({ onDragStart }: any) => {
   return (
-    <>
+    <div>
       {/* top */}
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       {/* bottom */}
@@ -24,9 +24,6 @@ export const WhaleNode = ({ onDragStart }: any) => {
         position={Position.Bottom}
       />
       <div
-        className="dndnode whale"
-        onDragStart={(event) => onDragStart(event, "mockCustom")}
-        draggable
       >
         <Card size="sm" backgroundColor={"gray.100"} borderRadius={"2xl"}>
           <CardHeader>
@@ -39,6 +36,6 @@ export const WhaleNode = ({ onDragStart }: any) => {
           </CardFooter>
         </Card>
       </div>
-    </>
+    </div>
   );
 };
