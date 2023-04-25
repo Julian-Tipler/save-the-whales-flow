@@ -17,11 +17,12 @@ import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
 import PedigreeContext from "./Context/PedigreeContext";
+import { PedigreeProvider } from "./Context/PedigreeContext";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
-export default function Pedigree() {
+export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
   const {
     nodes,
@@ -74,33 +75,32 @@ export default function Pedigree() {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      {/* Don't think I need ReactFlowProvider */}
-      <ReactFlowProvider>
-        <div
-          className="reactflow-wrapper"
-          ref={reactFlowWrapper}
-          style={{ width: "100vw", height: "50vh" }}
-        >
-          <ReactFlow
-            nodeTypes={nodeTypes}
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
-            onDragOver={onDragOver}
-            onDrop={onDrop}
-            onNodeClick={(event, node) => console.log(event, node)}
-            onInit={setReactFlowInstance}
-            zoomOnScroll={false}
-            fitView
+        <ReactFlowProvider>
+          <div
+            className="reactflow-wrapper"
+            ref={reactFlowWrapper}
+            style={{ width: "100vw", height: "50vh" }}
           >
-            <NodeToolbar />
-            <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-          </ReactFlow>
-        </div>
-        <DragNDrop />
-      </ReactFlowProvider>
+            <ReactFlow
+              nodeTypes={nodeTypes}
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              onDragOver={onDragOver}
+              onDrop={onDrop}
+              onNodeClick={(event, node) => console.log(event, node)}
+              onInit={setReactFlowInstance}
+              zoomOnScroll={false}
+              fitView
+            >
+              <NodeToolbar />
+              <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+            </ReactFlow>
+          </div>
+          <DragNDrop />
+        </ReactFlowProvider>
     </div>
   );
 }
