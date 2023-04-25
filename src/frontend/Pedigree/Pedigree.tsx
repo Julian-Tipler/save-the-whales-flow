@@ -17,7 +17,6 @@ import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
 import PedigreeContext from "./Context/PedigreeContext";
-import { PedigreeProvider } from "./Context/PedigreeContext";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
