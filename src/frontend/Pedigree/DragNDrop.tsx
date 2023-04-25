@@ -14,10 +14,20 @@ export const DragNDrop = () => {
       <div className="description">
         You can drag these nodes to the pane on the right.
       </div>
-      <WhaleNode onDragStart={(event: any) => onDragStart(event, "whale")} />
-      <MarriageNode
-        onDragStart={(event: any) => onDragStart(event, "marriage")}
-      />
+      <div
+        className="dndnode"
+        onDragStart={(event) => onDragStart(event, "whale")}
+        draggable
+      >
+        Whale
+      </div>
+      <div
+        className="dndnode"
+        onDragStart={(event) => onDragStart(event, "marriage")}
+        draggable
+      >
+        Marriage
+      </div>
     </aside>
   );
 };
