@@ -1,15 +1,22 @@
 import React from "react";
-import Pedigree from "./frontend/Pedigree/Pedigree";
-import { PedigreeProvider } from "./frontend/Pedigree/Context/PedigreeContext";
+import { PedigreePage } from "./frontend/Pedigree/PedigreePage";
 import { ChakraProvider } from "@chakra-ui/react";
+import { RouterProvider, createBrowserRouter, Route } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <PedigreePage />,
+  },
+  { path: "whales", element: <div>whales</div> },
+  { path: "login", element: <div>login</div> },
+]);
 
 function App() {
   return (
-    <PedigreeProvider>
-      <ChakraProvider>
-        <Pedigree />
-      </ChakraProvider>
-    </PedigreeProvider>
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   );
 }
 
