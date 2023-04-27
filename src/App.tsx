@@ -1,14 +1,15 @@
 import React from "react";
-import { PedigreePage } from "./frontend/Pedigree/PedigreePage";
 import { ChakraProvider } from "@chakra-ui/react";
 import { RouterProvider, createBrowserRouter, Route } from "react-router-dom";
+import WhaleDetailsPage from "./frontend/WhaleDetails";
+import PedigreePage from "./frontend/Pedigree";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <PedigreePage />,
   },
-  { path: "whales", element: <div>whales</div> },
+  { path: "whale/:whaleId", element: <WhaleDetailsPage /> },
   { path: "login", element: <div>login</div> },
 ]);
 
