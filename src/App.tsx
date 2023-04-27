@@ -3,6 +3,7 @@ import { ChakraProvider, Grid, GridItem } from "@chakra-ui/react";
 import { RouterProvider, createBrowserRouter, Route } from "react-router-dom";
 import WhaleDetailsPage from "./frontend/WhaleDetails";
 import PedigreePage from "./frontend/Pedigree";
+import NavigationMenu from "./frontend/NavigationMenu/NavigationMenu";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +23,8 @@ function App() {
           templateAreas={`"header header"
                   "nav main"
                   "nav footer"`}
-          gridTemplateRows={"50px 1fr 30px"}
-          gridTemplateColumns={"150px 1fr"}
+          gridTemplateRows={"75px 1fr 100px"}
+          gridTemplateColumns={"300px 1fr"}
           h="200px"
           gap="1"
           color="blackAlpha.700"
@@ -33,6 +34,7 @@ function App() {
             Header
           </GridItem>
           <GridItem pl="2" bg="pink.300" area={"nav"}>
+            <NavigationMenu/>
             Nav
           </GridItem>
           <GridItem pl="2" bg="green.300" area={"main"}>
