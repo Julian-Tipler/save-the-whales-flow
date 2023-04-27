@@ -31,7 +31,7 @@ export const WhaleNode = ({ onDragStart }: any) => {
           </CardHeader>
           <CardFooter>
             <Button variant="solid" colorScheme="blue" size="sm">
-              <Link to={`whale/${1}`}>Details</Link>
+              <Link to={`whales/${1}`}>Details</Link>
             </Button>
           </CardFooter>
         </Card>

@@ -12,7 +12,7 @@ const router = createBrowserRouter([
       
     ]
   },
-  { path: "whale/:whaleId", element: <WhaleDetailsPage /> },
+  { path: "whales/:whaleId", element: <WhaleDetailsPage /> },
   { path: "login", element: <div>login</div> },
 ]);
 
