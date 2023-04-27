@@ -73,7 +73,8 @@ export function Pedigree() {
   );
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
+    // can't be based on view height
+    <div>
       <ReactFlowProvider>
         <div
           className="reactflow-wrapper"

@@ -5,7 +5,7 @@ import { WhaleProvider } from "./Context/WhaleContext";
 const PedigreePage = () => {
   return (
     <WhaleProvider>
-      <WhaleDetails />;
+      <WhaleDetails />
     </WhaleProvider>
   );
 };

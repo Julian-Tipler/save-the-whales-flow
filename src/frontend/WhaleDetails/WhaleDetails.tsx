@@ -1,41 +1,42 @@
+import React from "react";
 import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
-  Flex,
-  Grid,
-  GridItem,
+  Form,
+  Text,
+  Button,
 } from "@chakra-ui/react";
-import React from "react";
 
 export const WhaleDetails = () => {
+  const [editMode, setEditMode] = React.useState(false);
+
+  if (editMode) {
+    // TODO edit form
+    return (
+      <Card>
+        <Button
+          onClick={() =>
+            console.log(
+              "handle function which saves changes THEN saves editMode to false"
+            )
+          }
+        >
+          Save
+        </Button>
+      </Card>
+    );
+  }
+
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <Grid
-        templateAreas={`"header header"
-                  "nav main"
-                  "nav footer"`}
-        gridTemplateRows={"50px 1fr 30px"}
-        gridTemplateColumns={"150px 1fr"}
-        h="200px"
-        gap="1"
-        color="blackAlpha.700"
-        fontWeight="bold"
-      >
-        <GridItem pl="2" bg="orange.300" area={"header"}>
-          Header
-        </GridItem>
-        <GridItem pl="2" bg="pink.300" area={"nav"}>
-          Nav
-        </GridItem>
-        <GridItem pl="2" bg="green.300" area={"main"}>
-          Main
-        </GridItem>
-        <GridItem pl="2" bg="blue.300" area={"footer"}>
-          Footer
-        </GridItem>
-      </Grid>
-    </div>
+    <Card>
+      <CardHeader>Whale Details</CardHeader>
+      <CardBody>
+        <Text>ID</Text>
+        <Text>Name</Text>
+        <Text>Status</Text>
+      </CardBody>
+      <Button onClick={() => setEditMode(true)}>Edit</Button>
+    </Card>
   );
 };
