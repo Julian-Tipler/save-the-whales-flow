@@ -8,6 +8,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <PedigreePage />,
+    children: [
+      
+    ]
   },
   { path: "whale/:whaleId", element: <WhaleDetailsPage /> },
   { path: "login", element: <div>login</div> },
