@@ -11,6 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import "./WhaleNode.css";
+import { Link } from "react-router-dom";
 
 export const WhaleNode = ({ onDragStart }: any) => {
   return (
@@ -23,15 +24,14 @@ export const WhaleNode = ({ onDragStart }: any) => {
         type="source"
         position={Position.Bottom}
       />
-      <div
-      >
+      <div>
         <Card size="sm" backgroundColor={"gray.100"} borderRadius={"2xl"}>
           <CardHeader>
             <Heading size="xs">Shamu</Heading>
           </CardHeader>
           <CardFooter>
             <Button variant="solid" colorScheme="blue" size="sm">
-              Details
+              <Link to={`whales/${1}`}>Details</Link>
             </Button>
           </CardFooter>
         </Card>

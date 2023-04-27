@@ -74,32 +74,32 @@ export function Pedigree() {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-        <ReactFlowProvider>
-          <div
-            className="reactflow-wrapper"
-            ref={reactFlowWrapper}
-            style={{ width: "100vw", height: "50vh" }}
+      <ReactFlowProvider>
+        <div
+          className="reactflow-wrapper"
+          ref={reactFlowWrapper}
+          style={{ width: "100vw", height: "50vh" }}
+        >
+          <ReactFlow
+            nodeTypes={nodeTypes}
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onDragOver={onDragOver}
+            onDrop={onDrop}
+            onNodeClick={(event, node) => console.log(event, node)}
+            onInit={setReactFlowInstance}
+            zoomOnScroll={false}
+            fitView
           >
-            <ReactFlow
-              nodeTypes={nodeTypes}
-              nodes={nodes}
-              edges={edges}
-              onNodesChange={onNodesChange}
-              onEdgesChange={onEdgesChange}
-              onConnect={onConnect}
-              onDragOver={onDragOver}
-              onDrop={onDrop}
-              onNodeClick={(event, node) => console.log(event, node)}
-              onInit={setReactFlowInstance}
-              zoomOnScroll={false}
-              fitView
-            >
-              <NodeToolbar />
-              <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-            </ReactFlow>
-          </div>
-          <DragNDrop />
-        </ReactFlowProvider>
+            <NodeToolbar />
+            <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+          </ReactFlow>
+        </div>
+        <DragNDrop />
+      </ReactFlowProvider>
     </div>
   );
 }
