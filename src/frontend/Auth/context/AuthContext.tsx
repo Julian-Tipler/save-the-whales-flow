@@ -11,10 +11,19 @@ import { validatePassword } from "./helpers/validatePassword";
 const AuthContext = createContext<any>({});
 
 export function AuthProvider({ children }: any) {
+  const [loading, setLoading] = useState<Boolean>(true);
   const [user, setUser] = useState<Boolean | null>(null);
   //formState
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  useEffect(() => {
+    if (user === null) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  },[user]);
 
   useEffect(() => {
     checkLogin();
@@ -68,6 +77,7 @@ export function AuthProvider({ children }: any) {
   const value = {
     user,
     loggedIn,
+    loading,
     email,
     setEmail,
     password,

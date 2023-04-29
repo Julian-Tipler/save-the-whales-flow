@@ -4,7 +4,8 @@ import { MainLayout } from "./MainLayout";
 import { Login } from "./Auth";
 
 export const Router = () => {
-  const { user, loggedIn } = useContext(AuthContext);
+  const { loggedIn, loading } = useContext(AuthContext);
+  if (loading) return <div>Loading...</div>;
   // return <MainLayout/>
   return loggedIn ? <MainLayout /> : <Login />;
 };

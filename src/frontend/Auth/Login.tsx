@@ -18,8 +18,8 @@ import AuthContext from "./context/AuthContext";
 export const Login = () => {
   const [pageType, setPageType] = useState<"login" | "signup">("login");
   const {
-    emailAddress,
-    setEmailAddress,
+    email,
+    setEmail,
     password,
     setPassword,
     login,
@@ -35,7 +35,7 @@ export const Login = () => {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           {pageType === "login" ? (
-            <Heading fontSize={"4xl"}>Log in to Save the Whales</Heading>
+            <Heading fontSize={"4xl"}>Sign in to Save the Whales</Heading>
           ) : (
             <Heading fontSize={"4xl"}>Sign up to Save the Whales</Heading>
           )}
@@ -51,8 +51,8 @@ export const Login = () => {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
-                value={emailAddress}
-                onChange={(e) => setEmailAddress(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl id="password">
@@ -72,22 +72,33 @@ export const Login = () => {
                 {/* <Checkbox>Remember me</Checkbox> */}
                 {/* <Link color={"blue.400"}>Forgot password?</Link> */}
               </Stack>
-              <Button
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-                onClick={() => {
-                  if (pageType === "login") {
+              {pageType === "login" ? (
+                <Button
+                  bg={"blue.400"}
+                  color={"white"}
+                  _hover={{
+                    bg: "blue.500",
+                  }}
+                  onClick={() => {
                     login();
-                  } else {
+                  }}
+                >
+                  Sign in
+                </Button>
+              ) : (
+                <Button
+                  bg={"blue.400"}
+                  color={"white"}
+                  _hover={{
+                    bg: "blue.500",
+                  }}
+                  onClick={() => {
                     signup();
-                  }
-                }}
-              >
-                Sign in
-              </Button>
+                  }}
+                >
+                  Create Account
+                </Button>
+              )}
 
               {pageType === "login" ? (
                 <Button onClick={() => setPageType("signup")}>
