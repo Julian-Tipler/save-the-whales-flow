@@ -79,7 +79,13 @@ export function Pedigree() {
         <div
           className="reactflow-wrapper"
           ref={reactFlowWrapper}
-          style={{ width: "100vw", height: "50vh" }}
+          style={{
+            width: "100%",
+            height: "80vh",
+            border: "2px solid black",
+            borderRadius: "5px",
+            backgroundColor: "#FFFFFF",
+          }}
         >
           <ReactFlow
             nodeTypes={nodeTypes}
@@ -96,7 +102,7 @@ export function Pedigree() {
             fitView
           >
             <NodeToolbar />
-            <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+            <Background variant={BackgroundVariant.Dots} gap={12} size={1} color="#000000"/>
           </ReactFlow>
         </div>
         <DragNDrop />
