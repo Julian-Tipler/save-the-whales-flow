@@ -1,6 +1,6 @@
 import React from "react";
 import { Pedigree } from "./Pedigree";
-import { PedigreeProvider } from "./Context/PedigreeContext";
+import { PedigreeProvider } from "./context/PedigreeContext";
 
 const PedigreePage = () => {
   return (

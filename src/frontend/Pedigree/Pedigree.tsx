@@ -14,9 +14,9 @@ import ReactFlow, {
 } from "reactflow";
 
 import "reactflow/dist/style.css";
-import { DragNDrop } from "./DragNDrop";
+import { DragNDrop } from "./DragNDrop/DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
-import PedigreeContext from "./Context/PedigreeContext";
+import PedigreeContext from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 
 let id = 0;
@@ -75,7 +75,6 @@ export function Pedigree() {
   );
 
   return (
-    // can't be based on view height
     <div>
       <ReactFlowProvider>
         <div
