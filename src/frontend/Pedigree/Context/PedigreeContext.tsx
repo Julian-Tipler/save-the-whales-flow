@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, createContext } from "react";
 import {
   Connection,
   Edge,
@@ -8,7 +8,7 @@ import {
 } from "reactflow";
 import { fetchPedigree, savePedigree } from "../dataServices";
 
-export const PedigreeContext = React.createContext<any>({});
+const PedigreeContext = createContext<any>({});
 
 export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
@@ -26,7 +26,7 @@ export function PedigreeProvider({ children }: any) {
     fetchPedigree({ id: "5mjGBKYqsortOJ65ZSTH", setNodes, setEdges });
   }, []);
 
-  const savePedigreeResolver = async (setLoading:any) => {
+  const savePedigreeResolver = async (setLoading: any) => {
     setLoading(true);
     await savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
     setLoading(false);

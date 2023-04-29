@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const NavigationBar = () => {
+export const NavigationSidebar = () => {
   return (
     <Accordion>
       <AccordionItem>
@@ -40,5 +40,3 @@ const NavigationBar = () => {
     </Accordion>
   );
 };
-
-export default NavigationBar;
