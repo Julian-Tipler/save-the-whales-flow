@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../../../../../firebase";
+import { db } from "../../../../firebase";
 import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 
 export const savePedigree = async ({

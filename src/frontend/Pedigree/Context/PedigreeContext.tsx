@@ -6,7 +6,7 @@ import {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { fetchPedigree, savePedigree } from "./dataServices";
+import { fetchPedigree, savePedigree } from "../dataServices";
 
 export const PedigreeContext = React.createContext<any>({});
 
