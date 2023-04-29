@@ -4,7 +4,7 @@ import { MainLayout } from "./MainLayout";
 import { Login } from "./Auth";
 
 export const Router = () => {
-  const { user, loggedIn } = React.useContext(AuthContext);
+  const { user, loggedIn } = useContext(AuthContext);
   // return <MainLayout/>
   return loggedIn ? <MainLayout /> : <Login />;
 };

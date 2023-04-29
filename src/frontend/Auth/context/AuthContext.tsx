@@ -1,18 +1,27 @@
 import React, { useState, useEffect, createContext } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../../../../firebase";
+import { validateEmail } from "./helpers/validateEmail";
+import { validatePassword } from "./helpers/validatePassword";
 
 const AuthContext = createContext<any>({});
 
 export function AuthProvider({ children }: any) {
   const [user, setUser] = useState<Boolean | null>(null);
+  //formState
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
     checkLogin();
   }, []);
 
-  function checkLogin() {
-    onAuthStateChanged(auth, (u) => {
+  const checkLogin = () => {
+    const unsubscribe = onAuthStateChanged(auth, (u) => {
       if (u) {
         setUser(true);
         // getUserData();
@@ -21,13 +30,50 @@ export function AuthProvider({ children }: any) {
         // setUserData(null);
       }
     });
-  }
+    return unsubscribe;
+  };
 
-  const loggedIn = user!!
+  const login = async () => {
+    validateEmail(email);
+    validatePassword(password);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("Logged in as", user.email);
+    } catch (error) {
+      console.error("Error logging in", error);
+    }
+  };
+
+  const signup = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("Signed up as", user.email);
+    } catch (error) {
+      console.error("Error signing up", error);
+    }
+  };
+
+  const loggedIn = user!!;
 
   const value = {
     user,
     loggedIn,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    login,
+    signup,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
