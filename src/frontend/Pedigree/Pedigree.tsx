@@ -35,6 +35,7 @@ export function Pedigree() {
     savePedigreeResolver,
   } = useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
   const nodeTypes = useMemo(
     () => ({ marriage: MarriageNode, whale: WhaleNode }),
@@ -111,7 +112,7 @@ export function Pedigree() {
             />
           </ReactFlow>
         </div>
-        <Button onClick={savePedigreeResolver}>Save</Button>
+        <Button onClick={() => savePedigreeResolver(setLoading)} isLoading={loading}>Save</Button>
         <DragNDrop />
       </ReactFlowProvider>
     </div>

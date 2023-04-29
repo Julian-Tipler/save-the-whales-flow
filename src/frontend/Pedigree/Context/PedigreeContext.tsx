@@ -26,8 +26,10 @@ export function PedigreeProvider({ children }: any) {
     fetchPedigree({ id: "5mjGBKYqsortOJ65ZSTH", setNodes, setEdges });
   }, []);
 
-  const savePedigreeResolver = () => {
-    savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
+  const savePedigreeResolver = async (setLoading:any) => {
+    setLoading(true);
+    await savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
+    setLoading(false);
   };
 
   const value = {
