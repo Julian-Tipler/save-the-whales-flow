@@ -6,8 +6,7 @@ import {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { fetchPedigree } from "./Dataservices/fetchPedigree";
-import { savePedigree } from "./Dataservices/savePedigree"
+import { fetchPedigree, savePedigree } from "../dataServices";
 
 export const PedigreeContext = React.createContext<any>({});
 
@@ -27,9 +26,11 @@ export function PedigreeProvider({ children }: any) {
     fetchPedigree({ id: "5mjGBKYqsortOJ65ZSTH", setNodes, setEdges });
   }, []);
 
-  const savePedigreeResolver = () => {
-    savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
-  }
+  const savePedigreeResolver = async (setLoading:any) => {
+    setLoading(true);
+    await savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
+    setLoading(false);
+  };
 
   const value = {
     nodes,
@@ -39,7 +40,7 @@ export function PedigreeProvider({ children }: any) {
     setEdges,
     onEdgesChange,
     onConnect,
-    savePedigreeResolver
+    savePedigreeResolver,
   };
   return (
     <PedigreeContext.Provider value={value}>

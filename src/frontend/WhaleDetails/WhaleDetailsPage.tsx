@@ -1,6 +1,6 @@
 import React from "react";
 import { WhaleDetails } from "./WhaleDetails";
-import { WhaleProvider } from "./Context/WhaleContext";
+import { WhaleProvider } from "./context/WhaleContext";
 
 const PedigreePage = () => {
   return (

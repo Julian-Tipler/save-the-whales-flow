@@ -1,7 +1,7 @@
 import React from "react";
 import "./DragNDrop.css";
-import { MarriageNode } from "./Nodes/MarriageNode";
-import { WhaleNode } from "./Nodes/WhaleNode";
+import { MarriageNode } from "../Nodes/MarriageNode";
+import { WhaleNode } from "../Nodes/WhaleNode";
 
 export const DragNDrop = () => {
   const onDragStart = (event: any, nodeType: any) => {

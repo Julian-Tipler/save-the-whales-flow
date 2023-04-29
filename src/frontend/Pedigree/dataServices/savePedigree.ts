@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../../../../../firebase";
+import { db } from "../../../../firebase";
 import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 
 export const savePedigree = async ({
@@ -25,13 +25,5 @@ export const savePedigree = async ({
   // Save the data to the new document
   await updateDoc(docRef, newData);
 
-  getDoc(docRef)
-    .then((doc) => {
-      if (doc.exists()) {
-        console.log("Document data:", doc.data());
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
+  return
 };

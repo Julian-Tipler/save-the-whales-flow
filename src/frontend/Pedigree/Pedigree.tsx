@@ -14,9 +14,9 @@ import ReactFlow, {
 } from "reactflow";
 
 import "reactflow/dist/style.css";
-import { DragNDrop } from "./DragNDrop";
+import { DragNDrop } from "./DragNDrop/DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
-import PedigreeContext from "./Context/PedigreeContext";
+import PedigreeContext from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 
 let id = 0;
@@ -35,6 +35,7 @@ export function Pedigree() {
     savePedigreeResolver,
   } = useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
   const nodeTypes = useMemo(
     () => ({ marriage: MarriageNode, whale: WhaleNode }),
@@ -75,7 +76,6 @@ export function Pedigree() {
   );
 
   return (
-    // can't be based on view height
     <div>
       <ReactFlowProvider>
         <div
@@ -112,7 +112,7 @@ export function Pedigree() {
             />
           </ReactFlow>
         </div>
-        <Button onClick={savePedigreeResolver}>Save</Button>
+        <Button onClick={() => savePedigreeResolver(setLoading)} isLoading={loading}>Save</Button>
         <DragNDrop />
       </ReactFlowProvider>
     </div>
