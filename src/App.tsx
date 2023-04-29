@@ -17,6 +17,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    <ChakraProvider>
       <Grid
         templateAreas={`"header header"
                   "nav main"
@@ -56,6 +57,7 @@ function App() {
           Footer
         </GridItem>
       </Grid>
+    </ChakraProvider>
   );
 }
 
