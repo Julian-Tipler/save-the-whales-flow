@@ -1,13 +1,13 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { MainLayout } from "./MainLayout";
-import { ProtectedRouter } from "./ProtectedRouter";
-import { AuthProvider } from "./Auth/context/AuthContext";
+import { MainLayout } from "./frontend/MainLayout";
+import { Router } from "./frontend/Router";
+import { AuthProvider } from "./frontend/Auth/context/AuthContext";
 
 function App() {
   return (
     <ChakraProvider>
       <AuthProvider>
-        <ProtectedRouter />
+        <Router />
       </AuthProvider>
     </ChakraProvider>
   );

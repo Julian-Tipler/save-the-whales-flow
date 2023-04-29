@@ -1,19 +1,8 @@
+import React from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { NavigationSidebar } from "./Navigation/NavigationSidebar";
-import { RouterProvider, createBrowserRouter, Route } from "react-router-dom";
-import React from "react";
-import PedigreePage from "./Pedigree";
-import WhaleDetailsPage from "./WhaleDetails";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <PedigreePage />,
-    children: [],
-  },
-  { path: "whales/:whaleId", element: <WhaleDetailsPage /> },
-  { path: "login", element: <div>login</div> },
-]);
+import { MainRouter } from "./Router/MainRouter";
 
 export const MainLayout = () => {
   return (
@@ -49,7 +38,7 @@ export const MainLayout = () => {
         padding={"30px"}
         width={"100%"}
       >
-        <RouterProvider router={router} />
+        <MainRouter />
         Main
       </GridItem>
       <GridItem pl="2" bg="blue.300" area={"footer"}>
