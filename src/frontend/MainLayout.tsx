@@ -3,6 +3,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { NavigationSidebar } from "./Navigation/NavigationSidebar";
 
 import { MainRouter } from "./Router/MainRouter";
+import { Header } from "./Header/Header";
 
 export const MainLayout = () => {
   return (
@@ -24,7 +25,7 @@ export const MainLayout = () => {
         padding={"10px"}
         alignItems={"center"}
       >
-        Save The Whales!
+        <Header />
       </GridItem>
       <GridItem pl="2" bg="pink.300" area={"nav"} padding={"15px"}>
         <NavigationSidebar />

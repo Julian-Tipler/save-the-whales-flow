@@ -12,18 +12,18 @@ const AuthContext = createContext<any>({});
 
 export function AuthProvider({ children }: any) {
   const [loading, setLoading] = useState<Boolean>(true);
-  const [user, setUser] = useState<Boolean | null>(null);
+  const [loggedIn, setLoggedIn] = useState<Boolean | null>(null);
   //formState
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
-    if (user === null) {
+    if (loggedIn === null) {
       setLoading(true);
     } else {
       setLoading(false);
     }
-  },[user]);
+  },[loggedIn]);
 
   useEffect(() => {
     checkLogin();
@@ -32,10 +32,10 @@ export function AuthProvider({ children }: any) {
   const checkLogin = () => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       if (u) {
-        setUser(true);
+        setLoggedIn(true);
         // getUserData();
       } else {
-        setUser(false);
+        setLoggedIn(false);
         // setUserData(null);
       }
     });
@@ -72,10 +72,16 @@ export function AuthProvider({ children }: any) {
     }
   };
 
-  const loggedIn = user!!;
+  const logout = async () => {
+    try {
+      await auth.signOut();
+      console.log("Logged out");
+    } catch (error) {
+      console.error("Error logging out", error);
+    }
+  };
 
   const value = {
-    user,
     loggedIn,
     loading,
     email,
@@ -84,6 +90,7 @@ export function AuthProvider({ children }: any) {
     setPassword,
     login,
     signup,
+    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
