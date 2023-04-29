@@ -17,6 +17,7 @@ import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
 import PedigreeContext from "./Context/PedigreeContext";
+import { Button } from "@chakra-ui/react";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -31,6 +32,7 @@ export function Pedigree() {
     setEdges,
     onEdgesChange,
     onConnect,
+    savePedigreeResolver,
   } = useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
@@ -102,9 +104,15 @@ export function Pedigree() {
             fitView
           >
             <NodeToolbar />
-            <Background variant={BackgroundVariant.Dots} gap={12} size={1} color="#000000"/>
+            <Background
+              variant={BackgroundVariant.Dots}
+              gap={12}
+              size={1}
+              color="#000000"
+            />
           </ReactFlow>
         </div>
+        <Button onClick={savePedigreeResolver}>Save</Button>
         <DragNDrop />
       </ReactFlowProvider>
     </div>
