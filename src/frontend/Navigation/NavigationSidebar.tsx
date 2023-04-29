@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const NavigationBar = () => {
+export const NavigationSidebar = () => {
   return (
     <Accordion>
       <AccordionItem>
@@ -20,8 +20,13 @@ const NavigationBar = () => {
             <AccordionIcon />
           </AccordionButton>
         </h2>
-        {["pedigree 1", "pedigree 2"].map((option) => {
-          return <AccordionPanel pb={4}>{`${option}`}</AccordionPanel>;
+        {["pedigree 1", "pedigree 2"].map((option, i) => {
+          return (
+            <AccordionPanel
+              pb={4}
+              key={`pedigree-${i}`}
+            >{`${option}`}</AccordionPanel>
+          );
         })}
       </AccordionItem>
       <AccordionItem>
@@ -33,12 +38,15 @@ const NavigationBar = () => {
             <AccordionIcon />
           </AccordionButton>
         </h2>
-        {["whale 1", "whale 2", "whale 3"].map((option) => {
-          return <AccordionPanel pb={4}>{`${option}`}</AccordionPanel>;
+        {["whale 1", "whale 2", "whale 3"].map((option, i) => {
+          return (
+            <AccordionPanel
+              pb={4}
+              key={`whale-${i}`}
+            >{`${option}`}</AccordionPanel>
+          );
         })}
       </AccordionItem>
     </Accordion>
   );
 };
-
-export default NavigationBar;
