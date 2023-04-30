@@ -7,13 +7,16 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Flex,
   Heading,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import "./WhaleNode.css";
 import { Link } from "react-router-dom";
 
-export const WhaleNode = () => {
+export const WhaleNode = ({ id, data, selected }) => {
+  console.log(id);
   return (
     <div>
       {/* top */}
@@ -24,11 +27,15 @@ export const WhaleNode = () => {
         type="source"
         position={Position.Bottom}
       />
-      <Box backgroundColor={"gray.100"} borderRadius={"2xl"} padding="10px">
-        <Text size={"xs"}>Shamu</Text>
-        <Button variant="solid" colorScheme="blue" size="xs">
-          <Link to={`whales/${1}`}>Details</Link>
-        </Button>
+      <Box backgroundColor={"gray.100"} borderRadius={"m"} padding="5px">
+        <Flex direction={"column"} alignItems={"center"}>
+          <Text fontSize={"xs"}>Shamu</Text>
+          <Link to={`whales/${1}`}>
+            <Text color={"#0000FF"} fontSize={"xs"}>
+              Details
+            </Text>
+          </Link>
+        </Flex>
       </Box>
     </div>
   );
