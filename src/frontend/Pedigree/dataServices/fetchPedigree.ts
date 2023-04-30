@@ -19,6 +19,7 @@ export const fetchPedigree = async ({
       if (doc.exists()) {
         console.log("Document data:", doc.data());
         setNodes(doc.data()?.nodes);
+        setEdges(doc.data()?.edges);
       }
     })
     .catch((error) => {

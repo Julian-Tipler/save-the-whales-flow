@@ -10,14 +10,15 @@ import ReactFlow, {
   NodeToolbar,
   BackgroundVariant,
   ReactFlowProvider,
+  ConnectionMode,
   Node,
 } from "reactflow";
-
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop/DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
 import PedigreeContext from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
+import { standardizePosition } from "./helpers";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -59,10 +60,13 @@ export function Pedigree() {
         return;
       }
 
-      const position = reactFlowInstance.project({
-        x: event.clientX - reactFlowBounds.left,
-        y: event.clientY - reactFlowBounds.top,
-      });
+      const position = standardizePosition(
+        reactFlowInstance.project({
+          x: event.clientX - reactFlowBounds.left,
+          y: event.clientY - reactFlowBounds.top,
+        })
+      );
+
       const newNode = {
         id: getId(),
         type,
@@ -74,6 +78,21 @@ export function Pedigree() {
     },
     [reactFlowInstance]
   );
+
+  const onNodeDragStop = (event: any, node: Node) => {
+    const { id, position } = node;
+    const roundedPosition = standardizePosition({
+      x: position.x,
+      y: position.y,
+    });
+    const updatedNodes = nodes.map((node: Node) => {
+      if (node.id === id) {
+        return { ...node, position: roundedPosition };
+      }
+      return node;
+    });
+    setNodes(updatedNodes);
+  };
 
   return (
     <div>
@@ -98,21 +117,27 @@ export function Pedigree() {
             onConnect={onConnect}
             onDragOver={onDragOver}
             onDrop={onDrop}
+            onNodeDragStop={onNodeDragStop}
             onNodeClick={(event, node) => console.log(event, node)}
             onInit={setReactFlowInstance}
             zoomOnScroll={false}
-            fitView
+            connectionMode={ConnectionMode.Loose}
           >
             <NodeToolbar />
             <Background
               variant={BackgroundVariant.Dots}
-              gap={12}
+              gap={20}
               size={1}
               color="#000000"
             />
           </ReactFlow>
         </div>
-        <Button onClick={() => savePedigreeResolver(setLoading)} isLoading={loading}>Save</Button>
+        <Button
+          onClick={() => savePedigreeResolver(setLoading)}
+          isLoading={loading}
+        >
+          Save
+        </Button>
         <DragNDrop />
       </ReactFlowProvider>
     </div>

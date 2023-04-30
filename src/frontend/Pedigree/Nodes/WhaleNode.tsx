@@ -13,7 +13,7 @@ import {
 import "./WhaleNode.css";
 import { Link } from "react-router-dom";
 
-export const WhaleNode = ({ onDragStart }: any) => {
+export const WhaleNode = () => {
   return (
     <div>
       {/* top */}
@@ -24,18 +24,12 @@ export const WhaleNode = ({ onDragStart }: any) => {
         type="source"
         position={Position.Bottom}
       />
-      <div>
-        <Card size="sm" backgroundColor={"gray.100"} borderRadius={"2xl"}>
-          <CardHeader>
-            <Heading size="xs">Shamu</Heading>
-          </CardHeader>
-          <CardFooter>
-            <Button variant="solid" colorScheme="blue" size="sm">
-              <Link to={`whales/${1}`}>Details</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-      </div>
+      <Box backgroundColor={"gray.100"} borderRadius={"2xl"} padding="10px">
+        <Text size={"xs"}>Shamu</Text>
+        <Button variant="solid" colorScheme="blue" size="xs">
+          <Link to={`whales/${1}`}>Details</Link>
+        </Button>
+      </Box>
     </div>
   );
 };

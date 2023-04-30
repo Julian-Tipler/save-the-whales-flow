@@ -11,20 +11,10 @@ export const MarriageNode = ({ onDragStart }: any) => {
         type="source"
         position={Position.Left}
       />
-      <Handle
-        id="marriage-left-target"
-        type="target"
-        position={Position.Left}
-      />
       {/* right */}
       <Handle
         id="marriage-right-source"
         type="source"
-        position={Position.Right}
-      />
-      <Handle
-        id="marriage-right-target"
-        type="target"
         position={Position.Right}
       />
       {/* bottom */}
@@ -33,10 +23,7 @@ export const MarriageNode = ({ onDragStart }: any) => {
         type="source"
         position={Position.Bottom}
       />
-      <div
-      >
-        M
-      </div>
+      <div>*</div>
     </div>
   );
 };

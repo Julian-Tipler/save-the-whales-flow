@@ -14,6 +14,7 @@ export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  console.log(nodes)
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
