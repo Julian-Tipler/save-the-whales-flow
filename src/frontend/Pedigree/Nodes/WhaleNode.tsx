@@ -16,9 +16,8 @@ import "./WhaleNode.css";
 import { Link } from "react-router-dom";
 
 export const WhaleNode = ({ id, data, selected }) => {
-  console.log(id);
   return (
-    <div>
+    <Box width={"60px"} height={"40px"}>
       {/* top */}
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       {/* bottom */}
@@ -29,14 +28,14 @@ export const WhaleNode = ({ id, data, selected }) => {
       />
       <Box backgroundColor={"gray.100"} borderRadius={"m"} padding="5px">
         <Flex direction={"column"} alignItems={"center"}>
-          <Text fontSize={"xs"}>Shamu</Text>
+          <Text fontSize={"10px"}>Shamu</Text>
           <Link to={`whales/${1}`}>
-            <Text color={"#0000FF"} fontSize={"xs"}>
+            <Text color={"#0000FF"} fontSize={"10px"}>
               Details
             </Text>
           </Link>
         </Flex>
       </Box>
-    </div>
+    </Box>
   );
 };

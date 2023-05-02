@@ -19,9 +19,7 @@ import { MarriageNode, WhaleNode } from "./Nodes";
 import PedigreeContext from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
-
-let id = 0;
-const getId = () => `dndnode_${id++}`;
+import { v4 as uuidv4 } from "uuid";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -68,7 +66,7 @@ export function Pedigree() {
       );
 
       const newNode = {
-        id: getId(),
+        id: uuidv4(),
         type,
         position,
         data: { label: `${type} node` },

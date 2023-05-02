@@ -17,7 +17,6 @@ export const fetchPedigree = async ({
   getDoc(docRef)
     .then((doc) => {
       if (doc.exists()) {
-        console.log("Document data:", doc.data());
         setNodes(doc.data()?.nodes);
         setEdges(doc.data()?.edges);
       }
