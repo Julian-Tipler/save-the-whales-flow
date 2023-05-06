@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -11,37 +11,17 @@ import {
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import WhaleContext from "./context/WhaleContext";
+import { WhaleDetailsForm } from "./WhaleDetailsForm";
 
 export const WhaleDetails = () => {
   const [editMode, setEditMode] = React.useState(false);
-  const { whale, id } = useContext(WhaleContext);
+  const { whale } = useContext(WhaleContext);
 
   if (!whale) return <div>Loading...</div>;
+  const status = !whale.died;
 
-  const status = !whale.died
   if (editMode) {
-    // TODO edit form
-    return (
-      <Card>
-        <Text>ID</Text>
-        <Input size="md" placeholder="Name" />
-        {status ? <Text>Alive</Text> : <Text>Deceased</Text>}
-        <Input size="md" placeholder="Born" />
-        <Input size="md" placeholder="Died" />
-        <Input size="md" />
-        <Input size="md" />
-
-        <Button
-          onClick={() =>
-            console.log(
-              "handle function which saves changes THEN saves editMode to false"
-            )
-          }
-        >
-          Save
-        </Button>
-      </Card>
-    );
+    return <WhaleDetailsForm whale={whale} setEditMode={setEditMode} />;
   }
 
   return (
@@ -50,7 +30,7 @@ export const WhaleDetails = () => {
       <CardBody>
         <Flex>
           <Text width={"80px"}>ID: </Text>
-          <Text>{id}</Text>
+          <Text>{whale.id}</Text>
         </Flex>
         <Flex>
           <Text width={"80px"}>Status: </Text>

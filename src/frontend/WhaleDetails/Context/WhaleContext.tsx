@@ -15,12 +15,12 @@ export function WhaleProvider({ children }: any) {
   const whaleDocRef = doc(db, "whales", "628583f3-e642-4e51-a171-721a74a3fb69");
 
   const fetchWhale = async () => {
-    if (!id) throw "No whale id provided"
+    if (!id) throw "No whale id provided";
     const whaleDoc = await getDoc(whaleDocRef);
-    setWhale(whaleDoc.data());
+    setWhale({ ...whaleDoc.data(), id });
   };
 
-  const value = { whale, id };
+  const value = { whale };
   return (
     <WhaleContext.Provider value={value}>{children}</WhaleContext.Provider>
   );
