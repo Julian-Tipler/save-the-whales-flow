@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -7,7 +7,9 @@ import {
   Button,
   Input,
   Flex,
+  Box,
 } from "@chakra-ui/react";
+import WhaleContext from "./context/WhaleContext";
 
 export const WhaleDetailsForm = ({
   whale,
@@ -16,6 +18,8 @@ export const WhaleDetailsForm = ({
   whale: any;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [errors, setErrors] = useState<any>([]);
+  const { saveWhale } = useContext(WhaleContext);
   const [name, setName] = useState("");
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
@@ -40,22 +44,26 @@ export const WhaleDetailsForm = ({
         </Flex>
         <Flex>
           <Text width={"80px"}>Born: </Text>
-          <Input value={whale.born} onChange={handleOnChange(setBorn)} />
+          <Input value={born} onChange={handleOnChange(setBorn)} />
         </Flex>
         <Flex>
           <Text width={"80px"}>Died: </Text>
-          <Input value={whale.died} onChange={handleOnChange(setDied)} />
+          <Input value={died} onChange={handleOnChange(setDied)} />
         </Flex>
       </CardBody>
+      <Box>
+        {errors.map((error: String) => {
+          return <Text>{error}</Text>;
+        })}
+      </Box>
       <Flex>
         <Button
-          onClick={() =>
-            console.log({
-              name,
-              born,
-              died,
-            })
-          }
+          onClick={handleSubmit({
+            saveWhale,
+            whale: { name, born, died },
+            setErrors,
+            setEditMode,
+          })}
         >
           Save
         </Button>
@@ -68,5 +76,21 @@ export const WhaleDetailsForm = ({
 export const handleOnChange = (setState: any) => {
   return (e: any) => {
     setState(e.target.value);
+  };
+};
+
+export const handleSubmit = ({
+  saveWhale,
+  whale,
+  setErrors,
+  setEditMode,
+}: any) => {
+  return async () => {
+    const errors = await saveWhale(whale);
+    if (errors.length) {
+      setErrors(errors);
+    } else {
+      setEditMode(false);
+    }
   };
 };

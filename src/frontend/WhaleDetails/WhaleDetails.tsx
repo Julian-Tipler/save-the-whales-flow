@@ -28,23 +28,23 @@ export const WhaleDetails = () => {
     <Card>
       <CardHeader>Whale Details</CardHeader>
       <CardBody>
-        <Flex>
+        <Flex padding={"4px"}>
           <Text width={"80px"}>ID: </Text>
           <Text>{whale.id}</Text>
         </Flex>
-        <Flex>
+        <Flex padding={"4px"}>
           <Text width={"80px"}>Status: </Text>
           <Text>{status ? "Alive" : "Deceased"}</Text>
         </Flex>
-        <Flex>
+        <Flex padding={"4px"}>
           <Text width={"80px"}>Name: </Text>
           <Text>{whale.name}</Text>
         </Flex>
-        <Flex>
+        <Flex padding={"4px"}>
           <Text width={"80px"}>Born: </Text>
           <Text>{whale.born}</Text>
         </Flex>
-        <Flex>
+        <Flex padding={"4px"}>
           <Text width={"80px"}>Died: </Text>
           <Text>{whale.died}</Text>
         </Flex>
