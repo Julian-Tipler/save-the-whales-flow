@@ -29,7 +29,7 @@ export const WhaleNode = ({ id, data, selected }) => {
       <Box backgroundColor={"gray.100"} borderRadius={"m"} padding="5px">
         <Flex direction={"column"} alignItems={"center"}>
           <Text fontSize={"10px"}>Shamu</Text>
-          <Link to={`whales/${1}`}>
+          <Link to={`whales/${id}`}>
             <Text color={"#0000FF"} fontSize={"10px"}>
               Details
             </Text>
