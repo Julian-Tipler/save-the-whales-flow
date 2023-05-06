@@ -52,7 +52,6 @@ export function AuthProvider({ children }: any) {
         password
       );
       const user = userCredential.user;
-      console.log("Logged in as", user.email);
     } catch (error) {
       console.error("Error logging in", error);
     }
@@ -66,7 +65,6 @@ export function AuthProvider({ children }: any) {
         password
       );
       const user = userCredential.user;
-      console.log("Signed up as", user.email);
     } catch (error) {
       console.error("Error signing up", error);
     }
@@ -75,7 +73,6 @@ export function AuthProvider({ children }: any) {
   const logout = async () => {
     try {
       await auth.signOut();
-      console.log("Logged out");
     } catch (error) {
       console.error("Error logging out", error);
     }

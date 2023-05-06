@@ -7,15 +7,17 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Flex,
   Heading,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import "./WhaleNode.css";
 import { Link } from "react-router-dom";
 
-export const WhaleNode = ({ onDragStart }: any) => {
+export const WhaleNode = ({ id, data, selected }) => {
   return (
-    <div>
+    <Box width={"60px"} height={"40px"}>
       {/* top */}
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       {/* bottom */}
@@ -24,18 +26,16 @@ export const WhaleNode = ({ onDragStart }: any) => {
         type="source"
         position={Position.Bottom}
       />
-      <div>
-        <Card size="sm" backgroundColor={"gray.100"} borderRadius={"2xl"}>
-          <CardHeader>
-            <Heading size="xs">Shamu</Heading>
-          </CardHeader>
-          <CardFooter>
-            <Button variant="solid" colorScheme="blue" size="sm">
-              <Link to={`whales/${1}`}>Details</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-      </div>
-    </div>
+      <Box backgroundColor={"gray.100"} borderRadius={"m"} padding="5px">
+        <Flex direction={"column"} alignItems={"center"}>
+          <Text fontSize={"10px"}>Shamu</Text>
+          <Link to={`whales/${1}`}>
+            <Text color={"#0000FF"} fontSize={"10px"}>
+              Details
+            </Text>
+          </Link>
+        </Flex>
+      </Box>
+    </Box>
   );
 };
