@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   Card,
   CardHeader,
   CardBody,
   Text,
   Button,
-  Input,
   Flex,
-  Spacer,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
 import WhaleContext from "./context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
 

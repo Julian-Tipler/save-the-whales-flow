@@ -8,7 +8,8 @@ export const validateWhale = (whale: any) => {
     errors.push("Invalid 'born' date format. Must be YYYY-MM-DD")
   }
 
-  if (died && !dateRegex.test(died)) {
+  //died should be YYYY-MM-DD or empty
+  if (died && !dateRegex.test(died) || died.length > 0) {
     errors.push("Invalid 'died' date format. Must be YYYY-MM-DD");
   }
 
