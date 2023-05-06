@@ -23,6 +23,7 @@ export const WhaleDetailsForm = ({
   const [name, setName] = useState("");
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
+  const [notes, setNotes] = useState("");
 
   useEffect(() => {
     setName(whale.name);
@@ -50,6 +51,10 @@ export const WhaleDetailsForm = ({
           <Text width={"80px"}>Died: </Text>
           <Input value={died} onChange={handleOnChange(setDied)} />
         </Flex>
+        <Flex>
+          <Text width={"80px"}>Notes: </Text>
+          <Input value={notes} onChange={handleOnChange(setNotes)} />
+        </Flex>
       </CardBody>
       <Box>
         {errors.map((error: String) => {
@@ -60,7 +65,7 @@ export const WhaleDetailsForm = ({
         <Button
           onClick={handleSubmit({
             saveWhale,
-            whale: { name, born, died },
+            whale: { name, born, died, notes },
             setErrors,
             setEditMode,
           })}

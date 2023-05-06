@@ -45,6 +45,10 @@ export const WhaleDetails = () => {
           <Text width={"80px"}>Died: </Text>
           <Text>{whale.died}</Text>
         </Flex>
+        <Flex padding={"4px"}>
+          <Text width={"80px"}>Notes: </Text>
+          <Text>{whale.notes}</Text>
+        </Flex>
       </CardBody>
       <Button onClick={() => setEditMode(true)}>Edit</Button>
     </Card>

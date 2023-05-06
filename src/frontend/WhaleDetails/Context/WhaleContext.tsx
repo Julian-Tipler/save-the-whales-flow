@@ -23,12 +23,14 @@ export function WhaleProvider({ children }: any) {
   };
 
   const saveWhale = async (whale: any) => {
+      console.log("WHALE in context", whale);
+
     const errors = validateWhale(whale);
-    if (!errors.length) {
-      await setDoc(whaleDocRef, whale, { merge: true });
-      const newWhaleDoc = await getDoc(whaleDocRef);
-      setWhale({ ...newWhaleDoc.data(), id });
-    }
+    // if (!errors.length) {
+    //   await setDoc(whaleDocRef, whale, { merge: true });
+    //   const newWhaleDoc = await getDoc(whaleDocRef);
+    //   setWhale({ ...newWhaleDoc.data(), id });
+    // }
     return errors;
   };
 
