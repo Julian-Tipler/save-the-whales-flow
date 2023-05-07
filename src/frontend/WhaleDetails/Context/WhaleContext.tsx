@@ -15,25 +15,24 @@ export function WhaleProvider({ children }: any) {
   useEffect(() => {
     fetchWhale();
   }, []);
-  const whaleDocRef = doc(db, "whales", id);
 
   const fetchWhale = async () => {
     if (!id) throw "No whale id provided";
+    const whaleDocRef = doc(db, "whales", id);
     const whaleDoc = await getDoc(whaleDocRef);
     setWhale({ ...whaleDoc.data(), id });
   };
 
-  const saveWhaleResolver = async (whale: any) => {
-    const errors = validateWhale(whale);
-    console.log("errors", errors);
+  const updateWhaleResolver = async (whaleFormData: any) => {
+    const errors = validateWhale(whaleFormData);
     if (!errors.length) {
-      const newWhale = await saveWhale({ whale, whaleDocRef });
+      const newWhale = await saveWhale({ id, data: whaleFormData });
       setWhale({ ...newWhale, id });
     }
     return errors;
   };
 
-  const value = { whale, saveWhaleResolver };
+  const value = { whale, updateWhaleResolver };
   return (
     <WhaleContext.Provider value={value}>{children}</WhaleContext.Provider>
   );

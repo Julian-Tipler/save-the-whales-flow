@@ -9,7 +9,7 @@ import {
   where,
   getDoc,
 } from "firebase/firestore";
-import { Node } from "reactflow";
+import { Node, Edge } from "reactflow";
 
 export const savePedigree = async ({
   id,
@@ -17,13 +17,10 @@ export const savePedigree = async ({
   edges,
 }: {
   id: string;
-  nodes: any;
-  edges: any;
+  nodes: Node[];
+  edges: Edge[];
 }) => {
-  // Create a new document with a unique ID
   const pedigreeRef = doc(db, "pedigrees", id);
-
-  //need to check if a whale exists in the db
 
   for (const node of nodes) {
     const { id } = node;
@@ -38,13 +35,11 @@ export const savePedigree = async ({
     }
   }
 
-  // Define the data to be saved
   const newData = {
     nodes,
     edges,
   };
 
-  // Save the data to the new document
   await updateDoc(pedigreeRef, newData);
 
   return;

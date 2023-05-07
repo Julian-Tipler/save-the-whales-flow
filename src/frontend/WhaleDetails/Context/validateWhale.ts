@@ -8,9 +8,17 @@ export const validateWhale = (whale: any) => {
   }
 
   //died should be YYYY-MM-DD or empty
-  if ((died && !dateRegex.test(died))) {
-    console.log(dateRegex.test(died))
-    errors.push("Invalid 'Died' date format. Must be YYYY-MM-DD");
+
+  if (died) {
+    if (!dateRegex.test(died)) {
+      errors.push("Invalid 'Died' date format. Must be YYYY-MM-DD");
+    }
+    if (!isValidDate(died)) {
+      errors.push("Invalid 'Died' date");
+    }
+    if (died < born) {
+      errors.push("Died date must be after Born date");
+    }
   }
 
   if (name.length > 50) {
@@ -19,3 +27,13 @@ export const validateWhale = (whale: any) => {
 
   return errors;
 };
+  
+function isValidDate(dateString: any) {
+  const [year, month, day] = dateString.split("-");
+  const date = new Date(year, month - 1, day);
+  return (
+    date.getFullYear() === Number(year) &&
+    date.getMonth() === Number(month) - 1 &&
+    date.getDate() === Number(day)
+  );
+}
