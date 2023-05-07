@@ -1,5 +1,3 @@
-import {standardizePosition} from './standardizePosition';
+import { standardizePosition } from "./standardizePosition";
 
-export {
-    standardizePosition
-}
+export { standardizePosition };

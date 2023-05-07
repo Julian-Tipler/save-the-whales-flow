@@ -4,7 +4,7 @@ import { db } from "../../../../firebase";
 import { useParams } from "react-router-dom";
 
 import { saveWhale } from "../../../db/dataServices/saveWhale";
-import { validateWhale } from "./validateWhale";
+import { validateWhale } from "./validation/validateWhale";
 import { Whale } from "../../../db/Types/Entities";
 
 export const WhaleContext = React.createContext<any>({});
