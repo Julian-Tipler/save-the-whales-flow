@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase";
 import { useParams } from "react-router-dom";
+
+import { saveWhale } from "../dataServices/saveWhale";
 import { validateWhale } from "./validateWhale";
 
 export const WhaleContext = React.createContext<any>({});
@@ -21,17 +23,17 @@ export function WhaleProvider({ children }: any) {
     setWhale({ ...whaleDoc.data(), id });
   };
 
-  const saveWhale = async (whale: any) => {
+  const saveWhaleResolver = async (whale: any) => {
     const errors = validateWhale(whale);
+    console.log("errors", errors);
     if (!errors.length) {
-      await setDoc(whaleDocRef, whale, { merge: true });
-      const newWhaleDoc = await getDoc(whaleDocRef);
-      setWhale({ ...newWhaleDoc.data(), id });
+      const newWhale = await saveWhale({ whale, whaleDocRef });
+      setWhale({ ...newWhale, id });
     }
     return errors;
   };
 
-  const value = { whale, saveWhale };
+  const value = { whale, saveWhaleResolver };
   return (
     <WhaleContext.Provider value={value}>{children}</WhaleContext.Provider>
   );

@@ -69,9 +69,6 @@ export function Pedigree() {
 
       const whaleId = uuidv4();
 
-      const whaleRef = doc(db, "whales", whaleId);
-      await setDoc(whaleRef, {});
-
       const newNode = {
         id: whaleId,
         type,

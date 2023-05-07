@@ -19,7 +19,7 @@ export const WhaleDetailsForm = ({
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [errors, setErrors] = useState<any>([]);
-  const { saveWhale } = useContext(WhaleContext);
+  const { saveWhaleResolver } = useContext(WhaleContext);
   const [name, setName] = useState("");
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
@@ -68,7 +68,7 @@ export const WhaleDetailsForm = ({
       <Flex>
         <Button
           onClick={handleSubmit({
-            saveWhale,
+            saveWhaleResolver,
             whale: { name, born, died, notes },
             setErrors,
             setEditMode,
@@ -89,13 +89,13 @@ export const handleOnChange = (setState: any) => {
 };
 
 export const handleSubmit = ({
-  saveWhale,
+  saveWhaleResolver,
   whale,
   setErrors,
   setEditMode,
 }: any) => {
   return async () => {
-    const errors = await saveWhale(whale);
+    const errors = await saveWhaleResolver(whale);
     if (errors.length) {
       setErrors(errors);
     } else {
