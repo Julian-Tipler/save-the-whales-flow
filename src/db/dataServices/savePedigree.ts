@@ -1,4 +1,3 @@
-import React from "react";
 import { db } from "../../../firebase";
 import { doc, updateDoc, setDoc, getDoc } from "firebase/firestore";
 import { Node, Edge } from "reactflow";
@@ -22,7 +21,6 @@ export const savePedigree = async ({
     const whaleSnap = await getDoc(whaleRef);
     if (!whaleSnap.exists()) {
       await setDoc(whaleRef, { id: id, name: "New Whale", born: "", died: "" });
-      console.log(`Created new whale with ID: ${id}`);
     } else {
       console.log(`Whale with ID: ${id} already exists.`);
     }

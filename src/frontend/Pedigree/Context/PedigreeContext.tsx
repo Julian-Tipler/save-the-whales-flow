@@ -8,6 +8,7 @@ import {
 } from "reactflow";
 import { fetchPedigree, savePedigree } from "../../../db/dataServices";
 import { Pedigree } from "../../../db/Types/Entities";
+import { getWhales } from "../../../db/dataServices/getWhales";
 
 const PedigreeContext = createContext<any>({});
 
@@ -30,6 +31,7 @@ export function PedigreeProvider({ children }: any) {
   }, []);
 
   useEffect(() => {
+    console.log("pedigree changes");
     if (pedigree && pedigree.nodes) {
       setNodes(pedigree.nodes);
     }
@@ -42,7 +44,11 @@ export function PedigreeProvider({ children }: any) {
     const pedigree = await fetchPedigree({
       id: "5mjGBKYqsortOJ65ZSTH",
     });
+    console.log(pedigree);
     if (pedigree) {
+      if (pedigree.nodes) {
+        await getWhales({ ids: pedigree.nodes.map((node) => node.id) });
+      }
       setPedigree(pedigree);
     }
   };

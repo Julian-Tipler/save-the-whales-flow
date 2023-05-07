@@ -93,6 +93,8 @@ export function Pedigree() {
     setNodes(updatedNodes);
   };
 
+  //TODO if !pedigree return null
+
   return (
     <div>
       <ReactFlowProvider>
@@ -131,10 +133,7 @@ export function Pedigree() {
             />
           </ReactFlow>
         </div>
-        <Button
-          onClick={() => savePedigreeResolver()}
-          isLoading={saveLoading}
-        >
+        <Button onClick={() => savePedigreeResolver()} isLoading={saveLoading}>
           Save
         </Button>
         <DragNDrop />
