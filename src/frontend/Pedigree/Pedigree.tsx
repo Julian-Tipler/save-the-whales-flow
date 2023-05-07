@@ -20,6 +20,8 @@ import PedigreeContext from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
+import { db } from "../../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -47,7 +49,7 @@ export function Pedigree() {
   }, []);
 
   const onDrop = useCallback(
-    (event: any) => {
+    async (event: any) => {
       event.preventDefault();
 
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
@@ -65,8 +67,10 @@ export function Pedigree() {
         })
       );
 
+      const whaleId = uuidv4();
+
       const newNode = {
-        id: uuidv4(),
+        id: whaleId,
         type,
         position,
         data: { label: `${type} node` },

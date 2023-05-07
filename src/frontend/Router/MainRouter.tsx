@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <PedigreePage />,
     children: [],
   },
-  { path: "whales/:whaleId", element: <WhaleDetailsPage /> },
+  { path: "whales/:id", element: <WhaleDetailsPage /> },
 ]);
 
 export const MainRouter = () => {
