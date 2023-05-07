@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../../../../firebase";
+import { db } from "../../../firebase";
 
 export const saveWhale = async ({ id, data }: { id: string; data: any }) => {
   const whaleDocRef = doc(db, "whales", id);

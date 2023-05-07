@@ -20,8 +20,6 @@ import PedigreeContext from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
-import { db } from "../../../firebase";
-import { doc, setDoc } from "firebase/firestore";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -30,13 +28,12 @@ export function Pedigree() {
     setNodes,
     onNodesChange,
     edges,
-    setEdges,
     onEdgesChange,
     onConnect,
     savePedigreeResolver,
+    saveLoading,
   } = useContext(PedigreeContext);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
 
   const nodeTypes = useMemo(
     () => ({ marriage: MarriageNode, whale: WhaleNode }),
@@ -135,8 +132,8 @@ export function Pedigree() {
           </ReactFlow>
         </div>
         <Button
-          onClick={() => savePedigreeResolver(setLoading)}
-          isLoading={loading}
+          onClick={() => savePedigreeResolver()}
+          isLoading={saveLoading}
         >
           Save
         </Button>

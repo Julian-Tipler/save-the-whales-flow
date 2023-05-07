@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, createContext } from "react";
+import React, { useCallback, useEffect, createContext, useState } from "react";
 import {
   Connection,
   Edge,
@@ -6,15 +6,18 @@ import {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { fetchPedigree, savePedigree } from "../dataServices";
+import { fetchPedigree, savePedigree } from "../../../db/dataServices";
+import { Pedigree } from "../../../db/Types/Entities";
 
 const PedigreeContext = createContext<any>({});
 
 export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
+  const [pedigree, setPedigree] = useState<Pedigree | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  console.log(nodes);
+  const [saveLoading, setSaveLoading] = useState(false);
+
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
       const newEdge = { ...connection, type: "step" };
@@ -23,13 +26,31 @@ export function PedigreeProvider({ children }: any) {
   }, []);
 
   useEffect(() => {
-    fetchPedigree({ id: "5mjGBKYqsortOJ65ZSTH", setNodes, setEdges });
+    fetchPedigreeResolver();
   }, []);
 
-  const savePedigreeResolver = async (setLoading: any) => {
-    setLoading(true);
+  useEffect(() => {
+    if (pedigree && pedigree.nodes) {
+      setNodes(pedigree.nodes);
+    }
+    if (pedigree && pedigree.edges) {
+      setEdges(pedigree.edges);
+    }
+  }, [pedigree]);
+
+  const fetchPedigreeResolver = async () => {
+    const pedigree = await fetchPedigree({
+      id: "5mjGBKYqsortOJ65ZSTH",
+    });
+    if (pedigree) {
+      setPedigree(pedigree);
+    }
+  };
+
+  const savePedigreeResolver = async () => {
+    setSaveLoading(true);
     await savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
-    setLoading(false);
+    setSaveLoading(false);
   };
 
   const value = {
@@ -41,6 +62,7 @@ export function PedigreeProvider({ children }: any) {
     onEdgesChange,
     onConnect,
     savePedigreeResolver,
+    saveLoading,
   };
   return (
     <PedigreeContext.Provider value={value}>
