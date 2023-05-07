@@ -10,12 +10,13 @@ import {
   Box,
 } from "@chakra-ui/react";
 import WhaleContext from "./context/WhaleContext";
+import { Whale } from "../../db/Types/Entities";
 
 export const WhaleDetailsForm = ({
   whale,
   setEditMode,
 }: {
-  whale: any;
+  whale: Whale;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [errors, setErrors] = useState<any>([]);
@@ -26,9 +27,9 @@ export const WhaleDetailsForm = ({
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
-    setName(whale.name);
-    setBorn(whale.born);
-    setDied(whale.died);
+    setName(whale.name || "");
+    setBorn(whale.born || "");
+    setDied(whale.died || "");
   }, []);
 
   return (
@@ -82,8 +83,10 @@ export const WhaleDetailsForm = ({
   );
 };
 
-export const handleOnChange = (setState: any) => {
-  return (e: any) => {
+export const handleOnChange = (
+  setState: React.Dispatch<React.SetStateAction<string>>
+) => {
+  return (e: React.ChangeEvent<HTMLInputElement>) => {
     setState(e.target.value);
   };
 };

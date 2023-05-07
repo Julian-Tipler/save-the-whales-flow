@@ -3,7 +3,7 @@ export const validateWhale = (whale: any) => {
   const { name, born, died } = whale;
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
-  if (!dateRegex.test(born)) {
+  if (born && !dateRegex.test(born)) {
     errors.push("Invalid 'Born' date format. Must be YYYY-MM-DD");
   }
 
@@ -27,7 +27,7 @@ export const validateWhale = (whale: any) => {
 
   return errors;
 };
-  
+
 function isValidDate(dateString: any) {
   const [year, month, day] = dateString.split("-");
   const date = new Date(year, month - 1, day);

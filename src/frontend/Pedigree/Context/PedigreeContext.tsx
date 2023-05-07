@@ -6,13 +6,14 @@ import {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { fetchPedigree, savePedigree } from "../dataServices";
+import { fetchPedigree, savePedigree } from "../../../db/dataServices";
+import { Pedigree } from "../../../db/Types/Entities";
 
 const PedigreeContext = createContext<any>({});
 
 export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
-  const [pedigree, setPedigree] = useState<any>({});
+  const [pedigree, setPedigree] = useState<Pedigree | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [saveLoading, setSaveLoading] = useState(false);
@@ -29,8 +30,10 @@ export function PedigreeProvider({ children }: any) {
   }, []);
 
   useEffect(() => {
-    if (pedigree) {
+    if (pedigree && pedigree.nodes) {
       setNodes(pedigree.nodes);
+    }
+    if (pedigree && pedigree.edges) {
       setEdges(pedigree.edges);
     }
   }, [pedigree]);
