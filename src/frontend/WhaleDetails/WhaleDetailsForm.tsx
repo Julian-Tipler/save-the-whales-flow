@@ -55,12 +55,16 @@ export const WhaleDetailsForm = ({
           <Text width={"80px"}>Notes: </Text>
           <Input value={notes} onChange={handleOnChange(setNotes)} />
         </Flex>
+        <Box>
+          {errors.map((error: String, i: Number) => {
+            return (
+              <Text color={"red"} key={`error-${i}`}>
+                {error}
+              </Text>
+            );
+          })}
+        </Box>
       </CardBody>
-      <Box>
-        {errors.map((error: String) => {
-          return <Text>{error}</Text>;
-        })}
-      </Box>
       <Flex>
         <Button
           onClick={handleSubmit({

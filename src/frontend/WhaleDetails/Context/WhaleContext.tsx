@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../../../firebase";
 import { useParams } from "react-router-dom";
-import { validateWhale } from "./ValidateWhale";
+import { validateWhale } from "./validateWhale";
 
 export const WhaleContext = React.createContext<any>({});
 
@@ -10,7 +10,6 @@ export function WhaleProvider({ children }: any) {
   const [whale, setWhale] = React.useState<any>(null);
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No whale id provided");
-  console.log(whale);
   useEffect(() => {
     fetchWhale();
   }, []);
@@ -23,14 +22,12 @@ export function WhaleProvider({ children }: any) {
   };
 
   const saveWhale = async (whale: any) => {
-      console.log("WHALE in context", whale);
-
     const errors = validateWhale(whale);
-    // if (!errors.length) {
-    //   await setDoc(whaleDocRef, whale, { merge: true });
-    //   const newWhaleDoc = await getDoc(whaleDocRef);
-    //   setWhale({ ...newWhaleDoc.data(), id });
-    // }
+    if (!errors.length) {
+      await setDoc(whaleDocRef, whale, { merge: true });
+      const newWhaleDoc = await getDoc(whaleDocRef);
+      setWhale({ ...newWhaleDoc.data(), id });
+    }
     return errors;
   };
 
