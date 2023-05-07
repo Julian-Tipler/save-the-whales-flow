@@ -16,6 +16,7 @@ import "./WhaleNode.css";
 import { Link } from "react-router-dom";
 
 export const WhaleNode = ({ id, data, selected }) => {
+  console.log("WhaleNode", id, data, selected);
   return (
     <Box width={"60px"} height={"40px"}>
       {/* top */}
