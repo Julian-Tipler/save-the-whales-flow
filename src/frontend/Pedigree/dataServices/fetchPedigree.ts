@@ -2,26 +2,14 @@ import React from "react";
 import { db } from "../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-export const fetchPedigree = async ({
-  id,
-  setNodes,
-  setEdges,
-}: {
-  id: string;
-  setNodes: React.Dispatch<React.SetStateAction<any[]>>;
-  setEdges: React.Dispatch<React.SetStateAction<any[]>>;
-}) => {
+export const fetchPedigree = async ({ id }: { id: string }) => {
   const docRef = doc(db, "pedigrees", id);
 
-  // Fetch the document data
-  getDoc(docRef)
-    .then((doc) => {
-      if (doc.exists()) {
-        setNodes(doc.data()?.nodes);
-        setEdges(doc.data()?.edges);
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
+  const pedigreeDoc = await getDoc(docRef);
+
+  if (pedigreeDoc.exists()) {
+    return pedigreeDoc.data();
+  } else {
+    console.log("Error getting document:");
+  }
 };

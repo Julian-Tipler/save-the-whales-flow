@@ -12,6 +12,7 @@ export function WhaleProvider({ children }: any) {
   const [whale, setWhale] = React.useState<any>(null);
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No whale id provided");
+  
   useEffect(() => {
     fetchWhale();
   }, []);
