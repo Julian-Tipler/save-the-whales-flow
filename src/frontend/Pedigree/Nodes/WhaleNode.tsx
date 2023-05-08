@@ -31,19 +31,15 @@ export const WhaleNode = ({ id, data, selected }) => {
       >
         <Flex direction={"column"} alignItems={"center"}>
           <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
-          {whale?.id ? (
+          {whale?.id && (
             <Link to={`whales/${whale?.id}`}>
               <Text color={"#0000FF"} fontSize={"10px"}>
                 Details
               </Text>
             </Link>
-          ) : (
-            <Text color={"#808080"} fontSize={"10px"}>
-              Unsaved
-            </Text>
           )}
         </Flex>
-      </Box>
+      </Box>  
       <Handle
         id="whale-bottom-source"
         type="source"
