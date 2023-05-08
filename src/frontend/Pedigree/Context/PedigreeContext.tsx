@@ -8,7 +8,7 @@ import {
 } from "reactflow";
 import { fetchPedigree, savePedigree } from "../../../db/dataServices";
 import { Pedigree } from "../../../db/Types/Entities";
-import { getWhales } from "../../../db/dataServices/getWhales";
+import { fetchWhales } from "../../../db/dataServices/fetchWhales";
 
 const PedigreeContext = createContext<any>({});
 
@@ -30,6 +30,10 @@ export function PedigreeProvider({ children }: any) {
     fetchPedigreeResolver();
   }, []);
 
+  // This may be a problem. I am making setNodes and setEdges dependent on pedigree, 
+  // but I am also setting nodes and edges with my drag and drop situations.
+  // This means that edges and nodes will NOT be the same as pedigree.nodes and pedigree.edges 
+  // in those situations
   useEffect(() => {
     if (pedigree && pedigree.nodes) {
       setNodes(pedigree.nodes);
@@ -44,13 +48,14 @@ export function PedigreeProvider({ children }: any) {
       id: "5mjGBKYqsortOJ65ZSTH",
     });
     if (pedigree) {
-      if (pedigree.nodes) {
-        const whales = await getWhales({
+      // fetches whales for each node
+      // currently stores these whales in the node data
+      if (pedigree.nodes && pedigree.nodes.length) {
+        const whales = await fetchWhales({
           ids: pedigree.nodes.map((node) => node.id),
         });
         const nodes = pedigree.nodes.map((node) => {
           const whale = whales.find((whale) => whale.id === node.id);
-          console.log(whale);
           return {
             ...node,
             data: {
