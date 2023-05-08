@@ -31,7 +31,6 @@ export function PedigreeProvider({ children }: any) {
   }, []);
 
   useEffect(() => {
-    console.log("pedigree changes");
     if (pedigree && pedigree.nodes) {
       setNodes(pedigree.nodes);
     }
@@ -41,21 +40,37 @@ export function PedigreeProvider({ children }: any) {
   }, [pedigree]);
 
   const fetchPedigreeResolver = async () => {
-    const pedigree = await fetchPedigree({
+    let pedigree = await fetchPedigree({
       id: "5mjGBKYqsortOJ65ZSTH",
     });
-    console.log(pedigree);
     if (pedigree) {
       if (pedigree.nodes) {
-        await getWhales({ ids: pedigree.nodes.map((node) => node.id) });
+        const whales = await getWhales({
+          ids: pedigree.nodes.map((node) => node.id),
+        });
+        const nodes = pedigree.nodes.map((node) => {
+          const whale = whales.find((whale) => whale.id === node.id);
+          console.log(whale);
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              whale,
+            },
+          };
+        });
+        pedigree = { ...pedigree, nodes };
       }
       setPedigree(pedigree);
+    } else {
+      console.log("No pedigree found with id");
     }
   };
 
   const savePedigreeResolver = async () => {
     setSaveLoading(true);
     await savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
+    await fetchPedigreeResolver();
     setSaveLoading(false);
   };
 
