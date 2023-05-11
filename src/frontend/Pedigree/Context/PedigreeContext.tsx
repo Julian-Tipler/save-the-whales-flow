@@ -33,7 +33,7 @@ export function PedigreeProvider({ children }: any) {
   // This may be a problem. I am making setNodes and setEdges dependent on pedigree, 
   // but I am also setting nodes and edges with my drag and drop situations.
   // This means that edges and nodes will NOT be the same as pedigree.nodes and pedigree.edges 
-  // in those situations
+  // in those situations (pedigree will be outdated)
   useEffect(() => {
     if (pedigree && pedigree.nodes) {
       setNodes(pedigree.nodes);
