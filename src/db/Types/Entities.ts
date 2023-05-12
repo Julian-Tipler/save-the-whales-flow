@@ -4,6 +4,7 @@ export type Whale = {
   id: string;
   identification?: string;
   name?: string;
+  gender?: string;
   born?: string;
   died?: string;
   notes?: string;

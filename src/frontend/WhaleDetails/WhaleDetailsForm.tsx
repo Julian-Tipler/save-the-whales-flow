@@ -23,6 +23,7 @@ export const WhaleDetailsForm = ({
   const { updateWhaleResolver } = useContext(WhaleContext);
   const [identification, setIdentification] = useState("");
   const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
   const [notes, setNotes] = useState("");
@@ -30,6 +31,7 @@ export const WhaleDetailsForm = ({
   useEffect(() => {
     setIdentification(whale.identification || "");
     setName(whale.name || "");
+    setGender(whale.gender || "");
     setBorn(whale.born || "");
     setDied(whale.died || "");
     setNotes(whale.notes || "");
@@ -49,6 +51,10 @@ export const WhaleDetailsForm = ({
         <Flex>
           <Text width={"140px"}>Name: </Text>
           <Input value={name} onChange={handleOnChange(setName)} />
+        </Flex>
+        <Flex>
+          <Text width={"140px"}>Gender: </Text>
+          <Input value={gender} onChange={handleOnChange(setName)} />
         </Flex>
         <Flex>
           <Text width={"140px"}>Born: </Text>
