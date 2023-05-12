@@ -19,7 +19,7 @@ export const MainLayout = () => {
     >
       <GridItem
         pl="2"
-        bg="orange.300"
+        bg={"blue.400"}
         area={"header"}
         display={"flex"}
         padding={"10px"}
@@ -27,23 +27,20 @@ export const MainLayout = () => {
       >
         <Header />
       </GridItem>
-      <GridItem pl="2" bg="pink.300" area={"nav"} padding={"15px"}>
+      <GridItem pl="2" bg="gray.300" area={"nav"} padding={"15px"}>
         <NavigationSidebar />
-        Navigation
       </GridItem>
       <GridItem
         pl="2"
-        bg="green.300"
+        bg="blue.100"
         area={"main"}
         minHeight={"100vh"}
         padding={"30px"}
         width={"100%"}
       >
         <MainRouter />
-        Main
       </GridItem>
       <GridItem pl="2" bg="blue.300" area={"footer"}>
-        Footer
       </GridItem>
     </Grid>
   );

@@ -1,8 +1,9 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Card, CardFooter, Flex, Text } from "@chakra-ui/react";
 import "./WhaleNode.css";
 import { Link } from "react-router-dom";
+import { whaleStatus } from "../../helpers/whaleStatus";
 
 /**
  * WhaleNode is populated by ReactFlow. ReactFLow is passed nodes array which it maps through
@@ -24,30 +25,30 @@ export const WhaleNode = ({
   const { whale } = data;
 
   return (
-    <Box width={"80px"} height={"60px"}>
+    <Card width={"80px"} height={"60px"} backgroundColor={"blue.100"}>
       <Handle id="whale-top-target" type="target" position={Position.Top} />
-      <Box
-        backgroundColor={"gray.100"}
-        padding={"5px"}
-        height={"100%"}
-        borderRadius={"5px"}
-      >
+      <Box padding={"5px"} height={"100%"} borderRadius={"5px"}>
         <Flex direction={"column"} alignItems={"center"}>
-          <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
-          {whale?.id && (
-            <Link to={`whales/${whale?.id}`}>
-              <Text color={"#0000FF"} fontSize={"10px"}>
-                Details
-              </Text>
-            </Link>
-          )}
+          <Flex>
+            <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
+            {whaleStatus(whale)}
+          </Flex>
         </Flex>
       </Box>
+      <CardFooter>
+        {whale?.id && (
+          <Link to={`whales/${whale?.id}`}>
+            <Text color={"#0000FF"} fontSize={"10px"}>
+              Details
+            </Text>
+          </Link>
+        )}
+      </CardFooter>
       <Handle
         id="whale-bottom-source"
         type="source"
         position={Position.Bottom}
       />
-    </Box>
+    </Card>
   );
 };

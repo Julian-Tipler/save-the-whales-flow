@@ -21,15 +21,20 @@ export const WhaleDetailsForm = ({
 }) => {
   const [errors, setErrors] = useState<any>([]);
   const { updateWhaleResolver } = useContext(WhaleContext);
+  const [identification, setIdentification] = useState("");
   const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
+    setIdentification(whale.identification || "");
     setName(whale.name || "");
+    setGender(whale.gender || "");
     setBorn(whale.born || "");
     setDied(whale.died || "");
+    setNotes(whale.notes || "");
   }, []);
 
   return (
@@ -37,23 +42,30 @@ export const WhaleDetailsForm = ({
       <CardHeader>Whale Details</CardHeader>
       <CardBody>
         <Flex>
-          <Text width={"80px"}>ID: </Text>
-          <Text>{whale.id}</Text>
+          <Text width={"140px"}>Identification: </Text>
+          <Input
+            value={identification}
+            onChange={handleOnChange(setIdentification)}
+          />
         </Flex>
         <Flex>
-          <Text width={"80px"}>Name: </Text>
+          <Text width={"140px"}>Name: </Text>
           <Input value={name} onChange={handleOnChange(setName)} />
         </Flex>
         <Flex>
-          <Text width={"80px"}>Born: </Text>
+          <Text width={"140px"}>Gender: </Text>
+          <Input value={gender} onChange={handleOnChange(setName)} />
+        </Flex>
+        <Flex>
+          <Text width={"140px"}>Born: </Text>
           <Input value={born} onChange={handleOnChange(setBorn)} />
         </Flex>
         <Flex>
-          <Text width={"80px"}>Died: </Text>
+          <Text width={"140px"}>Died: </Text>
           <Input value={died} onChange={handleOnChange(setDied)} />
         </Flex>
         <Flex>
-          <Text width={"80px"}>Notes: </Text>
+          <Text width={"140px"}>Notes: </Text>
           <Input value={notes} onChange={handleOnChange(setNotes)} />
         </Flex>
         <Box>

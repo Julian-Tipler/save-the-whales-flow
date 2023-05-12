@@ -20,8 +20,6 @@ export function PedigreeProvider({ children }: any) {
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [saveLoading, setSaveLoading] = useState(false);
 
-  console.log("nodes", nodes);
-
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
       const newEdge = { ...connection, type: "step" };
