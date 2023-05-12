@@ -5,6 +5,7 @@ import {
   addEdge,
   useEdgesState,
   useNodesState,
+  Node,
 } from "reactflow";
 import { fetchPedigree, savePedigree } from "../../../db/dataServices";
 import { Pedigree } from "../../../db/Types/Entities";
@@ -15,9 +16,11 @@ const PedigreeContext = createContext<any>({});
 export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
   const [pedigree, setPedigree] = useState<Pedigree | null>(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [saveLoading, setSaveLoading] = useState(false);
+
+  console.log("nodes", nodes);
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
@@ -30,23 +33,15 @@ export function PedigreeProvider({ children }: any) {
     fetchPedigreeResolver();
   }, []);
 
-  // This may be a problem. I am making setNodes and setEdges dependent on pedigree, 
-  // but I am also setting nodes and edges with my drag and drop situations.
-  // This means that edges and nodes will NOT be the same as pedigree.nodes and pedigree.edges 
-  // in those situations (pedigree will be outdated)
-  useEffect(() => {
-    if (pedigree && pedigree.nodes) {
-      setNodes(pedigree.nodes);
-    }
-    if (pedigree && pedigree.edges) {
-      setEdges(pedigree.edges);
-    }
-  }, [pedigree]);
-
+  // One time fetch (and on save)
   const fetchPedigreeResolver = async () => {
+    //try catch?
     let pedigree = await fetchPedigree({
       id: "5mjGBKYqsortOJ65ZSTH",
     });
+
+    let nodes: Node[] = [];
+    let edges: Edge[] = [];
     if (pedigree) {
       // fetches whales for each node
       // currently stores these whales in the node data
@@ -54,7 +49,7 @@ export function PedigreeProvider({ children }: any) {
         const whales = await fetchWhales({
           ids: pedigree.nodes.map((node) => node.id),
         });
-        const nodes = pedigree.nodes.map((node) => {
+        nodes = pedigree.nodes.map((node) => {
           const whale = whales.find((whale) => whale.id === node.id);
           return {
             ...node,
@@ -64,11 +59,19 @@ export function PedigreeProvider({ children }: any) {
             },
           };
         });
-        pedigree = { ...pedigree, nodes };
       }
-      setPedigree(pedigree);
+      if (pedigree.edges && pedigree.edges.length) {
+        edges = pedigree.edges.map((edge) => {
+          return {
+            ...edge,
+          };
+        });
+      }
+      setPedigree({ id: pedigree.id, name: pedigree.name });
+      setNodes(nodes);
+      setEdges(edges);
     } else {
-      console.log("No pedigree found with id");
+      console.log("No pedigree found with given id");
     }
   };
 
@@ -80,6 +83,7 @@ export function PedigreeProvider({ children }: any) {
   };
 
   const value = {
+    pedigree,
     nodes,
     setNodes,
     onNodesChange,

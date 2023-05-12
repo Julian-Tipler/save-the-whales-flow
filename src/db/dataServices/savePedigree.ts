@@ -1,7 +1,7 @@
 import { db } from "../../../firebase";
 import { doc, updateDoc, setDoc, getDoc } from "firebase/firestore";
 import { Node, Edge } from "reactflow";
-import { saveWhale } from "./saveWhale";
+import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
 
 /**
  * This function saves NEW whales in a pedigree to the database.
@@ -24,13 +24,8 @@ export const savePedigree = async ({
 
   // Saves whales that aren't in the /whales collection yet
   for (const node of nodes) {
-    const { id:nodeId } = node;
-    const whaleRef = doc(db, "whales", nodeId);
-
-    const whaleSnap = await getDoc(whaleRef);
-    if (!whaleSnap.exists()) {
-      saveWhale({ id:nodeId, data: { name: "<no name>", born: "", died: "" } });
-    }
+    const { id: nodeId, data } = node;
+    saveOrUpdateWhale({ id: nodeId, data });
   }
 
   const newData = {

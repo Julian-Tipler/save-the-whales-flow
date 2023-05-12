@@ -22,7 +22,6 @@ export const WhaleNode = ({
   selected: Boolean;
 }) => {
   const { whale } = data;
-  console.log("whale", whale)
 
   return (
     <Box width={"80px"} height={"60px"}>

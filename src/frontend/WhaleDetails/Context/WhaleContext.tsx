@@ -3,7 +3,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase";
 import { useParams } from "react-router-dom";
 
-import { saveWhale } from "../../../db/dataServices/saveWhale";
+import { saveOrUpdateWhale } from "../../../db/dataServices/saveOrUpdateWhale";
 import { validateWhale } from "./validation/validateWhale";
 import { Whale } from "../../../db/Types/Entities";
 
@@ -29,7 +29,7 @@ export function WhaleProvider({ children }: any) {
   const updateWhaleResolver = async (whaleFormData: Whale) => {
     const errors = validateWhale(whaleFormData);
     if (!errors.length) {
-      const newWhale = await saveWhale({ id, data: whaleFormData });
+      const newWhale = await saveOrUpdateWhale({ id, data: whaleFormData });
       setWhale({ ...newWhale, id });
     }
     return errors;

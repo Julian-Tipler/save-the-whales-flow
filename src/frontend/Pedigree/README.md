@@ -9,3 +9,4 @@ Things I HAVE to do
 * I have to grab the pedigree (and nodes) first on the pedigree page
 * I then have to parse through each node and grab the whale information
 * I should just store the pedigree with its non-node data
+* Nodes now have whale data in them! And no whale local state needed
