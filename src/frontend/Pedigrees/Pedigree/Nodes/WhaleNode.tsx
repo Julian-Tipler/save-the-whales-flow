@@ -3,8 +3,8 @@ import { Handle, Position } from "reactflow";
 import { Box, Card, CardFooter, Flex, Text } from "@chakra-ui/react";
 import "./WhaleNode.css";
 import { Link } from "react-router-dom";
-import { whaleStatus } from "../../helpers/whaleStatus";
-import { Whale } from "../../../db/Types/Entities";
+import { whaleStatus } from "../../../helpers/whaleStatus";
+import { Whale } from "../../../../db/Types/Entities";
 
 type NodeData = {
   whale: Whale;

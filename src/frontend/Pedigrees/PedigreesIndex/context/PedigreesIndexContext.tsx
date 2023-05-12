@@ -1,24 +1,28 @@
-import React, { useCallback, useEffect, createContext, useState } from "react";
-import {
-  Connection,
-  Edge,
-  addEdge,
-  useEdgesState,
-  useNodesState,
-  Node,
-} from "reactflow";
-import { fetchPedigree, updatePedigree } from "../../../../db/dataServices";
-import { Pedigree } from "../../../../db/Types/Entities";
-import { fetchWhales } from "../../../../db/dataServices/fetchWhales";
-import { useParams } from "react-router-dom";
+import React, { useEffect, createContext, useState } from "react";
+
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../../../firebase";
+import { fetchPedigrees } from "../../../../db/dataServices/fetchPedigrees";
 
 const PedigreesIndexContext = createContext<any>({});
 
 export function PedigreesIndexProvider({ children }: any) {
-  
-  const value = {
+  const [pedigrees, setPedigrees] = useState<any>([]);
 
+  useEffect(() => {
+    fetchPedegreesResolver();
+  }, []);
+  //should later use ID or something?
+  const fetchPedegreesResolver = async () => {
+    const pedigrees = await fetchPedigrees();
+    setPedigrees(pedigrees);
   };
+
+  const createPedigreesResolver = async () => {
+    
+  };
+
+  const value = { pedigrees };
   return (
     <PedigreesIndexContext.Provider value={value}>
       {children}
