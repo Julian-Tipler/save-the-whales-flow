@@ -7,9 +7,9 @@ import {
   useNodesState,
   Node,
 } from "reactflow";
-import { fetchPedigree, savePedigree } from "../../../db/dataServices";
-import { Pedigree } from "../../../db/Types/Entities";
-import { fetchWhales } from "../../../db/dataServices/fetchWhales";
+import { fetchPedigree, updatePedigree } from "../../../../db/dataServices";
+import { Pedigree } from "../../../../db/Types/Entities";
+import { fetchWhales } from "../../../../db/dataServices/fetchWhales";
 import { useParams } from "react-router-dom";
 
 const PedigreeContext = createContext<any>({});
@@ -79,7 +79,7 @@ export function PedigreeProvider({ children }: any) {
 
   const savePedigreeResolver = async () => {
     setSaveLoading(true);
-    await savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
+    await updatePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
     await fetchPedigreeResolver();
     setSaveLoading(false);
   };

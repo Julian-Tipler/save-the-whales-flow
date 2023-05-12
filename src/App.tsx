@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { MainLayout } from "./frontend/Layout";
-import { Router } from "./frontend/Router";
+import { Router } from "./frontend/Router/Router";
 import { AuthProvider } from "./frontend/Auth/context/AuthContext";
 
 function App() {

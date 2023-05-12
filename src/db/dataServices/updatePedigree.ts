@@ -1,5 +1,5 @@
 import { db } from "../../../firebase";
-import { doc, updateDoc, setDoc, getDoc } from "firebase/firestore";
+import { doc, updateDoc} from "firebase/firestore";
 import { Node, Edge } from "reactflow";
 import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
 
@@ -11,7 +11,7 @@ import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
  * @param edges This is also taken from PedigreeContext.
  * @returns Nothing. Perhaps could also handle refetching the data...
  */
-export const savePedigree = async ({
+export const updatePedigree = async ({
   id,
   nodes,
   edges,

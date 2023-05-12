@@ -1,5 +1,5 @@
 import { fetchPedigree } from "./fetchPedigree";
-import { savePedigree } from "./savePedigree";
+import { updatePedigree } from "./updatePedigree";
 import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
 
-export { fetchPedigree, savePedigree, saveOrUpdateWhale };
+export { fetchPedigree, updatePedigree, saveOrUpdateWhale };
