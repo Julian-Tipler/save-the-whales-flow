@@ -2,6 +2,7 @@ import { Node, Edge } from "reactflow";
 
 export type Whale = {
   id: string;
+  identification?: string;
   name?: string;
   born?: string;
   died?: string;

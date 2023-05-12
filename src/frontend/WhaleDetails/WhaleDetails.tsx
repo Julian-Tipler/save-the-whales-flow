@@ -26,27 +26,27 @@ export const WhaleDetails = () => {
       <CardHeader>Whale Details</CardHeader>
       <CardBody>
         <Flex padding={"4px"}>
-          <Text width={"80px"}>ID: </Text>
-          <Text>{whale.id}</Text>
+          <Text width={"140px"}>Identification: </Text>
+          <Text>{whale.identification}</Text>
         </Flex>
         <Flex padding={"4px"}>
-          <Text width={"80px"}>Status: </Text>
+          <Text width={"140px"}>Status: </Text>
           <Text>{status ? "Alive" : "Deceased"}</Text>
         </Flex>
         <Flex padding={"4px"}>
-          <Text width={"80px"}>Name: </Text>
+          <Text width={"140px"}>Name: </Text>
           <Text>{whale.name}</Text>
         </Flex>
         <Flex padding={"4px"}>
-          <Text width={"80px"}>Born: </Text>
+          <Text width={"140px"}>Born: </Text>
           <Text>{whale.born}</Text>
         </Flex>
         <Flex padding={"4px"}>
-          <Text width={"80px"}>Died: </Text>
+          <Text width={"140px"}>Died: </Text>
           <Text>{whale.died}</Text>
         </Flex>
         <Flex padding={"4px"}>
-          <Text width={"80px"}>Notes: </Text>
+          <Text width={"140px"}>Notes: </Text>
           <Text>{whale.notes}</Text>
         </Flex>
       </CardBody>
