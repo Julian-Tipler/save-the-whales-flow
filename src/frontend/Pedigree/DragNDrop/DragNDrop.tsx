@@ -1,8 +1,6 @@
 import React from "react";
 import "./DragNDrop.css";
-import { MarriageNode } from "../Nodes/MarriageNode";
-import { WhaleNode } from "../Nodes/WhaleNode";
-import { Box } from "@chakra-ui/react";
+import { Card, CardBody, CardHeader, Flex, Heading } from "@chakra-ui/react";
 
 export const DragNDrop = () => {
   const onDragStart = (event: any, nodeType: any) => {
@@ -15,20 +13,18 @@ export const DragNDrop = () => {
       <div className="description">
         You can drag these nodes to the pane on the right.
       </div>
-      <Box
+      <Card
+        width={"120px"}
+        height={"90px"}
         className="dndnode"
         onDragStart={(event) => onDragStart(event, "whale")}
         draggable
+        backgroundColor={"blue.100"}
       >
-        Whale
-      </Box>
-      <Box
-        className="dndnode"
-        onDragStart={(event) => onDragStart(event, "marriage")}
-        draggable
-      >
-        Marriage
-      </Box>
+        <Flex height={"100%"} justifyContent={"center"} alignItems={"center"}>
+          <Heading size="sm">Whale</Heading>
+        </Flex>
+      </Card>
     </aside>
   );
 };
