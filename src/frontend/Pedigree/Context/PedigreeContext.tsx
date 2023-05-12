@@ -5,18 +5,22 @@ import {
   addEdge,
   useEdgesState,
   useNodesState,
+  Node,
 } from "reactflow";
 import { fetchPedigree, savePedigree } from "../../../db/dataServices";
 import { Pedigree } from "../../../db/Types/Entities";
+import { fetchWhales } from "../../../db/dataServices/fetchWhales";
 
 const PedigreeContext = createContext<any>({});
 
 export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
   const [pedigree, setPedigree] = useState<Pedigree | null>(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [saveLoading, setSaveLoading] = useState(false);
+
+  console.log("nodes", nodes);
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
@@ -29,31 +33,57 @@ export function PedigreeProvider({ children }: any) {
     fetchPedigreeResolver();
   }, []);
 
-  useEffect(() => {
-    if (pedigree && pedigree.nodes) {
-      setNodes(pedigree.nodes);
-    }
-    if (pedigree && pedigree.edges) {
-      setEdges(pedigree.edges);
-    }
-  }, [pedigree]);
-
+  // One time fetch (and on save)
   const fetchPedigreeResolver = async () => {
-    const pedigree = await fetchPedigree({
+    //try catch?
+    let pedigree = await fetchPedigree({
       id: "5mjGBKYqsortOJ65ZSTH",
     });
+
+    let nodes: Node[] = [];
+    let edges: Edge[] = [];
     if (pedigree) {
-      setPedigree(pedigree);
+      // fetches whales for each node
+      // currently stores these whales in the node data
+      if (pedigree.nodes && pedigree.nodes.length) {
+        const whales = await fetchWhales({
+          ids: pedigree.nodes.map((node) => node.id),
+        });
+        nodes = pedigree.nodes.map((node) => {
+          const whale = whales.find((whale) => whale.id === node.id);
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              whale,
+            },
+          };
+        });
+      }
+      if (pedigree.edges && pedigree.edges.length) {
+        edges = pedigree.edges.map((edge) => {
+          return {
+            ...edge,
+          };
+        });
+      }
+      setPedigree({ id: pedigree.id, name: pedigree.name });
+      setNodes(nodes);
+      setEdges(edges);
+    } else {
+      console.log("No pedigree found with given id");
     }
   };
 
   const savePedigreeResolver = async () => {
     setSaveLoading(true);
     await savePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
+    await fetchPedigreeResolver();
     setSaveLoading(false);
   };
 
   const value = {
+    pedigree,
     nodes,
     setNodes,
     onNodesChange,

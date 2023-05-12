@@ -1,8 +1,16 @@
-import React from "react";
 import { db } from "../../../firebase";
 import { doc, updateDoc, setDoc, getDoc } from "firebase/firestore";
 import { Node, Edge } from "reactflow";
+import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
 
+/**
+ * This function saves NEW whales in a pedigree to the database.
+ * It also saves the pedigree itself.
+ * @param id The first number to add.
+ * @param nodes This is taken from PedigreeContext. it is the array of nodes in the pedigree.
+ * @param edges This is also taken from PedigreeContext.
+ * @returns Nothing. Perhaps could also handle refetching the data...
+ */
 export const savePedigree = async ({
   id,
   nodes,
@@ -14,18 +22,10 @@ export const savePedigree = async ({
 }) => {
   const pedigreeRef = doc(db, "pedigrees", id);
 
-  //Save whales to db
+  // Saves whales that aren't in the /whales collection yet
   for (const node of nodes) {
-    const { id } = node;
-    const whaleRef = doc(db, "whales", id);
-
-    const whaleSnap = await getDoc(whaleRef);
-    if (!whaleSnap.exists()) {
-      await setDoc(whaleRef, { id: id, name: "New Whale", born: "", died: "" });
-      console.log(`Created new whale with ID: ${id}`);
-    } else {
-      console.log(`Whale with ID: ${id} already exists.`);
-    }
+    const { id: nodeId, data } = node;
+    saveOrUpdateWhale({ id: nodeId, data });
   }
 
   const newData = {
@@ -34,6 +34,5 @@ export const savePedigree = async ({
   };
 
   await updateDoc(pedigreeRef, newData);
-
   return;
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { db } from "../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { Pedigree } from "../Types/Entities";
 
 export const fetchPedigree = async ({ id }: { id: string }) => {
   const docRef = doc(db, "pedigrees", id);
@@ -8,7 +9,7 @@ export const fetchPedigree = async ({ id }: { id: string }) => {
   const pedigreeDoc = await getDoc(docRef);
 
   if (pedigreeDoc.exists()) {
-    return { ...pedigreeDoc.data(), id: pedigreeDoc.id };
+    return { id: pedigreeDoc.id, ...pedigreeDoc.data() } as Pedigree;
   } else {
     console.log("Error getting document:");
   }
