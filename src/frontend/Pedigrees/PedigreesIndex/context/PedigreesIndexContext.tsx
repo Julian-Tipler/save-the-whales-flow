@@ -1,8 +1,7 @@
 import React, { useEffect, createContext, useState } from "react";
 
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../../../firebase";
-import { fetchPedigrees } from "../../../../db/dataServices/fetchPedigrees";
+import { fetchPedigrees } from "../../../../db/dataServices";
+import { createPedigree } from "../../../../db/dataServices";
 
 const PedigreesIndexContext = createContext<any>({});
 
@@ -19,10 +18,13 @@ export function PedigreesIndexProvider({ children }: any) {
   };
 
   const createPedigreesResolver = async () => {
-    
+    await createPedigree();
+    await fetchPedegreesResolver();
   };
 
-  const value = { pedigrees };
+  console.log(createPedigreesResolver);
+
+  const value = { createPedigreesResolver, pedigrees };
   return (
     <PedigreesIndexContext.Provider value={value}>
       {children}
