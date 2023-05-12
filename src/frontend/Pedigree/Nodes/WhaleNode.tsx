@@ -4,6 +4,12 @@ import { Box, Card, CardFooter, Flex, Text } from "@chakra-ui/react";
 import "./WhaleNode.css";
 import { Link } from "react-router-dom";
 import { whaleStatus } from "../../helpers/whaleStatus";
+import { Whale } from "../../../db/Types/Entities";
+
+type NodeData = {
+  whale: Whale;
+  label: string;
+};
 
 /**
  * WhaleNode is populated by ReactFlow. ReactFLow is passed nodes array which it maps through
@@ -19,7 +25,7 @@ export const WhaleNode = ({
   selected,
 }: {
   id: string;
-  data: any;
+  data: NodeData;
   selected: Boolean;
 }) => {
   const { whale } = data;
@@ -37,7 +43,7 @@ export const WhaleNode = ({
       </Box>
       <CardFooter>
         {whale?.id && (
-          <Link to={`whales/${whale?.id}`}>
+          <Link to={`/whales/${whale?.id}`}>
             <Text color={"#0000FF"} fontSize={"10px"}>
               Details
             </Text>

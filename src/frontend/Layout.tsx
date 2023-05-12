@@ -2,10 +2,10 @@ import React from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { NavigationSidebar } from "./Navigation/NavigationSidebar";
 
-import { MainRouter } from "./Router/MainRouter";
+import { BodyRouter } from "./Router/BodyRouter";
 import { Header } from "./Header/Header";
 
-export const MainLayout = () => {
+export const Layout = () => {
   return (
     <Grid
       templateAreas={`"header header"
@@ -38,10 +38,9 @@ export const MainLayout = () => {
         padding={"30px"}
         width={"100%"}
       >
-        <MainRouter />
+        <BodyRouter />
       </GridItem>
-      <GridItem pl="2" bg="blue.300" area={"footer"}>
-      </GridItem>
+      <GridItem pl="2" bg="blue.300" area={"footer"}></GridItem>
     </Grid>
   );
 };

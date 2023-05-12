@@ -5,13 +5,12 @@ import WhaleDetailsPage from "../WhaleDetails";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "pedigrees/:id",
     element: <PedigreePage />,
-    children: [],
   },
   { path: "whales/:id", element: <WhaleDetailsPage /> },
 ]);
 
-export const MainRouter = () => {
+export const BodyRouter = () => {
   return <RouterProvider router={router} />;
 };

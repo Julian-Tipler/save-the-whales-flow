@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { MainLayout } from "./frontend/MainLayout";
+import { MainLayout } from "./frontend/Layout";
 import { Router } from "./frontend/Router";
 import { AuthProvider } from "./frontend/Auth/context/AuthContext";
 

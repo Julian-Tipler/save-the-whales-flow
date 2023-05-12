@@ -9,7 +9,7 @@ export const DragNDrop = () => {
   };
 
   return (
-    <aside>
+    <Card>
       <div className="description">
         You can drag these nodes to the pedigree above.
       </div>
@@ -25,6 +25,6 @@ export const DragNDrop = () => {
           <Heading size="sm">Whale</Heading>
         </Flex>
       </Card>
-    </aside>
+    </Card>
   );
 };

@@ -10,6 +10,7 @@ import {
 import { fetchPedigree, savePedigree } from "../../../db/dataServices";
 import { Pedigree } from "../../../db/Types/Entities";
 import { fetchWhales } from "../../../db/dataServices/fetchWhales";
+import { useParams } from "react-router-dom";
 
 const PedigreeContext = createContext<any>({});
 
@@ -27,6 +28,9 @@ export function PedigreeProvider({ children }: any) {
     });
   }, []);
 
+  const { id } = useParams<{ id: string }>();
+  if (!id) throw new Error("No pedigree id provided");
+
   useEffect(() => {
     fetchPedigreeResolver();
   }, []);
@@ -35,7 +39,7 @@ export function PedigreeProvider({ children }: any) {
   const fetchPedigreeResolver = async () => {
     //try catch?
     let pedigree = await fetchPedigree({
-      id: "5mjGBKYqsortOJ65ZSTH",
+      id: id,
     });
 
     let nodes: Node[] = [];
