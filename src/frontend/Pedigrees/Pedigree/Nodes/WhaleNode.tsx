@@ -1,9 +1,8 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import { Box, Card, CardFooter, Flex, Text } from "@chakra-ui/react";
-import "./WhaleNode.css";
+import { Box, Card, CardBody, CardFooter, Flex, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { whaleStatus } from "../../../helpers/whaleStatus";
+import { whaleStatusIcon } from "../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 
 type NodeData = {
@@ -33,23 +32,26 @@ export const WhaleNode = ({
   return (
     <Card width={"80px"} height={"60px"} backgroundColor={"blue.100"}>
       <Handle id="whale-top-target" type="target" position={Position.Top} />
-      <Box padding={"5px"} height={"100%"} borderRadius={"5px"}>
-        <Flex direction={"column"} alignItems={"center"}>
-          <Flex>
+      <CardBody padding={"1"}>
+        <Flex direction={"column"} gap={"1"}>
+          <Flex direction={"column"} justifyContent={"space-between"}>
+            <Flex gap={"1"}>
+              <Text fontSize={"10px"}>{`${
+                whale?.identification || "no id"
+              }`}</Text>
+              {whaleStatusIcon(whale)}
+            </Flex>
             <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
-            {whaleStatus(whale)}
           </Flex>
+          {whale?.id && (
+            <Link to={`/whales/${whale?.id}`}>
+              <Text color={"#0000FF"} fontSize={"10px"}>
+                Details
+              </Text>
+            </Link>
+          )}
         </Flex>
-      </Box>
-      <CardFooter>
-        {whale?.id && (
-          <Link to={`/whales/${whale?.id}`}>
-            <Text color={"#0000FF"} fontSize={"10px"}>
-              Details
-            </Text>
-          </Link>
-        )}
-      </CardFooter>
+      </CardBody>
       <Handle
         id="whale-bottom-source"
         type="source"

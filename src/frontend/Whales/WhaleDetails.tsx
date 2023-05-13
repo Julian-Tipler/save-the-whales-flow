@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import WhaleContext from "./context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
-import { whaleStatus } from "../helpers/whaleStatus";
+import { whaleStatusIcon } from "../helpers/whaleStatusIcon";
 
 export const WhaleDetails = () => {
   const [editMode, setEditMode] = React.useState(false);
@@ -28,7 +28,7 @@ export const WhaleDetails = () => {
         <Flex padding={"4px"}>
           <Text width={"140px"}>Identification: </Text>
           <Text>{whale.identification}</Text>
-          {whaleStatus(whale)}
+          {whaleStatusIcon(whale)}
         </Flex>
       </CardHeader>
       <CardBody>
