@@ -30,25 +30,27 @@ export const WhaleNode = ({
   const { whale } = data;
 
   return (
-    <Card width={"80px"} height={"60px"} backgroundColor={"blue.100"}>
+    <Card width={"100px"} height={"80px"} backgroundColor={"blue.100"}>
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <CardBody padding={"1"}>
-        <Flex direction={"column"} gap={"1"}>
-          <Flex direction={"column"} justifyContent={"space-between"}>
+        <Flex direction={"column"} gap={"1"} justifyContent={"space-between"} height={"100%"}>
+          <Flex direction={"column"}>
             <Flex gap={"1"}>
               <Text fontSize={"10px"}>{`${
-                whale?.identification || "no id"
+                whale?.identification || "<no id>"
               }`}</Text>
               {whaleStatusIcon(whale)}
             </Flex>
             <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
           </Flex>
-          {whale?.id && (
+          {whale?.id ? (
             <Link to={`/whales/${whale?.id}`}>
               <Text color={"#0000FF"} fontSize={"10px"}>
                 Details
               </Text>
             </Link>
+          ) : (
+            <Text fontSize={"8px"}>Save pedigree to view details</Text>
           )}
         </Flex>
       </CardBody>

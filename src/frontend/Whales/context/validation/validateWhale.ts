@@ -1,13 +1,26 @@
-export const validateWhale = (whale: any) => {
+import { Whale } from "../../../../db/Types/Entities";
+
+export const validateWhale = (whale: Whale) => {
   const errors = [];
-  const { name, born, died } = whale;
+  const { name, born, died, identification } = whale;
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
-  if (born && !dateRegex.test(born)) {
-    errors.push("Invalid 'Born' date format. Must be YYYY-MM-DD");
+  if (identification && identification.length > 30) {
+    errors.push("Identification must be less than 30 characters");
   }
 
-  //died should be YYYY-MM-DD or empty
+  if (name && name.length > 30) {
+    errors.push("Name must be less than 30 characters");
+  }
+
+  if (born) {
+    if (!dateRegex.test(born)) {
+      errors.push("Invalid 'Born' date format. Must be YYYY-MM-DD");
+    }
+    if (!isValidDate(born)) {
+      errors.push("Invalid 'Born' date");
+    }
+  }
 
   if (died) {
     if (!dateRegex.test(died)) {
@@ -16,13 +29,10 @@ export const validateWhale = (whale: any) => {
     if (!isValidDate(died)) {
       errors.push("Invalid 'Died' date");
     }
-    if (died < born) {
-      errors.push("Died date must be after Born date");
-    }
   }
 
-  if (name.length > 50) {
-    errors.push("Name must be less than 50 characters");
+  if (died && born && died < born) {
+    errors.push("Died date must be after Born date");
   }
 
   return errors;
