@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { saveOrUpdateWhale } from "../../../db/dataServices/saveOrUpdateWhale";
 import { validateWhale } from "./validation/validateWhale";
 import { Whale } from "../../../db/Types/Entities";
+import { fetchWhale } from "../../../db/dataServices";
 
 export const WhaleContext = React.createContext<any>({});
 
@@ -16,14 +17,13 @@ export function WhaleProvider({ children }: any) {
   if (!id) throw new Error("No whale id provided");
 
   useEffect(() => {
-    fetchWhale();
+    fetchWhaleResolver({ id });
   }, []);
 
-  const fetchWhale = async () => {
+  const fetchWhaleResolver = async ({ id }: { id: string }) => {
     if (!id) throw "No whale id provided";
-    const whaleDocRef = doc(db, "whales", id);
-    const whaleDoc = await getDoc(whaleDocRef);
-    setWhale({ ...whaleDoc.data(), id });
+    const whale = await fetchWhale({ id });
+    setWhale({ ...whale.data(), id });
   };
 
   const updateWhaleResolver = async (whaleFormData: Whale) => {

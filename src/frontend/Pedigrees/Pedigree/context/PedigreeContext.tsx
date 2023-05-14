@@ -25,7 +25,7 @@ type PedigreeContextValue = {
   setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
   onEdgesChange: any;
   onConnect: (connection: Edge | Connection) => void;
-  savePedigreeResolver: () => void;
+  savePedigreeResolver: ({ id }: { id: string }) => void;
   updatePedigreeDetailsResolver: ({ data }: { data: Pedigree }) => void;
   saveLoading: boolean;
 };
@@ -52,11 +52,11 @@ export function PedigreeProvider({ children }: any) {
   if (!id) throw new Error("No pedigree id provided");
 
   useEffect(() => {
-    fetchPedigreeResolver();
+    fetchPedigreeResolver({ id });
   }, []);
 
   // One time fetch (and on save)
-  const fetchPedigreeResolver = async () => {
+  const fetchPedigreeResolver = async ({ id }: { id: string }) => {
     //try catch?
     let pedigree = await fetchPedigree({
       id: id,
@@ -97,22 +97,26 @@ export function PedigreeProvider({ children }: any) {
     }
   };
 
-  const savePedigreeResolver = async () => {
+  const savePedigreeResolver = async ({ id }: { id: string }) => {
     if (!pedigree) throw new Error("No pedigree found");
     setSaveLoading(true);
-    await updatePedigree({ id: pedigree?.id, nodes, edges });
-    await fetchPedigreeResolver();
+    await updatePedigree({ id, nodes, edges });
+    await fetchPedigreeResolver({ id });
     setSaveLoading(false);
   };
 
   const updatePedigreeDetailsResolver = async ({
+    id,
     data,
   }: {
+    id:string
     data: Pedigree;
   }) => {
     if (!pedigree) throw new Error("No pedigree found");
     await updatePedigreeDetails({ id, data });
-    await fetchPedigreeResolver();
+    const updatedPedigree = await fetchPedigree({ id: id });
+    updatedPedigree &&
+      setPedigree({ id: updatedPedigree.id, name: updatedPedigree.name });
   };
 
   const value = {

@@ -136,7 +136,10 @@ export function Pedigree() {
             />
           </ReactFlow>
         </div>
-        <Button onClick={() => savePedigreeResolver()} isLoading={saveLoading}>
+        <Button
+          onClick={() => savePedigreeResolver({ id: pedigree.id })}
+          isLoading={saveLoading}
+        >
           Save
         </Button>
         <DragNDrop />
