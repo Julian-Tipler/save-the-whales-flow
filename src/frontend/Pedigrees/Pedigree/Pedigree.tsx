@@ -95,7 +95,7 @@ export function Pedigree() {
     setNodes(updatedNodes);
   };
 
-  //TODO if !pedigree return null
+  if (!pedigree) return null;
 
   return (
     <div>

@@ -7,7 +7,11 @@ import {
   useNodesState,
   Node,
 } from "reactflow";
-import { fetchPedigree, updatePedigree } from "../../../../db/dataServices";
+import {
+  fetchPedigree,
+  updatePedigree,
+  updatePedigreeDetails,
+} from "../../../../db/dataServices";
 import { Pedigree } from "../../../../db/Types/Entities";
 import { fetchWhales } from "../../../../db/dataServices/fetchWhales";
 import { useParams } from "react-router-dom";
@@ -22,6 +26,7 @@ type PedigreeContextValue = {
   onEdgesChange: any;
   onConnect: (connection: Edge | Connection) => void;
   savePedigreeResolver: () => void;
+  updatePedigreeDetailsResolver: ({ data }: { data: Pedigree }) => void;
   saveLoading: boolean;
 };
 
@@ -93,10 +98,21 @@ export function PedigreeProvider({ children }: any) {
   };
 
   const savePedigreeResolver = async () => {
+    if (!pedigree) throw new Error("No pedigree found");
     setSaveLoading(true);
-    await updatePedigree({ id: "5mjGBKYqsortOJ65ZSTH", nodes, edges });
+    await updatePedigree({ id: pedigree?.id, nodes, edges });
     await fetchPedigreeResolver();
     setSaveLoading(false);
+  };
+
+  const updatePedigreeDetailsResolver = async ({
+    data,
+  }: {
+    data: Pedigree;
+  }) => {
+    if (!pedigree) throw new Error("No pedigree found");
+    await updatePedigreeDetails({ id, data });
+    await fetchPedigreeResolver();
   };
 
   const value = {
@@ -109,6 +125,7 @@ export function PedigreeProvider({ children }: any) {
     onEdgesChange,
     onConnect,
     savePedigreeResolver,
+    updatePedigreeDetailsResolver,
     saveLoading,
   };
   return (

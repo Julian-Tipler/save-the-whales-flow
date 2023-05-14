@@ -1,4 +1,3 @@
-import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { FaSkull } from "react-icons/fa";
 import { Whale } from "../../db/Types/Entities";
 
