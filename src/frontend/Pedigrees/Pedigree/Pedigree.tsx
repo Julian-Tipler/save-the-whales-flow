@@ -96,7 +96,6 @@ export function Pedigree() {
   };
 
   if (!pedigree) return null;
-
   return (
     <div>
       <PedigreeHeader name={pedigree.name} />

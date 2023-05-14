@@ -8,7 +8,20 @@ import { validateWhale } from "./validation/validateWhale";
 import { Whale } from "../../../db/Types/Entities";
 import { fetchWhale } from "../../../db/dataServices";
 
-export const WhaleContext = React.createContext<any>({});
+type WhaleContextValue = {
+  whale: Whale | null;
+  updateWhaleResolver: ({
+    id,
+    whaleFormData,
+  }: {
+    id: string;
+    whaleFormData: Whale;
+  }) => void;
+};
+
+export const WhaleContext = React.createContext<WhaleContextValue>(
+  {} as WhaleContextValue
+);
 
 export function WhaleProvider({ children }: any) {
   const [whale, setWhale] = React.useState<Whale | null>(null);
@@ -21,12 +34,19 @@ export function WhaleProvider({ children }: any) {
   }, []);
 
   const fetchWhaleResolver = async ({ id }: { id: string }) => {
-    if (!id) throw "No whale id provided";
     const whale = await fetchWhale({ id });
-    setWhale({ ...whale.data(), id });
+    if(whale) {
+      setWhale({ ...whale.data(), id });
+    }
   };
 
-  const updateWhaleResolver = async (whaleFormData: Whale) => {
+  const updateWhaleResolver = async ({
+    id,
+    whaleFormData,
+  }: {
+    id: string;
+    whaleFormData: Whale;
+  }) => {
     const errors = validateWhale(whaleFormData);
     if (!errors.length) {
       const newWhale = await saveOrUpdateWhale({ id, data: whaleFormData });
