@@ -9,7 +9,7 @@ export const PedigreesIndex = () => {
   const { pedigrees, createPedigreeResolver } = useContext(
     PedigreesIndexContext
   );
-  console.log(createPedigreeResolver);
+
   return (
     <>
       {pedigrees.map((pedigree: Pedigree, i: Number) => {
@@ -18,7 +18,9 @@ export const PedigreesIndex = () => {
       <AddIcon
         marginLeft={"4px"}
         color={"green.500"}
-        onClick={() => createPedigreeResolver()}
+        onClick={() =>
+          createPedigreeResolver({ data: { name: "new pedigree" } })
+        }
       />
     </>
   );

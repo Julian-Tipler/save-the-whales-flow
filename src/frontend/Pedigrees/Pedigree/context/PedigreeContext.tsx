@@ -12,7 +12,22 @@ import { Pedigree } from "../../../../db/Types/Entities";
 import { fetchWhales } from "../../../../db/dataServices/fetchWhales";
 import { useParams } from "react-router-dom";
 
-const PedigreeContext = createContext<any>({});
+type PedigreeContextValue = {
+  pedigree: Pedigree | null;
+  nodes: Node[];
+  setNodes: React.Dispatch<React.SetStateAction<Node[]>>;
+  onNodesChange: any;
+  edges: Edge[];
+  setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
+  onEdgesChange: any;
+  onConnect: (connection: Edge | Connection) => void;
+  savePedigreeResolver: () => void;
+  saveLoading: boolean;
+};
+
+const PedigreeContext = createContext<PedigreeContextValue>(
+  {} as PedigreeContextValue
+);
 
 export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase

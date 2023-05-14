@@ -2,6 +2,7 @@ import React, { useEffect, createContext, useState } from "react";
 
 import { fetchPedigrees } from "../../../../db/dataServices";
 import { createPedigree } from "../../../../db/dataServices";
+import { Pedigree } from "../../../../db/Types/Entities";
 
 const PedigreesIndexContext = createContext<any>({});
 
@@ -17,14 +18,12 @@ export function PedigreesIndexProvider({ children }: any) {
     setPedigrees(pedigrees);
   };
 
-  const createPedigreesResolver = async () => {
-    await createPedigree();
+  const createPedigreeResolver = async ({ data }: { data: Pedigree }) => {
+    await createPedigree({ data });
     await fetchPedegreesResolver();
   };
 
-  console.log(createPedigreesResolver);
-
-  const value = { createPedigreesResolver, pedigrees };
+  const value = { createPedigreeResolver, pedigrees };
   return (
     <PedigreesIndexContext.Provider value={value}>
       {children}

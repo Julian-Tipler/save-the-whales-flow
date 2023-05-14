@@ -4,7 +4,9 @@ import { db } from "../../../firebase";
 export const fetchPedigrees = async () => {
   const pedigreesRef = collection(db, "pedigrees");
   const querySnapshot = await getDocs(pedigreesRef);
-
-  const pedigrees = querySnapshot.docs.map((doc) => doc.data());
+  const pedigrees = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
   return pedigrees;
 };

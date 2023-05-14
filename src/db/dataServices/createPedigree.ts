@@ -10,10 +10,10 @@ import { Pedigree } from "../Types/Entities";
  * @param edges This is also taken from PedigreeContext.
  * @returns Nothing. Perhaps could also handle refetching the data...
  */
-export const createPedigree = async () => {
+export const createPedigree = async ({ data }: { data: Pedigree }) => {
   try {
     const pedigreesRef = collection(db, "pedigrees");
-    const docRef = await addDoc(pedigreesRef, {});
+    const docRef = await addDoc(pedigreesRef, data);
     console.log("Pedigree created with ID:", docRef.id);
     return docRef.id;
   } catch (error) {

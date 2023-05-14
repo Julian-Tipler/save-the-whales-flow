@@ -20,10 +20,12 @@ import PedigreeContext from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
+import { PedigreeHeader } from "./PedigreeHeader";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
   const {
+    pedigree,
     nodes,
     setNodes,
     onNodesChange,
@@ -97,6 +99,7 @@ export function Pedigree() {
 
   return (
     <div>
+      <PedigreeHeader name={pedigree.name} />
       <ReactFlowProvider>
         <div
           className="reactflow-wrapper"
