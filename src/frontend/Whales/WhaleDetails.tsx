@@ -6,6 +6,7 @@ import {
   Text,
   Button,
   Flex,
+  Heading,
 } from "@chakra-ui/react";
 import WhaleContext from "./context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
@@ -25,11 +26,10 @@ export const WhaleDetails = () => {
   return (
     <Card>
       <CardHeader>
-        <Flex padding={"4px"}>
-          <Text width={"140px"}>Identification: </Text>
+        <Heading size={"md"} padding={"4px"}>
           <Text>{whale.identification}</Text>
           {whaleStatusIcon(whale)}
-        </Flex>
+        </Heading>
       </CardHeader>
       <CardBody>
         <Flex padding={"4px"}>

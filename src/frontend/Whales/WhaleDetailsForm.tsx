@@ -39,7 +39,6 @@ export const WhaleDetailsForm = ({
 
   return (
     <Card>
-      <CardHeader>Whale Details</CardHeader>
       <CardBody>
         <Flex>
           <Text width={"140px"}>Identification: </Text>
@@ -82,7 +81,7 @@ export const WhaleDetailsForm = ({
         <Button
           onClick={handleSubmit({
             updateWhaleResolver,
-            whaleFormData: { name, born, died, notes },
+            whaleFormData: { identification, name, born, died, notes },
             setErrors,
             setEditMode,
           })}

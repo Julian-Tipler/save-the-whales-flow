@@ -4,12 +4,12 @@ import { AuthProvider } from "./frontend/Auth/context/AuthContext";
 
 const theme = extendTheme({
   fonts: {
-    body: "Roboto, sans-serif", // Customize the font family if needed
-    heading: "Roboto, sans-serif", // Customize the font family if needed
+    body: "Roboto, sans-serif", 
+    heading: "Roboto, sans-serif",
   },
   fontWeights: {
     normal: 400,
-    bold: 500, // Customize the boldness value here
+    bold: 500,
   },
 });
 

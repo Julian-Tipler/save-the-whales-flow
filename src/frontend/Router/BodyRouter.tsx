@@ -7,7 +7,7 @@ import WhaleDetailsPage from "../Whales";
 
 const router = createBrowserRouter([
   {
-    path: "pedigrees",
+    path: "/",
     element: <PedigreesIndexPage />,
   },
   {
