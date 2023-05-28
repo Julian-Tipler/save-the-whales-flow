@@ -1,10 +1,10 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { Router } from "./frontend/Router/Router";
+import { Router } from "./frontend/Router";
 import { AuthProvider } from "./frontend/Auth/context/AuthContext";
 
 const theme = extendTheme({
   fonts: {
-    body: "Roboto, sans-serif", 
+    body: "Roboto, sans-serif",
     heading: "Roboto, sans-serif",
   },
   fontWeights: {

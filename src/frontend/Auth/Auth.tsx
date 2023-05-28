@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import AuthContext from "./context/AuthContext";
 
-export const Login = () => {
+export const Auth = () => {
   const [pageType, setPageType] = useState<"login" | "signup">("login");
   const {
     email,
