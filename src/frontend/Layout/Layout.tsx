@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { NavigationSidebar } from "../Navigation/NavigationSidebar";
+import { NavigationSidebar } from "../navigation/NavigationSidebar";
 
 import { BodyRouter } from "./BodyRouter";
-import { Header } from "../Header/Header";
+import { Header } from "../header/Header";
 
 export const Layout = () => {
   return (

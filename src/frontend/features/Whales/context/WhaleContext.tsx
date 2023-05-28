@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../../firebase";
+import { db } from "../../../../../firebase";
 import { useParams } from "react-router-dom";
 
-import { saveOrUpdateWhale } from "../../../db/dataServices/saveOrUpdateWhale";
+import { saveOrUpdateWhale } from "../../../../db/dataServices/saveOrUpdateWhale";
 import { validateWhale } from "./validation/validateWhale";
-import { Whale } from "../../../db/Types/Entities";
-import { fetchWhale } from "../../../db/dataServices";
+import { Whale } from "../../../../db/Types/Entities";
+import { fetchWhale } from "../../../../db/dataServices";
 
 type WhaleContextValue = {
   whale: Whale | null;
@@ -35,7 +35,7 @@ export function WhaleProvider({ children }: any) {
 
   const fetchWhaleResolver = async ({ id }: { id: string }) => {
     const whale = await fetchWhale({ id });
-    if(whale) {
+    if (whale) {
       setWhale({ ...whale.data(), id });
     }
   };

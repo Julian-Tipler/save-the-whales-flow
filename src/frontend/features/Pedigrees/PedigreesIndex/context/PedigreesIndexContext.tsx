@@ -1,8 +1,8 @@
 import React, { useEffect, createContext, useState } from "react";
 
-import { fetchPedigrees } from "../../../../db/dataServices";
-import { createPedigree } from "../../../../db/dataServices";
-import { Pedigree } from "../../../../db/Types/Entities";
+import { fetchPedigrees } from "../../../../../db/dataServices";
+import { createPedigree } from "../../../../../db/dataServices";
+import { Pedigree } from "../../../../../db/Types/Entities";
 
 const PedigreesIndexContext = createContext<any>({});
 

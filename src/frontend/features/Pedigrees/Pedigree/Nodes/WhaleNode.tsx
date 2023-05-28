@@ -2,8 +2,8 @@ import React from "react";
 import { Handle, Position } from "reactflow";
 import { Box, Card, CardBody, CardFooter, Flex, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { whaleStatusIcon } from "../../../helpers/whaleStatusIcon";
-import { Whale } from "../../../../db/Types/Entities";
+import { whaleStatusIcon } from "../../../../helpers/whaleStatusIcon";
+import { Whale } from "../../../../../db/Types/Entities";
 
 type NodeData = {
   whale: Whale;
@@ -33,7 +33,12 @@ export const WhaleNode = ({
     <Card width={"100px"} height={"80px"} backgroundColor={"blue.100"}>
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <CardBody padding={"1"}>
-        <Flex direction={"column"} gap={"1"} justifyContent={"space-between"} height={"100%"}>
+        <Flex
+          direction={"column"}
+          gap={"1"}
+          justifyContent={"space-between"}
+          height={"100%"}
+        >
           <Flex direction={"column"}>
             <Flex gap={"1"}>
               <Text fontSize={"10px"}>{`${

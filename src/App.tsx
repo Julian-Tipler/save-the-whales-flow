@@ -1,6 +1,6 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Router } from "./frontend/Router";
-import { AuthProvider } from "./frontend/Auth/context/AuthContext";
+import { AuthProvider } from "./frontend/auth/context/AuthContext";
 
 const theme = extendTheme({
   fonts: {

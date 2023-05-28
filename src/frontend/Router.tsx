@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import AuthContext from "./Auth/context/AuthContext";
-import { Layout } from "./Layout/Layout";
-import { Auth } from "./Auth";
+import AuthContext from "./auth/context/AuthContext";
+import { Layout } from "./layout/Layout";
+import { Auth } from "./auth";
 
 export const Router = () => {
   const { loggedIn, loading } = useContext(AuthContext);

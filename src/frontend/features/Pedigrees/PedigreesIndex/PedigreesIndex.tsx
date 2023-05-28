@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AddIcon } from "@chakra-ui/icons";
 
 import PedigreesIndexContext from "./context/PedigreesIndexContext";
-import { Pedigree } from "../../../db/Types/Entities";
+import { Pedigree } from "../../../../db/Types/Entities";
 import { PedigreeItem } from "./PedigreeItem";
 
 export const PedigreesIndex = () => {

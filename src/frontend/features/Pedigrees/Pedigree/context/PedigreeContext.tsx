@@ -11,9 +11,9 @@ import {
   fetchPedigree,
   updatePedigree,
   updatePedigreeDetails,
-} from "../../../../db/dataServices";
-import { Pedigree } from "../../../../db/Types/Entities";
-import { fetchWhales } from "../../../../db/dataServices/fetchWhales";
+} from "../../../../../db/dataServices";
+import { Pedigree } from "../../../../../db/Types/Entities";
+import { fetchWhales } from "../../../../../db/dataServices/fetchWhales";
 import { useParams } from "react-router-dom";
 
 type PedigreeContextValue = {
@@ -109,7 +109,7 @@ export function PedigreeProvider({ children }: any) {
     id,
     data,
   }: {
-    id:string
+    id: string;
     data: Pedigree;
   }) => {
     if (!pedigree) throw new Error("No pedigree found");

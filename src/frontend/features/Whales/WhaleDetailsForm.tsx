@@ -10,7 +10,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import WhaleContext from "./context/WhaleContext";
-import { Whale } from "../../db/Types/Entities";
+import { Whale } from "../../../db/Types/Entities";
 
 export const WhaleDetailsForm = ({
   whale,

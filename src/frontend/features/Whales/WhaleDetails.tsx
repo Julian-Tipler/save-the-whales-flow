@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import WhaleContext from "./context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
-import { whaleStatusIcon } from "../helpers/whaleStatusIcon";
+import { whaleStatusIcon } from "../../helpers/whaleStatusIcon";
 
 export const WhaleDetails = () => {
   const [editMode, setEditMode] = React.useState(false);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Pedigree } from "../../../db/Types/Entities";
+import { Pedigree } from "../../../../db/Types/Entities";
 import { Card } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
