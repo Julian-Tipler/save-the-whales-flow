@@ -1,4 +1,3 @@
-import React from "react";
 import { Pedigree } from "./Pedigree";
 import { PedigreeProvider } from "./context/PedigreeContext";
 

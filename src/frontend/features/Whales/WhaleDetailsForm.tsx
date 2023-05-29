@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
   Card,
-  CardHeader,
   CardBody,
   Text,
   Button,
@@ -27,6 +26,7 @@ export const WhaleDetailsForm = ({
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
   const [notes, setNotes] = useState("");
+  console.log({ name, gender, born, died, notes });
 
   useEffect(() => {
     setIdentification(whale.identification || "");
@@ -80,6 +80,7 @@ export const WhaleDetailsForm = ({
       <Flex>
         <Button
           onClick={handleSubmit({
+            id: whale.id,
             updateWhaleResolver,
             whaleFormData: { identification, name, born, died, notes },
             setErrors,
@@ -103,13 +104,15 @@ export const handleOnChange = (
 };
 
 export const handleSubmit = ({
+  id,
   updateWhaleResolver,
   whaleFormData,
   setErrors,
   setEditMode,
 }: any) => {
   return async () => {
-    const errors = await updateWhaleResolver(whaleFormData);
+    console.log("handleSubmit", whaleFormData);
+    const errors = await updateWhaleResolver({ id, whaleFormData });
     if (errors.length) {
       setErrors(errors);
     } else {

@@ -47,6 +47,7 @@ export function WhaleProvider({ children }: any) {
     id: string;
     whaleFormData: Whale;
   }) => {
+    console.log("updateWhaleResolver whaleFormData", whaleFormData);
     const errors = validateWhale(whaleFormData);
     if (!errors.length) {
       const newWhale = await saveOrUpdateWhale({ id, data: whaleFormData });

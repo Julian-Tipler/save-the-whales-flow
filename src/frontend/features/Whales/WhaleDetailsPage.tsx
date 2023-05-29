@@ -1,4 +1,3 @@
-import React from "react";
 import { WhaleDetails } from "./WhaleDetails";
 import { WhaleProvider } from "./context/WhaleContext";
 

@@ -44,7 +44,7 @@ export const WhaleNode = ({
               <Text fontSize={"10px"}>{`${
                 whale?.identification || "<no id>"
               }`}</Text>
-              {whaleStatusIcon(whale)}
+              {whaleStatusIcon({ whale, size: "12px" })}
             </Flex>
             <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
           </Flex>

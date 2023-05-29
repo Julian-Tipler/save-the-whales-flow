@@ -27,7 +27,7 @@ export const Layout = () => {
       >
         <Header />
       </GridItem>
-      <GridItem pl="2" bg="gray.300" area={"nav"} padding={"15px"}>
+      <GridItem pl="2" bg="blue.200" area={"nav"} padding={"15px"}>
         <NavigationSidebar />
       </GridItem>
       <GridItem
