@@ -1,6 +1,5 @@
-import React from "react";
 import "./DragNDrop.css";
-import { Card, Flex, Heading, Spacer } from "@chakra-ui/react";
+import { Card, Flex, Heading } from "@chakra-ui/react";
 
 export const DragNDrop = () => {
   const onDragStart = (event: any, nodeType: any) => {

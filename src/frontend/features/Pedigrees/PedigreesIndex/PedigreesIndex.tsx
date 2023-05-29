@@ -1,20 +1,25 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AddIcon } from "@chakra-ui/icons";
+import { Flex, Spacer } from "@chakra-ui/react";
 
-import PedigreesIndexContext from "./context/PedigreesIndexContext";
+import { usePedigreesIndexContext } from "./context/PedigreesIndexContext";
 import { Pedigree } from "../../../../db/Types/Entities";
 import { PedigreeItem } from "./PedigreeItem";
 
 export const PedigreesIndex = () => {
-  const { pedigrees, createPedigreeResolver } = useContext(
-    PedigreesIndexContext
-  );
+  const { pedigrees, createPedigreeResolver } = usePedigreesIndexContext();
 
   return (
     <>
-      {pedigrees.map((pedigree: Pedigree, i: Number) => {
-        return <PedigreeItem key={`pedigree-${i}`} pedigree={pedigree} />;
-      })}
+      <Flex flexDirection={"column"} gap={"4"}>
+        {pedigrees.map((pedigree: Pedigree, i: Number) => {
+          return (
+            <>
+              <PedigreeItem key={`pedigree-${i}`} pedigree={pedigree} />
+            </>
+          );
+        })}
+      </Flex>
       <AddIcon
         marginLeft={"4px"}
         color={"green.500"}

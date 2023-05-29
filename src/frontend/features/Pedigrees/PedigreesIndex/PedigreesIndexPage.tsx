@@ -1,4 +1,3 @@
-import React from "react";
 import { PedigreesIndex } from "./PedigreesIndex";
 import { PedigreesIndexProvider } from "./context/PedigreesIndexContext";
 

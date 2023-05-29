@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useState } from "react";
+import React, { useEffect, createContext, useState, useContext } from "react";
 
 import { fetchPedigrees } from "../../../../../db/dataServices";
 import { createPedigree } from "../../../../../db/dataServices";
@@ -31,4 +31,4 @@ export function PedigreesIndexProvider({ children }: any) {
   );
 }
 
-export default PedigreesIndexContext;
+export const usePedigreesIndexContext = () => useContext(PedigreesIndexContext);
