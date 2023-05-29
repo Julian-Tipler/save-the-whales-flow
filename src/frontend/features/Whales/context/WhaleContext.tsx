@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../../../firebase";
-import { useParams } from "react-router-dom";
+import React, { useContext } from "react";
 
 import { saveOrUpdateWhale } from "../../../../db/dataServices/saveOrUpdateWhale";
 import { validateWhale } from "./validation/validateWhale";
@@ -16,7 +13,8 @@ type WhaleContextValue = {
   }: {
     id: string;
     whaleFormData: Whale;
-  }) => void;
+  }) => Promise<string[]>;
+  fetchWhaleResolver: ({ id }: { id: string }) => Promise<void>;
 };
 
 export const WhaleContext = React.createContext<WhaleContextValue>(
@@ -25,13 +23,6 @@ export const WhaleContext = React.createContext<WhaleContextValue>(
 
 export function WhaleProvider({ children }: any) {
   const [whale, setWhale] = React.useState<Whale | null>(null);
-
-  const { id } = useParams<{ id: string }>();
-  if (!id) throw new Error("No whale id provided");
-
-  useEffect(() => {
-    fetchWhaleResolver({ id });
-  }, []);
 
   const fetchWhaleResolver = async ({ id }: { id: string }) => {
     const whale = await fetchWhale({ id });
@@ -47,7 +38,6 @@ export function WhaleProvider({ children }: any) {
     id: string;
     whaleFormData: Whale;
   }) => {
-    console.log("updateWhaleResolver whaleFormData", whaleFormData);
     const errors = validateWhale(whaleFormData);
     if (!errors.length) {
       const newWhale = await saveOrUpdateWhale({ id, data: whaleFormData });
@@ -56,10 +46,10 @@ export function WhaleProvider({ children }: any) {
     return errors;
   };
 
-  const value = { whale, updateWhaleResolver };
+  const value = { whale, updateWhaleResolver, fetchWhaleResolver };
   return (
     <WhaleContext.Provider value={value}>{children}</WhaleContext.Provider>
   );
 }
 
-export default WhaleContext;
+export const useWhaleContext = () => useContext(WhaleContext);

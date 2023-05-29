@@ -1,10 +1,18 @@
-import React, { useEffect, createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 import { Pedigree } from "../../../../../db/Types/Entities";
 import { fetchPedigrees } from "../../../../../db/dataServices";
 import { createPedigree } from "../../../../../db/dataServices";
 
-const PedigreesIndexContext = createContext<any>({});
+type PedigreesIndexContextValue = {
+  pedigrees: [];
+  fetchPedegreesResolver: () => Promise<void>;
+  createPedigreeResolver: ({ data }: { data: Pedigree }) => Promise<void>;
+};
+
+const PedigreesIndexContext = createContext<PedigreesIndexContextValue>(
+  {} as PedigreesIndexContextValue
+);
 
 export function PedigreesIndexProvider({ children }: any) {
   const [pedigrees, setPedigrees] = useState<any>([]);

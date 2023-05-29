@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
-import WhaleContext from "./context/WhaleContext";
+import React, { useContext, useEffect } from "react";
+import { useWhaleContext } from "./context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
 import { WhaleDetailsCard } from "./WhaleDetailsCard";
+import { useParams } from "react-router-dom";
 
 export const WhaleDetails = () => {
   const [editMode, setEditMode] = React.useState(false);
-  const { whale } = useContext(WhaleContext);
+  const { whale, fetchWhaleResolver } = useWhaleContext();
+
+  const { id } = useParams<{ id: string }>();
+  if (!id) throw new Error("No whale id provided");
+
+  useEffect(() => {
+    fetchWhaleResolver({ id });
+  }, []);
 
   if (!whale) return <div>Loading...</div>;
 

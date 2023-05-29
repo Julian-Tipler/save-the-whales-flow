@@ -8,7 +8,7 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-import WhaleContext from "./context/WhaleContext";
+import { useWhaleContext } from "./context/WhaleContext";
 import { Whale } from "../../../db/Types/Entities";
 
 export const WhaleDetailsForm = ({
@@ -19,7 +19,7 @@ export const WhaleDetailsForm = ({
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [errors, setErrors] = useState<any>([]);
-  const { updateWhaleResolver } = useContext(WhaleContext);
+  const { updateWhaleResolver } = useWhaleContext();
   const [identification, setIdentification] = useState("");
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
@@ -112,7 +112,7 @@ export const handleSubmit = ({
 }: any) => {
   return async () => {
     console.log("handleSubmit", whaleFormData);
-    const errors = await updateWhaleResolver({ id, whaleFormData });
+    const errors = await updateWhaleResolver({ tiger: "tiger" });
     if (errors.length) {
       setErrors(errors);
     } else {
