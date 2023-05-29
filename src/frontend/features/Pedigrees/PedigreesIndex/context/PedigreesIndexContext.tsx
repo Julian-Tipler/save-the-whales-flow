@@ -1,18 +1,14 @@
 import React, { useEffect, createContext, useState, useContext } from "react";
 
+import { Pedigree } from "../../../../../db/Types/Entities";
 import { fetchPedigrees } from "../../../../../db/dataServices";
 import { createPedigree } from "../../../../../db/dataServices";
-import { Pedigree } from "../../../../../db/Types/Entities";
 
 const PedigreesIndexContext = createContext<any>({});
 
 export function PedigreesIndexProvider({ children }: any) {
   const [pedigrees, setPedigrees] = useState<any>([]);
 
-  useEffect(() => {
-    fetchPedegreesResolver();
-  }, []);
-  //should later use ID or something?
   const fetchPedegreesResolver = async () => {
     const pedigrees = await fetchPedigrees();
     setPedigrees(pedigrees);
@@ -23,7 +19,7 @@ export function PedigreesIndexProvider({ children }: any) {
     await fetchPedegreesResolver();
   };
 
-  const value = { createPedigreeResolver, pedigrees };
+  const value = { fetchPedegreesResolver, createPedigreeResolver, pedigrees };
   return (
     <PedigreesIndexContext.Provider value={value}>
       {children}
