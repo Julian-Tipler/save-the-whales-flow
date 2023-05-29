@@ -1,11 +1,10 @@
 import { Box, Flex, Heading, Input } from "@chakra-ui/react";
 import { AiOutlineEdit } from "react-icons/ai";
-import React, { useContext, useEffect } from "react";
-import PedigreeContext from "../context/PedigreeContext";
+import React, { useEffect } from "react";
+import { usePedigreeContext } from "../context/PedigreeContext";
 
 export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
-  const { updatePedigreeDetailsResolver, saveLoading } =
-    useContext(PedigreeContext);
+  const { updatePedigreeDetailsResolver, saveLoading } = usePedigreeContext();
 
   const [editMode, setEditMode] = React.useState(false);
   const [pedigreeName, setPedigreeName] = React.useState(name);

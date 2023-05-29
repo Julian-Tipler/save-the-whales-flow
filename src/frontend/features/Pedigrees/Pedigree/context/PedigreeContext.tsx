@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, createContext, useState } from "react";
+import React, { useCallback, useEffect, createContext, useState, useContext } from "react";
 import {
   Connection,
   Edge,
@@ -7,6 +7,7 @@ import {
   useNodesState,
   Node,
 } from "reactflow";
+
 import {
   fetchPedigree,
   updatePedigree,
@@ -127,6 +128,7 @@ export function PedigreeProvider({ children }: any) {
     edges,
     setEdges,
     onEdgesChange,
+    fetchPedigreeResolver,
     onConnect,
     savePedigreeResolver,
     updatePedigreeDetailsResolver,
@@ -139,4 +141,4 @@ export function PedigreeProvider({ children }: any) {
   );
 }
 
-export default PedigreeContext;
+export const usePedigreeContext = () => useContext(PedigreeContext);

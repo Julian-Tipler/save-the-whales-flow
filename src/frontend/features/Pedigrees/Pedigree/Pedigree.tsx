@@ -10,7 +10,7 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop/DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
-import PedigreeContext from "./context/PedigreeContext";
+import { usePedigreeContext } from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
@@ -28,7 +28,7 @@ export function Pedigree() {
     onConnect,
     savePedigreeResolver,
     saveLoading,
-  } = useContext(PedigreeContext);
+  } = usePedigreeContext()
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
   const nodeTypes = useMemo(
