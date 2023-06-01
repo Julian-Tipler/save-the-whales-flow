@@ -1,11 +1,21 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import { MainLayout } from "./frontend/MainLayout";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Router } from "./frontend/Router";
-import { AuthProvider } from "./frontend/Auth/context/AuthContext";
+import { AuthProvider } from "./frontend/auth/context/AuthContext";
+
+const theme = extendTheme({
+  fonts: {
+    body: "Roboto, sans-serif",
+    heading: "Roboto, sans-serif",
+  },
+  fontWeights: {
+    normal: 400,
+    bold: 500,
+  },
+});
 
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <AuthProvider>
         <Router />
       </AuthProvider>

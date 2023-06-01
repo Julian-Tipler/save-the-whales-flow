@@ -13,3 +13,6 @@ Frontend framework:
 * The only information the node will know about the whale is it will have an ID associated with it.
 * Whale will know nothing about node
 
+Backend framework:
+* Right now including state setting in my resolver. In the future, should have a frontend (in context) function that gets called
+* and calls the resolver which then handles state setting.

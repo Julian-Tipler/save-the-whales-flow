@@ -1,13 +1,23 @@
 import React, { useContext } from "react";
-import { Button } from "@chakra-ui/react";
-import AuthContext from "../Auth/context/AuthContext";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import AuthContext from "../auth/context/AuthContext";
+import logo from "../../images/save-the-whales-logo.png"; // Import the image file
 
 export const Header = () => {
   const { logout } = useContext(AuthContext);
   return (
-    <>
-      <div>Save the whales</div>
+    <Flex
+      justifyContent={"space-between"}
+      alignItems={"center"}
+      width={"100%"}
+      height={"100%"}
+    >
+      <img
+        src={logo}
+        alt="Save the whales logo"
+        style={{ height: "100%", borderRadius: "5px" }}
+      />
       <Button onClick={() => logout()}>Logout</Button>
-    </>
+    </Flex>
   );
 };
