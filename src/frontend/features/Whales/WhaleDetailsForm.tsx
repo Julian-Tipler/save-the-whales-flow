@@ -111,8 +111,10 @@ export const handleSubmit = ({
   setEditMode,
 }: any) => {
   return async () => {
-    console.log("handleSubmit", whaleFormData);
-    const errors = await updateWhaleResolver({ tiger: "tiger" });
+    const errors = await updateWhaleResolver({
+      id: id,
+      whaleFormData: whaleFormData,
+    });
     if (errors.length) {
       setErrors(errors);
     } else {
