@@ -1,5 +1,5 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { Router } from "./frontend/Router";
+import { AuthWall } from "./frontend/AuthWall";
 import { AuthProvider } from "./frontend/auth/context/AuthContext";
 
 const theme = extendTheme({
@@ -17,7 +17,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <AuthProvider>
-        <Router />
+        <AuthWall />
       </AuthProvider>
     </ChakraProvider>
   );
