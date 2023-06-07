@@ -2,7 +2,7 @@ import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 export const fetchWhales = async ({ ids }: { ids?: string[] }) => {
-  console.log("fetchWhales", ids);
+
   if (!ids) {
     const whalesRef = collection(db, "whales");
     const querySnapshot = await getDocs(whalesRef);

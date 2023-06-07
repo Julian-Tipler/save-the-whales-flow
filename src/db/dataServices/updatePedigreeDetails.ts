@@ -19,7 +19,6 @@ export const updatePedigreeDetails = async ({
 }) => {
   const pedigreeRef = doc(db, "pedigrees", id);
 
-  console.log("updatePedigreeDetails", data)
   await updateDoc(pedigreeRef, data);
   return;
 };

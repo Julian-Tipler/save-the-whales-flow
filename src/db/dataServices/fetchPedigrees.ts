@@ -10,6 +10,5 @@ export const fetchPedigrees = async () => {
     id: doc.id,
   }));
 
-  console.log("fetchPedigrees", pedigrees)
   return pedigrees;
 };

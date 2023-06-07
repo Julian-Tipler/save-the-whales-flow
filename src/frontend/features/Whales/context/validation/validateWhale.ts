@@ -1,7 +1,6 @@
 import { Whale } from "../../../../../db/Types/Entities";
 
 export const validateWhale = (whale: Whale) => {
-  console.log(whale)
   const errors = [];
   const { name, born, died, identification } = whale;
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;

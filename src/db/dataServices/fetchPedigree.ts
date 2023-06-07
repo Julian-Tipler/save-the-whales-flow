@@ -10,7 +10,6 @@ export const fetchPedigree = async ({ id }: { id: string }) => {
 
   if (pedigreeDoc.exists()) {
 
-    console.log("fetchPedigree")
     return { id: pedigreeDoc.id, ...pedigreeDoc.data() } as Pedigree;
   } else {
     console.log("Error getting document:");

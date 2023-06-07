@@ -15,7 +15,6 @@ export const createPedigree = async ({ data }: { data: Pedigree }) => {
     const pedigreesRef = collection(db, "pedigrees");
     const docRef = await addDoc(pedigreesRef, data);
     
-    console.log("createPedigree", docRef.id);
     return docRef.id;
   } catch (error) {
     console.error("Error creating pedigree:", error);

@@ -24,7 +24,7 @@ export const saveOrUpdateWhale = async ({
       { merge: true }
     );
   }
-  console.log("saveOrUpdateWhale")
+
   const newWhaleDoc = await getDoc(whaleRef);
   return newWhaleDoc.data();
 };

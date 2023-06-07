@@ -26,7 +26,6 @@ export const WhaleDetailsForm = ({
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
   const [notes, setNotes] = useState("");
-  console.log({ name, gender, born, died, notes });
 
   useEffect(() => {
     setIdentification(whale.identification || "");
