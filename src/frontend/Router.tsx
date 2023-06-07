@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import AuthContext from "./auth/context/AuthContext";
-import { Layout } from "./layout/Layout";
+import { Layout } from "./Layout/Layout";
 import { Auth } from "./auth";
 
 export const Router = () => {
