@@ -1,9 +1,9 @@
-import React from "react";
+
 import { Grid, GridItem } from "@chakra-ui/react";
 import { NavigationSidebar } from "../navigation/NavigationSidebar";
 
-import { BodyRouter } from "./BodyRouter";
 import { Header } from "../header/Header";
+import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
   return (
@@ -32,13 +32,13 @@ export const Layout = () => {
       </GridItem>
       <GridItem
         pl="2"
-        bg="blue.100"
+        bg=""
         area={"main"}
         minHeight={"100vh"}
         padding={"30px"}
         width={"100%"}
       >
-        <BodyRouter />
+        <Outlet />
       </GridItem>
       <GridItem pl="2" bg="blue.300" area={"footer"}></GridItem>
     </Grid>

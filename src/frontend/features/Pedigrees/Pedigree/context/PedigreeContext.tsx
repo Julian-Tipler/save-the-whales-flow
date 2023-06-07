@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, createContext, useState, useContext } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  createContext,
+  useState,
+  useContext,
+} from "react";
 import {
   Connection,
   Edge,
@@ -26,8 +32,15 @@ type PedigreeContextValue = {
   setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
   onEdgesChange: any;
   onConnect: (connection: Edge | Connection) => void;
+  fetchPedigreeResolver: ({ id }: { id: string }) => void;
   savePedigreeResolver: ({ id }: { id: string }) => void;
-  updatePedigreeDetailsResolver: ({ data }: { data: Pedigree }) => void;
+  updatePedigreeDetailsResolver: ({
+    id,
+    data,
+  }: {
+    id: string;
+    data: Pedigree;
+  }) => void;
   saveLoading: boolean;
 };
 
@@ -47,13 +60,6 @@ export function PedigreeProvider({ children }: any) {
       const newEdge = { ...connection, type: "step" };
       return addEdge(newEdge, eds);
     });
-  }, []);
-
-  const { id } = useParams<{ id: string }>();
-  if (!id) throw new Error("No pedigree id provided");
-
-  useEffect(() => {
-    fetchPedigreeResolver({ id });
   }, []);
 
   // One time fetch (and on save)
@@ -128,8 +134,8 @@ export function PedigreeProvider({ children }: any) {
     edges,
     setEdges,
     onEdgesChange,
-    fetchPedigreeResolver,
     onConnect,
+    fetchPedigreeResolver,
     savePedigreeResolver,
     updatePedigreeDetailsResolver,
     saveLoading,

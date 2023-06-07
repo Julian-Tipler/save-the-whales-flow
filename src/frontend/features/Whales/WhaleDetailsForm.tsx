@@ -26,7 +26,6 @@ export const WhaleDetailsForm = ({
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
   const [notes, setNotes] = useState("");
-  console.log({ name, gender, born, died, notes });
 
   useEffect(() => {
     setIdentification(whale.identification || "");
@@ -111,8 +110,10 @@ export const handleSubmit = ({
   setEditMode,
 }: any) => {
   return async () => {
-    console.log("handleSubmit", whaleFormData);
-    const errors = await updateWhaleResolver({ tiger: "tiger" });
+    const errors = await updateWhaleResolver({
+      id: id,
+      whaleFormData: whaleFormData,
+    });
     if (errors.length) {
       setErrors(errors);
     } else {

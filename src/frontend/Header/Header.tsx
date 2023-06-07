@@ -4,7 +4,7 @@ import AuthContext from "../auth/context/AuthContext";
 import logo from "../../images/save-the-whales-logo.png"; // Import the image file
 
 export const Header = () => {
-  const { logout } = useContext(AuthContext);
+  const { logout, loggedIn } = useContext(AuthContext);
   return (
     <Flex
       justifyContent={"space-between"}
@@ -17,7 +17,7 @@ export const Header = () => {
         alt="Save the whales logo"
         style={{ height: "100%", borderRadius: "5px" }}
       />
-      <Button onClick={() => logout()}>Logout</Button>
+      <Button onClick={() => logout()}>{loggedIn ? "Logout" : "Login"}</Button>
     </Flex>
   );
 };
