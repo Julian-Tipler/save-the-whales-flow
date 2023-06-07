@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, createContext, useState, useContext } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  createContext,
+  useState,
+  useContext,
+} from "react";
 import {
   Connection,
   Edge,
@@ -28,7 +34,13 @@ type PedigreeContextValue = {
   onConnect: (connection: Edge | Connection) => void;
   fetchPedigreeResolver: ({ id }: { id: string }) => void;
   savePedigreeResolver: ({ id }: { id: string }) => void;
-  updatePedigreeDetailsResolver: ({ data }: { data: Pedigree }) => void;
+  updatePedigreeDetailsResolver: ({
+    id,
+    data,
+  }: {
+    id: string;
+    data: Pedigree;
+  }) => void;
   saveLoading: boolean;
 };
 
@@ -49,8 +61,6 @@ export function PedigreeProvider({ children }: any) {
       return addEdge(newEdge, eds);
     });
   }, []);
-
-
 
   // One time fetch (and on save)
   const fetchPedigreeResolver = async ({ id }: { id: string }) => {
