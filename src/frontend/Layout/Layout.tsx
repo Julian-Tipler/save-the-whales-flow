@@ -32,7 +32,6 @@ export const Layout = () => {
       </GridItem>
       <GridItem
         pl="2"
-        bg=""
         area={"main"}
         minHeight={"100vh"}
         padding={"30px"}

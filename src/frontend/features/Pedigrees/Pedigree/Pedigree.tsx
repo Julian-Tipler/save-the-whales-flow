@@ -142,7 +142,7 @@ export function Pedigree() {
               gap={20}
               size={1}
               color="#000000"
-              style={{ backgroundColor: "#86CEFA" }}
+              style={{ backgroundColor: "#b3b3b3" }}
             />
           </ReactFlow>
         </div>
