@@ -9,75 +9,76 @@ import {
 } from "@chakra-ui/react";
 import { fetchPedigrees } from "../../db/dataServices";
 import { useEffect, useState } from "react";
-import { Pedigree } from "../../db/Types/Entities";
-import { Link, useNavigate } from "react-router-dom";
+import { Pedigree, Whale } from "../../db/Types/Entities";
+import { Link } from "react-router-dom";
+import { NavigationSidebarProvider } from "./context/NavigationSidebarContext";
+import { fetchWhales } from "../../db/dataServices/fetchWhales";
 
 export const NavigationSidebar = () => {
   const [pedigrees, setPedigrees] = useState<Pedigree[]>([]);
+  const [whales, setWhales] = useState<Whale[]>([]);
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   const fetchData = async () => {
     try {
-      const response = await fetchPedigrees();
-      setPedigrees(response);
+      const pedigrees = await fetchPedigrees();
+      setPedigrees(pedigrees);
+      const whales = await fetchWhales({});
+      setWhales(whales);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const navigate = useNavigate();
-  const handlePedigreeClick = (id: string | undefined) => {
-    navigate(`/pedigrees/${id}`);
-  };
-
-  if (!pedigrees) {
+  if (!pedigrees || !whales) {
     return <div>loading...</div>;
   }
 
   return (
-    <Accordion>
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box as="span" flex="1" textAlign="left">
-              Pedigrees
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        {pedigrees.map((pedigree, i) => {
-          return (
-            <AccordionPanel pb={4} key={`pedigree-${i}`}>
-              <Link to={`/pedigrees/${pedigree.id}`}>
-                <Text
-                  onClick={() => handlePedigreeClick(pedigree.id)}
-                >{`${pedigree.name}`}</Text>
-              </Link>
-            </AccordionPanel>
-          );
-        })}
-      </AccordionItem>
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box as="span" flex="1" textAlign="left">
-              Whales
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        {/* {["whale 1", "whale 2", "whale 3"].map((option, i) => {
-          return (
-            <AccordionPanel
-              pb={4}
-              key={`whale-${i}`}
-            >{`${option}`}</AccordionPanel>
-          );
-        })} */}
-      </AccordionItem>
-    </Accordion>
+    <NavigationSidebarProvider>
+      <Accordion>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box as="span" flex="1" textAlign="left">
+                Pedigrees
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          {pedigrees.map((pedigree, i) => {
+            return (
+              <AccordionPanel pb={4} key={`pedigree-${i}`}>
+                <Link to={`/pedigrees/${pedigree.id}`}>
+                  <Text>{pedigree.name}</Text>
+                </Link>
+              </AccordionPanel>
+            );
+          })}
+        </AccordionItem>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box as="span" flex="1" textAlign="left">
+                Whales
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          {whales.map((whale, i) => {
+            return (
+              <AccordionPanel pb={4} key={`whale-${i}`}>
+                <Link to={`/whales/${whale.id}`}>
+                  <Text>{whale.name}</Text>
+                </Link>
+              </AccordionPanel>
+            );
+          })}
+        </AccordionItem>
+      </Accordion>
+    </NavigationSidebarProvider>
   );
 };

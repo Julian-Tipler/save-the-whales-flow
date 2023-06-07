@@ -1,15 +1,26 @@
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../firebase";
 
-export const fetchWhales = async ({ ids }: { ids: string[] }) => {
-  const whaleQuery = query(
-    collection(db, "whales"),
-    where("__name__", "in", ids)
-  );
-  const whaleDocs = await getDocs(whaleQuery);
-  const whales = whaleDocs.docs.map((doc: any) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
-  return whales;
+export const fetchWhales = async ({ ids }: { ids?: string[] }) => {
+  console.log("fetchWhales", ids);
+  if (!ids) {
+    const whalesRef = collection(db, "whales");
+    const querySnapshot = await getDocs(whalesRef);
+    const whales = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    return whales;
+  } else {
+    const whaleQuery = query(
+      collection(db, "whales"),
+      where("__name__", "in", ids)
+    );
+    const whaleDocs = await getDocs(whaleQuery);
+    const whales = whaleDocs.docs.map((doc: any) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return whales;
+  }
 };

@@ -10,7 +10,7 @@ export const WhaleDetails = () => {
 
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No whale id provided");
-
+  console.log(id)
   useEffect(() => {
     fetchWhaleResolver({ id });
   }, []);

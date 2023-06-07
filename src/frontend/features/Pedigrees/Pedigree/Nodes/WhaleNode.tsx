@@ -30,7 +30,7 @@ export const WhaleNode = ({
   const { whale } = data;
 
   return (
-    <Card width={"100px"} height={"80px"} backgroundColor={"blue.100"}>
+    <Card width={"100px"} height={"80px"} backgroundColor={"white"}>
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <CardBody padding={"1"}>
         <Flex

@@ -28,7 +28,7 @@ export function Pedigree() {
     onConnect,
     savePedigreeResolver,
     saveLoading,
-  } = usePedigreeContext()
+  } = usePedigreeContext();
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
   const nodeTypes = useMemo(
@@ -126,6 +126,7 @@ export function Pedigree() {
               gap={20}
               size={1}
               color="#000000"
+              style={{ backgroundColor: "#86CEFA" }}
             />
           </ReactFlow>
         </div>

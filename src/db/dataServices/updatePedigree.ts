@@ -32,7 +32,7 @@ export const updatePedigree = async ({
     nodes,
     edges,
   };
-
+  console.log("updatePedigree", newData)
   await updateDoc(pedigreeRef, newData);
   return;
 };

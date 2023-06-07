@@ -9,5 +9,7 @@ export const fetchPedigrees = async () => {
     ...doc.data(),
     id: doc.id,
   }));
+
+  console.log("fetchPedigrees", pedigrees)
   return pedigrees;
 };
