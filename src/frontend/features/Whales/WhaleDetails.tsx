@@ -13,7 +13,7 @@ export const WhaleDetails = () => {
 
   useEffect(() => {
     fetchWhaleResolver({ id });
-  }, []);
+  }, [id]);
 
   if (!whale) return <div>Loading...</div>;
 
