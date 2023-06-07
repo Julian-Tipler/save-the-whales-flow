@@ -4,6 +4,7 @@ import { Box, Card, CardBody, CardFooter, Flex, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { whaleStatusIcon } from "../../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../../db/Types/Entities";
+import { useSidebarContext } from "../context/SidebarContext";
 
 type NodeData = {
   whale: Whale;
@@ -28,6 +29,7 @@ export const WhaleNode = ({
   selected: Boolean;
 }) => {
   const { whale } = data;
+  const { setWhale } = useSidebarContext();
 
   return (
     <Card width={"100px"} height={"80px"} backgroundColor={"white"}>
@@ -49,11 +51,14 @@ export const WhaleNode = ({
             <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
           </Flex>
           {whale?.id ? (
-            <Link to={`/whales/${whale?.id}`}>
-              <Text color={"#0000FF"} fontSize={"10px"}>
-                Details
-              </Text>
-            </Link>
+            <>
+              <Text onClick={() => setWhale(whale)}>Edit</Text>
+              <Link to={`/whales/${whale?.id}`}>
+                <Text color={"#0000FF"} fontSize={"10px"}>
+                  Details
+                </Text>
+              </Link>
+            </>
           ) : (
             <Text fontSize={"8px"}>Save pedigree to view details</Text>
           )}

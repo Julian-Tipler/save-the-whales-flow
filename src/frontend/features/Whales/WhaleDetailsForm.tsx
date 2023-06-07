@@ -14,9 +14,11 @@ import { Whale } from "../../../db/Types/Entities";
 export const WhaleDetailsForm = ({
   whale,
   setEditMode,
+  handleSubmit,
 }: {
   whale: Whale;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSubmit: Function;
 }) => {
   const [errors, setErrors] = useState<any>([]);
   const { updateWhaleResolver } = useWhaleContext();
@@ -102,22 +104,3 @@ export const handleOnChange = (
   };
 };
 
-export const handleSubmit = ({
-  id,
-  updateWhaleResolver,
-  whaleFormData,
-  setErrors,
-  setEditMode,
-}: any) => {
-  return async () => {
-    const errors = await updateWhaleResolver({
-      id: id,
-      whaleFormData: whaleFormData,
-    });
-    if (errors.length) {
-      setErrors(errors);
-    } else {
-      setEditMode(false);
-    }
-  };
-};

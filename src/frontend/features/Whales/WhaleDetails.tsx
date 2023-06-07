@@ -18,8 +18,34 @@ export const WhaleDetails = () => {
   if (!whale) return <div>Loading...</div>;
 
   if (editMode) {
-    return <WhaleDetailsForm whale={whale} setEditMode={setEditMode} />;
+    return (
+      <WhaleDetailsForm
+        whale={whale}
+        setEditMode={setEditMode}
+        handleSubmit={handleSubmit}
+      />
+    );
   } else {
     return <WhaleDetailsCard whale={whale} setEditMode={setEditMode} />;
   }
+};
+
+export const handleSubmit = ({
+  id,
+  updateWhaleResolver,
+  whaleFormData,
+  setErrors,
+  setEditMode,
+}: any) => {
+  return async () => {
+    const errors = await updateWhaleResolver({
+      id: id,
+      whaleFormData: whaleFormData,
+    });
+    if (errors.length) {
+      setErrors(errors);
+    } else {
+      setEditMode(false);
+    }
+  };
 };
