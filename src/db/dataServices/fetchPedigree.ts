@@ -4,12 +4,12 @@ import { doc, getDoc } from "firebase/firestore";
 import { Pedigree } from "../Types/Entities";
 
 export const fetchPedigree = async ({ id }: { id: string }) => {
+  // console.log("fetchPedigree")
   const docRef = doc(db, "pedigrees", id);
 
   const pedigreeDoc = await getDoc(docRef);
 
   if (pedigreeDoc.exists()) {
-
     return { id: pedigreeDoc.id, ...pedigreeDoc.data() } as Pedigree;
   } else {
     console.log("Error getting document:");

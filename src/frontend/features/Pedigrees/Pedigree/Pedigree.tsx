@@ -1,4 +1,11 @@
-import { useCallback, useRef, useState, useMemo, useContext } from "react";
+import {
+  useCallback,
+  useRef,
+  useState,
+  useMemo,
+  useContext,
+  useEffect,
+} from "react";
 import ReactFlow, {
   Background,
   NodeToolbar,
@@ -15,6 +22,7 @@ import { Button } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
 import { PedigreeHeader } from "./Header/Header";
+import { useParams } from "react-router-dom";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -26,9 +34,17 @@ export function Pedigree() {
     edges,
     onEdgesChange,
     onConnect,
+    fetchPedigreeResolver,
     savePedigreeResolver,
     saveLoading,
   } = usePedigreeContext();
+
+  const { id } = useParams<{ id: string }>();
+  if (!id) throw new Error("No pedigree id provided");
+
+  useEffect(() => {
+    fetchPedigreeResolver({ id });
+  }, [id]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
   const nodeTypes = useMemo(
