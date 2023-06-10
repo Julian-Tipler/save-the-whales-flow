@@ -24,27 +24,30 @@ import { v4 as uuidv4 } from "uuid";
 import { PedigreeHeader } from "./Header/Header";
 import { useParams } from "react-router-dom";
 import { Sidebar } from "./Sidebar/Sidebar";
+import { useWhalesContext } from "./context/WhalesContext";
+import { useFetchPedigree } from "./functions/useFetchPedigree";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
   const {
     pedigree,
+    setPedigree,
     nodes,
     setNodes,
     onNodesChange,
-    edges,
-    onEdgesChange,
+    // edges,
+    // onEdgesChange,
     onConnect,
-    fetchPedigreeResolver,
     savePedigreeResolver,
     saveLoading,
   } = usePedigreeContext();
+  const { whales, setWhales } = useWhalesContext();
 
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No pedigree id provided");
 
   useEffect(() => {
-    fetchPedigreeResolver({ id });
+    useFetchPedigree({ id, setPedigree, setWhales, setNodes });
   }, [id]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
@@ -125,9 +128,9 @@ export function Pedigree() {
           <ReactFlow
             nodeTypes={nodeTypes}
             nodes={nodes}
-            edges={edges}
+            // edges={edges}
             onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
+            // onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onDragOver={onDragOver}
             onDrop={onDrop}

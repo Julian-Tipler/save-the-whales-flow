@@ -28,11 +28,10 @@ type PedigreeContextValue = {
   nodes: Node[];
   setNodes: React.Dispatch<React.SetStateAction<Node[]>>;
   onNodesChange: any;
-  edges: Edge[];
-  setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
-  onEdgesChange: any;
+  // edges: Edge[];
+  // setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
+  // onEdgesChange: any;
   onConnect: (connection: Edge | Connection) => void;
-  fetchPedigreeResolver: ({ id }: { id: string }) => void;
   savePedigreeResolver: ({ id }: { id: string }) => void;
   updatePedigreeDetailsResolver: ({
     id,
@@ -52,9 +51,8 @@ export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
   const [pedigree, setPedigree] = useState<Pedigree | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
-  const [saveLoading, setSaveLoading] = useState(false);
-  console.log(nodes)
+  // const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
+  const [saveLoading, setSaveLoading] = useState(false)
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
@@ -64,46 +62,46 @@ export function PedigreeProvider({ children }: any) {
   }, []);
 
   // One time fetch (and on save)
-  const fetchPedigreeResolver = async ({ id }: { id: string }) => {
-    //try catch?
-    let pedigree = await fetchPedigree({
-      id: id,
-    });
+  // const fetchPedigreeResolver = async ({ id }: { id: string }) => {
+  //   //try catch?
+  //   let pedigree = await fetchPedigree({
+  //     id: id,
+  //   });
 
-    let nodes: Node[] = [];
-    let edges: Edge[] = [];
-    if (pedigree) {
-      // fetches whales for each node
-      // currently stores these whales in the node data
-      if (pedigree.nodes && pedigree.nodes.length) {
-        const whales = await fetchWhales({
-          ids: pedigree.nodes.map((node) => node.id),
-        });
-        nodes = pedigree.nodes.map((node) => {
-          const whale = whales.find((whale) => whale.id === node.id);
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              whale,
-            },
-          };
-        });
-      }
-      if (pedigree.edges && pedigree.edges.length) {
-        edges = pedigree.edges.map((edge) => {
-          return {
-            ...edge,
-          };
-        });
-      }
-      setPedigree({ id: pedigree.id, name: pedigree.name });
-      setNodes(nodes);
-      setEdges(edges);
-    } else {
-      console.log("No pedigree found with given id");
-    }
-  };
+  //   let nodes: Node[] = [];
+  //   let edges: Edge[] = [];
+  //   if (pedigree) {
+  //     // fetches whales for each node
+  //     // currently stores these whales in the node data
+  //     if (pedigree.nodes && pedigree.nodes.length) {
+  //       const whales = await fetchWhales({
+  //         ids: pedigree.nodes.map((node) => node.id),
+  //       });
+  //       nodes = pedigree.nodes.map((node) => {
+  //         const whale = whales.find((whale) => whale.id === node.id);
+  //         return {
+  //           ...node,
+  //           data: {
+  //             ...node.data,
+  //             whale,
+  //           },
+  //         };
+  //       });
+  //     }
+  //     if (pedigree.edges && pedigree.edges.length) {
+  //       edges = pedigree.edges.map((edge) => {
+  //         return {
+  //           ...edge,
+  //         };
+  //       });
+  //     }
+  //     setPedigree({ id: pedigree.id, name: pedigree.name });
+  //     setNodes(nodes);
+  //     setEdges(edges);
+  //   } else {
+  //     console.log("No pedigree found with given id");
+  //   }
+  // };
 
   const savePedigreeResolver = async ({ id }: { id: string }) => {
     if (!pedigree) throw new Error("No pedigree found");
@@ -129,14 +127,14 @@ export function PedigreeProvider({ children }: any) {
 
   const value = {
     pedigree,
+    setPedigree,
     nodes,
     setNodes,
     onNodesChange,
-    edges,
-    setEdges,
-    onEdgesChange,
+    // edges,
+    // setEdges,
+    // onEdgesChange,
     onConnect,
-    fetchPedigreeResolver,
     savePedigreeResolver,
     updatePedigreeDetailsResolver,
     saveLoading,

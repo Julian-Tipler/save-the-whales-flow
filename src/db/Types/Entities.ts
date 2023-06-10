@@ -16,6 +16,6 @@ export type Whale = {
 export type Pedigree = {
   id?: string;
   name?: string;
-  nodes?: Node[];
+  nodes: Node[];
   edges?: Edge[];
 };
