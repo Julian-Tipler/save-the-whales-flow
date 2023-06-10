@@ -18,7 +18,7 @@ export const WhaleDetailsForm = ({
 }: {
   whale: Whale;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSubmit: Function;
+  handleSubmit;
 }) => {
   const [errors, setErrors] = useState<any>([]);
   const { updateWhaleResolver } = useWhaleContext();
@@ -80,13 +80,19 @@ export const WhaleDetailsForm = ({
       </CardBody>
       <Flex>
         <Button
-          onClick={handleSubmit({
-            id: whale.id,
-            updateWhaleResolver,
-            whaleFormData: { identification, name, born, died, notes },
-            setErrors,
-            setEditMode,
-          })}
+          onClick={() =>
+            handleSubmit({
+              formData: {
+                id: whale.id,
+                identification,
+                name,
+                gender,
+                born,
+                died,
+                notes,
+              },
+            })
+          }
         >
           update
         </Button>
@@ -104,3 +110,22 @@ export const handleOnChange = (
   };
 };
 
+// export const handleSubmit = ({
+//   id,
+//   whaleFormData,
+//   updateWhaleResolver,
+//   setErrors,
+//   setEditMode,
+// }: any) => {
+//   return async () => {
+//     const errors = await updateWhaleResolver({
+//       id: id,
+//       whaleFormData: whaleFormData,
+//     });
+//     if (errors.length) {
+//       setErrors(errors);
+//     } else {
+//       setEditMode(false);
+//     }
+//   };
+// };
