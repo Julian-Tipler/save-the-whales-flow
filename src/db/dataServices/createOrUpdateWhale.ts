@@ -16,10 +16,10 @@ export const createOrUpdateWhales = async ({ whales }: { whales: Whale[] }) => {
 
     if (whaleSnapshot.exists()) {
       // Whale exists, update it
-      batch.push(updateDoc(whaleRef, { whaleData }));
+      batch.push(updateDoc(whaleRef, { ...whaleData }));
     } else {
       // Whale doesn't exist, create it
-      batch.push(setDoc(whaleRef, { whaleData }));
+      batch.push(setDoc(whaleRef, { ...whaleData }));
     }
   }
 

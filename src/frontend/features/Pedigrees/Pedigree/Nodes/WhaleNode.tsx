@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import { whaleStatusIcon } from "../../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../../db/Types/Entities";
 import { useSidebarContext } from "../context/SidebarContext";
+import { useWhalesContext } from "../context/WhalesContext";
 
 type NodeData = {
-  whale: Whale;
+  // whale: Whale;
   label: string;
 };
 
@@ -28,8 +29,12 @@ export const WhaleNode = ({
   data: NodeData;
   selected: Boolean;
 }) => {
-  const { whale } = data;
-  const { setWhale } = useSidebarContext();
+  const { setWhaleForm } = useSidebarContext();
+  const { whales } = useWhalesContext();
+
+  const whale = whales.find((whale) => whale.id === id);
+
+  if (!whale) return null;
 
   return (
     <Card width={"100px"} height={"80px"} backgroundColor={"white"}>
@@ -52,7 +57,7 @@ export const WhaleNode = ({
           </Flex>
           {whale?.id ? (
             <>
-              <Text onClick={() => setWhale(whale)}>Edit</Text>
+              <Text onClick={() => setWhaleForm(whale)}>Edit</Text>
               <Link to={`/whales/${whale?.id}`}>
                 <Text color={"#0000FF"} fontSize={"10px"}>
                   Details

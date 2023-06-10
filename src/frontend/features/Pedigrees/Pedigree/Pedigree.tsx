@@ -27,6 +27,7 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import { useWhalesContext } from "./context/WhalesContext";
 import { useFetchPedigree } from "./functions/useFetchPedigree";
 import { useSavePedigree } from "./functions/useSavePedigree";
+import { Whale } from "../../../../db/Types/Entities";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -44,6 +45,7 @@ export function Pedigree() {
     saveLoading,
   } = usePedigreeContext();
   const { whales, setWhales } = useWhalesContext();
+  console.log("whales in Pedigree", whales);
 
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No pedigree id provided");
@@ -82,16 +84,18 @@ export function Pedigree() {
         })
       );
 
-      const whaleId = uuidv4();
+      const newWhaleId = uuidv4();
 
       const newNode = {
-        id: whaleId,
+        id: newWhaleId,
         type,
         position,
         data: { label: `${type} node` },
       };
 
       setNodes((nds: Node[]) => nds.concat(newNode));
+
+      setWhales((whales: Whale[]) => whales.concat({ id: newWhaleId }));
     },
     [reactFlowInstance]
   );

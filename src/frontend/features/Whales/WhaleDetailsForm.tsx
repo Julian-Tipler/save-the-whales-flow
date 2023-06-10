@@ -54,7 +54,7 @@ export const WhaleDetailsForm = ({
         </Flex>
         <Flex>
           <Text width={"140px"}>Gender: </Text>
-          <Input value={gender} onChange={handleOnChange(setName)} />
+          <Input value={gender} onChange={handleOnChange(setGender)} />
         </Flex>
         <Flex>
           <Text width={"140px"}>Born: </Text>
