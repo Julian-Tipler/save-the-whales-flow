@@ -24,7 +24,10 @@ import { fetchWhales } from "../../../../../db/dataServices/fetchWhales";
 import { useParams } from "react-router-dom";
 
 type PedigreeContextValue = {
-  pedigree: Pedigree | null;
+  pedigree: Pick<Pedigree, "id" | "name">;
+  setPedigree: React.Dispatch<
+    React.SetStateAction<Pick<Pedigree, "id" | "name">>
+  >;
   nodes: Node[];
   setNodes: React.Dispatch<React.SetStateAction<Node[]>>;
   onNodesChange: any;
@@ -49,10 +52,10 @@ const PedigreeContext = createContext<PedigreeContextValue>(
 
 export function PedigreeProvider({ children }: any) {
   //Probable have a useEffect that when context is initialized, we make initialNodes the current state stored in Firebase
-  const [pedigree, setPedigree] = useState<Pedigree | null>(null);
+  const [pedigree, setPedigree] = useState<Pick<Pedigree, "id" | "name">>({});
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
   // const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
-  const [saveLoading, setSaveLoading] = useState(false)
+  const [saveLoading, setSaveLoading] = useState(false);
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
@@ -103,14 +106,6 @@ export function PedigreeProvider({ children }: any) {
   //   }
   // };
 
-  const savePedigreeResolver = async ({ id }: { id: string }) => {
-    if (!pedigree) throw new Error("No pedigree found");
-    setSaveLoading(true);
-    await updatePedigree({ id, nodes, edges });
-    await fetchPedigreeResolver({ id });
-    setSaveLoading(false);
-  };
-
   const updatePedigreeDetailsResolver = async ({
     id,
     data,
@@ -135,9 +130,9 @@ export function PedigreeProvider({ children }: any) {
     // setEdges,
     // onEdgesChange,
     onConnect,
-    savePedigreeResolver,
     updatePedigreeDetailsResolver,
     saveLoading,
+    setSaveLoading,
   };
   return (
     <PedigreeContext.Provider value={value}>

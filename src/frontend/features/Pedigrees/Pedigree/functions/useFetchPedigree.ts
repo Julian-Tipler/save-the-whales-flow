@@ -17,6 +17,6 @@ export const useFetchPedigree = async ({
   const whaleIds = pedigree.nodes.map((node) => node.id);
   const whales = await fetchWhales({ ids: whaleIds });
   setWhales(whales);
-  setPedigree(pedigree);
+  setPedigree({ name: pedigree.name, id: pedigree.id });
   setNodes(pedigree.nodes);
 };

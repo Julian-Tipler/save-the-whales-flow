@@ -26,6 +26,7 @@ import { useParams } from "react-router-dom";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { useWhalesContext } from "./context/WhalesContext";
 import { useFetchPedigree } from "./functions/useFetchPedigree";
+import { useSavePedigree } from "./functions/useSavePedigree";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -39,6 +40,7 @@ export function Pedigree() {
     // onEdgesChange,
     onConnect,
     savePedigreeResolver,
+    setSaveLoading,
     saveLoading,
   } = usePedigreeContext();
   const { whales, setWhales } = useWhalesContext();
@@ -96,13 +98,13 @@ export function Pedigree() {
 
   const onNodeDragStop = (event: any, node: Node) => {
     const { id, position } = node;
-    const roundedPosition = standardizePosition({
+    const standardizedPosition = standardizePosition({
       x: position.x,
       y: position.y,
     });
     const updatedNodes = nodes.map((node: Node) => {
       if (node.id === id) {
-        return { ...node, position: roundedPosition };
+        return { ...node, position: standardizedPosition };
       }
       return node;
     });
@@ -151,7 +153,17 @@ export function Pedigree() {
           </ReactFlow>
         </div>
         <Button
-          onClick={() => savePedigreeResolver({ id: pedigree.id })}
+          onClick={() =>
+            useSavePedigree({
+              id: pedigree.id,
+              nodes,
+              whales,
+              setPedigree,
+              setWhales,
+              setNodes,
+              setSaveLoading,
+            })
+          }
           isLoading={saveLoading}
         >
           Save
