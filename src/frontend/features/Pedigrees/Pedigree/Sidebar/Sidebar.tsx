@@ -12,8 +12,6 @@ export const Sidebar = () => {
   if (!whaleForm) return null;
 
   const handleSubmit = ({ formData }: { formData: any }) => {
-    setWhaleForm(null);
-
     const newWhales = whales.map((whale: Whale) => {
       if (whale.id === whaleForm.id) {
         return formData;
@@ -21,6 +19,7 @@ export const Sidebar = () => {
       return whale;
     });
 
+    setWhaleForm(null);
     setWhales(newWhales);
   };
 

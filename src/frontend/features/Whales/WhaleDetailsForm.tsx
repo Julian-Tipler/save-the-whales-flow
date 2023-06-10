@@ -18,7 +18,7 @@ export const WhaleDetailsForm = ({
 }: {
   whale: Whale;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSubmit;
+  handleSubmit: Function;
 }) => {
   const [errors, setErrors] = useState<any>([]);
   const { updateWhaleResolver } = useWhaleContext();

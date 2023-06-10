@@ -37,43 +37,53 @@ export const WhaleNode = ({
   if (!whale) return null;
 
   return (
-    <Card width={"100px"} height={"80px"} backgroundColor={"white"}>
-      <Handle id="whale-top-target" type="target" position={Position.Top} />
-      <CardBody padding={"1"}>
-        <Flex
-          direction={"column"}
-          gap={"1"}
-          justifyContent={"space-between"}
-          height={"100%"}
-        >
-          <Flex direction={"column"}>
-            <Flex gap={"1"}>
-              <Text fontSize={"10px"}>{`${
-                whale?.identification || "<no id>"
-              }`}</Text>
-              {whaleStatusIcon({ whale, size: "12px" })}
-            </Flex>
-            <Text fontSize={"10px"}>{`${whale?.name || "unnamed"}`}</Text>
-          </Flex>
-          {whale?.id ? (
-            <>
-              <Text onClick={() => setWhaleForm(whale)}>Edit</Text>
-              <Link to={`/whales/${whale?.id}`}>
-                <Text color={"#0000FF"} fontSize={"10px"}>
-                  Details
-                </Text>
-              </Link>
-            </>
-          ) : (
-            <Text fontSize={"8px"}>Save pedigree to view details</Text>
-          )}
+    <Card
+      width={"100px"}
+      height={"80px"}
+      backgroundColor={"white"}
+      boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
+      borderRadius={"4px"}
+      padding={"4px"}
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"space-between"}
+    >
+      <Flex flexDirection={"column"} gap={"2px"}>
+        <Flex alignItems={"center"} gap={"2px"}>
+          <Text fontSize={"12px"} fontWeight={"bold"}>
+            {whale?.identification || "<no id>"}
+          </Text>
+          {whaleStatusIcon({ whale, size: "12px" })}
         </Flex>
-      </CardBody>
-      <Handle
-        id="whale-bottom-source"
-        type="source"
-        position={Position.Bottom}
-      />
+        <Text fontSize={"12px"}>{whale?.name || "unnamed"}</Text>
+      </Flex>
+      <Flex justifyContent={"space-between"} alignItems={"flex-end"}>
+        {whale?.id ? (
+          <>
+            <Text
+              fontSize={"10px"}
+              fontWeight={"bold"}
+              color={"#0000FF"}
+              cursor={"pointer"}
+              onClick={() => setWhaleForm(whale)}
+            >
+              Edit
+            </Text>
+            <Link to={`/whales/${whale?.id}`}>
+              <Text
+                fontSize={"10px"}
+                color={"#0000FF"}
+                textDecoration={"underline"}
+                cursor={"pointer"}
+              >
+                Details
+              </Text>
+            </Link>
+          </>
+        ) : (
+          <Text fontSize={"8px"}>Save pedigree to view details</Text>
+        )}
+      </Flex>
     </Card>
   );
 };
