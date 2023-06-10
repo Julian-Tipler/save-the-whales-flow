@@ -54,6 +54,7 @@ export function PedigreeProvider({ children }: any) {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [saveLoading, setSaveLoading] = useState(false);
+  console.log(nodes)
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {

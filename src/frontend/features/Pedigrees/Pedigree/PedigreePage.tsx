@@ -1,10 +1,13 @@
 import { Pedigree } from "./Pedigree";
 import { PedigreeProvider } from "./context/PedigreeContext";
+import { SidebarProvider } from "./context/SidebarContext";
 
 const PedigreePage = () => {
   return (
     <PedigreeProvider>
-      <Pedigree />
+      <SidebarProvider>
+        <Pedigree />
+      </SidebarProvider>
     </PedigreeProvider>
   );
 };

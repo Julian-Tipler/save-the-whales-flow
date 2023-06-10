@@ -23,6 +23,7 @@ import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
 import { PedigreeHeader } from "./Header/Header";
 import { useParams } from "react-router-dom";
+import { Sidebar } from "./Sidebar/Sidebar";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -142,7 +143,7 @@ export function Pedigree() {
               gap={20}
               size={1}
               color="#000000"
-              style={{ backgroundColor: "#86CEFA" }}
+              style={{ backgroundColor: "#e6e6e6" }}
             />
           </ReactFlow>
         </div>
@@ -153,6 +154,7 @@ export function Pedigree() {
           Save
         </Button>
         <DragNDrop />
+        <Sidebar />
       </ReactFlowProvider>
     </div>
   );

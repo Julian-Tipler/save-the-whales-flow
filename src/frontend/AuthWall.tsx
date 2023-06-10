@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import AuthContext from "./auth/context/AuthContext";
-import { Auth } from "./auth";
+import AuthContext from "./Auth/context/AuthContext";
+import { Auth } from "./Auth";
 import { Router } from "./Layout/Router";
 
 export const AuthWall = () => {

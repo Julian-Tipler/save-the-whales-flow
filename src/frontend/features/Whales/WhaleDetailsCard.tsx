@@ -17,6 +17,7 @@ export const WhaleDetailsCard = ({
   whale: Whale;
   setEditMode: any;
 }) => {
+  console.log(whale);
   return (
     <Card>
       <CardHeader>
@@ -30,7 +31,7 @@ export const WhaleDetailsCard = ({
       <CardBody>
         <Flex padding={"4px"}>
           <Text width={"140px"}>Status: </Text>
-          <Text>{status ? "Alive" : "Deceased"}</Text>
+          <Text>{!whale.died ? "Alive" : "Deceased"}</Text>
         </Flex>
         <Flex padding={"4px"}>
           <Text width={"140px"}>Name: </Text>
