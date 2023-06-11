@@ -1,13 +1,11 @@
 import { createContext, useState, useContext } from "react";
-
-import { Pedigree } from "../../../../../db/Types/Entities";
 import { fetchPedigrees } from "../../../../../db/dataServices";
 import { createPedigree } from "../../../../../db/dataServices";
 
 type PedigreesIndexContextValue = {
   pedigrees: [];
   fetchPedegreesResolver: () => Promise<void>;
-  createPedigreeResolver: ({ data }: { data: Pedigree }) => Promise<void>;
+  createPedigreeResolver: ({ data }: { data: any }) => Promise<void>;
 };
 
 const PedigreesIndexContext = createContext<PedigreesIndexContextValue>(
@@ -18,11 +16,11 @@ export function PedigreesIndexProvider({ children }: any) {
   const [pedigrees, setPedigrees] = useState<any>([]);
 
   const fetchPedegreesResolver = async () => {
-    const pedigrees = await fetchPedigrees();
+    const pedigrees = await fetchPedigrees({});
     setPedigrees(pedigrees);
   };
 
-  const createPedigreeResolver = async ({ data }: { data: Pedigree }) => {
+  const createPedigreeResolver = async ({ data }: { data: any }) => {
     await createPedigree({ data });
     await fetchPedegreesResolver();
   };

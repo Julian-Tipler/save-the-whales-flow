@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  createContext,
-  useState,
-  useContext,
-} from "react";
+import React, { useCallback, createContext, useState, useContext } from "react";
 import {
   Connection,
   Edge,
@@ -67,7 +62,7 @@ export function PedigreeProvider({ children }: any) {
     data,
   }: {
     id: string;
-    data: Pedigree;
+    data: any;
   }) => {
     if (!pedigree) throw new Error("No pedigree found");
     await updatePedigreeDetails({ id, data });

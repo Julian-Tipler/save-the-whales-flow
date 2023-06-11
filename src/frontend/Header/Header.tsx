@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useAuthContext } from "../Auth/context/AuthContext";
-import logo from "../../images/save-the-whales-logo.png"; // Import the image file
+import logo from "../../images/save-the-whales-logo.png";
 
 export const Header = () => {
   const { logout, setLoggingIn, admin, loading } = useAuthContext();
@@ -13,11 +13,12 @@ export const Header = () => {
       width={"100%"}
       height={"100%"}
     >
-      <img
+      {/* <div></div>
+      {/* <img
         src={logo}
         alt="Save the whales logo"
         style={{ height: "100%", borderRadius: "5px" }}
-      />
+      /> */}
       {admin ? (
         <Button onClick={() => logout()}>Logout</Button>
       ) : (

@@ -13,7 +13,7 @@ export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
 
   const handleKeyDown = async (event: any) => {
     if (event.key === "Enter") {
-      await updatePedigreeDetailsResolver({ data: { name: pedigreeName } });
+      // await updatePedigreeDetailsResolver({ data: { name: pedigreeName } });
       setEditMode(false);
     }
   };
