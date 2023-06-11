@@ -24,16 +24,16 @@ import { fetchWhales } from "../../../../../db/dataServices/fetchWhales";
 import { useParams } from "react-router-dom";
 
 type PedigreeContextValue = {
-  pedigree: Pick<Pedigree, "id" | "name">;
+  pedigree: Pick<Pedigree, "id" | "name"> | null;
   setPedigree: React.Dispatch<
-    React.SetStateAction<Pick<Pedigree, "id" | "name">>
+    React.SetStateAction<Pick<Pedigree, "id" | "name"> | null>
   >;
   nodes: Node[];
   setNodes: React.Dispatch<React.SetStateAction<Node[]>>;
   onNodesChange: any;
-  // edges: Edge[];
-  // setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
-  // onEdgesChange: any;
+  edges: Edge[];
+  setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
+  onEdgesChange: any;
   onConnect: (connection: Edge | Connection) => void;
   updatePedigreeDetailsResolver: ({
     id,
@@ -51,9 +51,12 @@ const PedigreeContext = createContext<PedigreeContextValue>(
 );
 
 export function PedigreeProvider({ children }: any) {
-  const [pedigree, setPedigree] = useState<Pick<Pedigree, "id" | "name">>({});
+  const [pedigree, setPedigree] = useState<Pick<
+    Pedigree,
+    "id" | "name"
+  > | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
-  // const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [saveLoading, setSaveLoading] = useState(false);
 
   console.log("nodes", nodes);
@@ -85,9 +88,9 @@ export function PedigreeProvider({ children }: any) {
     nodes,
     setNodes,
     onNodesChange,
-    // edges,
-    // setEdges,
-    // onEdgesChange,
+    edges,
+    setEdges,
+    onEdgesChange,
     onConnect,
     updatePedigreeDetailsResolver,
     saveLoading,
