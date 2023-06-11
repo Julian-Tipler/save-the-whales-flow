@@ -17,7 +17,7 @@ import { fetchWhales } from "../../db/dataServices/fetchWhales";
 export const NavigationSidebar = () => {
   const [pedigrees, setPedigrees] = useState<Pedigree[]>([]);
   const [whales, setWhales] = useState<Whale[]>([]);
-  console.log(pedigrees);
+
   useEffect(() => {
     fetchData();
   }, []);

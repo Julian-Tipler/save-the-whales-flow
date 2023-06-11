@@ -110,7 +110,7 @@ export function ReactFlowContainer() {
             onDragOver={onDragOver}
             onDrop={onDrop}
             onNodeDragStop={handleOnNodeDragStop({ nodes, setNodes })}
-            onNodeClick={(event, node) => console.log(event, node)}
+            // onNodeClick={(event, node) => console.log(event, node)}
             onInit={setReactFlowInstance}
             zoomOnScroll={false}
             connectionMode={ConnectionMode.Loose}

@@ -15,11 +15,14 @@ export function AuthProvider({ children }: any) {
   const [loading, setLoading] = useState<Boolean>(true);
   const [loggedIn, setLoggedIn] = useState<Boolean | null>(null);
   const [user, setUser] = useState<any>(null);
+  const admin = user && user.admin;
+
   //formState
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loggingIn, setLoggingIn] = useState<Boolean>(false);
 
-  const admin = user && user.admin;
+  console.log("AUTH CONTEXT", { loggedIn, user, loggingIn });
 
   useEffect(() => {
     if (loggedIn === null) {
@@ -37,7 +40,6 @@ export function AuthProvider({ children }: any) {
     const unsubscribe = onAuthStateChanged(auth, async (u) => {
       if (u) {
         setLoggedIn(true);
-        console.log(u);
         const user = await fetchUser(u.uid);
         setUser(user);
       } else {
@@ -58,23 +60,25 @@ export function AuthProvider({ children }: any) {
         password
       );
       const user = userCredential.user;
+      setLoggingIn(false);
     } catch (error) {
       console.error("Error logging in", error);
     }
   };
 
-  const signup = async () => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-    } catch (error) {
-      console.error("Error signing up", error);
-    }
-  };
+  // Keep for future projects to reference
+  // const signup = async () => {
+  //   try {
+  //     const userCredential = await createUserWithEmailAndPassword(
+  //       auth,
+  //       email,
+  //       password
+  //     );
+  //     const user = userCredential.user;
+  //   } catch (error) {
+  //     console.error("Error signing up", error);
+  //   }
+  // };
 
   const logout = async () => {
     try {
@@ -92,9 +96,10 @@ export function AuthProvider({ children }: any) {
     password,
     setPassword,
     login,
-    signup,
     logout,
     admin,
+    loggingIn,
+    setLoggingIn,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

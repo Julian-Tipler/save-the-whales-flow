@@ -16,23 +16,19 @@ import {
 import { useAuthContext } from "./context/AuthContext";
 
 export const Auth = () => {
-  const [pageType, setPageType] = useState<"login" | "signup">("login");
-  const { email, setEmail, password, setPassword, login, signup } =
+  const { email, setEmail, password, setPassword, login, setLoggingIn } =
     useAuthContext();
   return (
     <Flex
       minH={"100vh"}
+      minW={"100vw"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          {pageType === "login" ? (
-            <Heading fontSize={"4xl"}>Sign in to Save the Whales</Heading>
-          ) : (
-            <Heading fontSize={"4xl"}>Sign up to Save the Whales</Heading>
-          )}
+        <Stack align={"center"} justify={"center"}>
+          <Heading fontSize={"4xl"}>Sign in to Save the Whales</Heading>
         </Stack>
         <Box
           rounded={"lg"}
@@ -66,43 +62,25 @@ export const Auth = () => {
                 {/* <Checkbox>Remember me</Checkbox> */}
                 {/* <Link color={"blue.400"}>Forgot password?</Link> */}
               </Stack>
-              {pageType === "login" ? (
-                <Button
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                  onClick={() => {
-                    login();
-                  }}
-                >
-                  Sign in
-                </Button>
-              ) : (
-                <Button
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                  onClick={() => {
-                    signup();
-                  }}
-                >
-                  Create Account
-                </Button>
-              )}
-
-              {pageType === "login" ? (
-                <Button onClick={() => setPageType("signup")}>
-                  Create an Account
-                </Button>
-              ) : (
-                <Button onClick={() => setPageType("login")}>
-                  Already have an Account
-                </Button>
-              )}
+              <Button
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+                onClick={() => {
+                  login();
+                }}
+              >
+                Sign in
+              </Button>
+              <Button
+                onClick={() => {
+                  setLoggingIn(false);
+                }}
+              >
+                Cancel
+              </Button>
             </Stack>
           </Stack>
         </Box>
