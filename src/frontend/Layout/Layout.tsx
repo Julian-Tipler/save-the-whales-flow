@@ -1,4 +1,3 @@
-
 import { Grid, GridItem } from "@chakra-ui/react";
 import { NavigationSidebar } from "../navigation/NavigationSidebar";
 
@@ -27,7 +26,7 @@ export const Layout = () => {
       >
         <Header />
       </GridItem>
-      <GridItem pl="2" bg="blue.200" area={"nav"} padding={"15px"}>
+      <GridItem pl="2" bg={"#E0EBF5"} area={"nav"} padding={"15px"}>
         <NavigationSidebar />
       </GridItem>
       <GridItem

@@ -7,9 +7,9 @@ import {
   Flex,
   Heading,
 } from "@chakra-ui/react";
-import { whaleStatusIcon } from "../../helpers/whaleStatusIcon";
-import { Whale } from "../../../db/Types/Entities";
-import { useAuthContext } from "../../Auth/context/AuthContext";
+import { whaleStatusIcon } from "../../../helpers/whaleStatusIcon";
+import { Whale } from "../../../../db/Types/Entities";
+import { useAuthContext } from "../../../Auth/context/AuthContext";
 
 export const WhaleDetailsCard = ({
   whale,

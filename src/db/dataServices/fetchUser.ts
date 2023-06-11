@@ -6,7 +6,6 @@ export const fetchUser = async (uid: string) => {
   try {
     const userSnapshot = await getDoc(userRef);
     if (userSnapshot.exists()) {
-      console.log("EXISTS");
       const userData = userSnapshot.data();
       return userData;
     } else {

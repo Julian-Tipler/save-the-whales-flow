@@ -1,10 +1,9 @@
 import { useSidebarContext } from "../context/SidebarContext";
 import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
-import { WhaleDetailsForm } from "../../../Whales/WhaleDetailsForm";
-import { usePedigreeContext } from "../context/PedigreeContext";
+import { WhaleDetailsForm } from "../../../../features/Whales/Whale/WhaleDetailsForm";
 import { useWhalesContext } from "../context/WhalesContext";
 import { Whale } from "../../../../../db/Types/Entities";
-import { WhaleDetailsCard } from "../../../Whales/WhaleDetailsCard";
+import { WhaleDetailsCard } from "../../../Whales/Whale/WhaleDetailsCard";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../../Auth/context/AuthContext";
 
