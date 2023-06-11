@@ -29,7 +29,9 @@ export const PedigreesIndex = () => {
         marginLeft={"4px"}
         color={"green.500"}
         onClick={() =>
-          createPedigreeResolver({ data: { name: "new pedigree" } })
+          createPedigreeResolver({
+            data: { name: "new pedigree", nodes: [], edges: [] },
+          })
         }
       />
     </>

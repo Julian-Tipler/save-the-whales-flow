@@ -24,27 +24,33 @@ import { v4 as uuidv4 } from "uuid";
 import { PedigreeHeader } from "./Header/Header";
 import { useParams } from "react-router-dom";
 import { Sidebar } from "./Sidebar/Sidebar";
+import { useWhalesContext } from "./context/WhalesContext";
+import { useFetchPedigree } from "./functions/useFetchPedigree";
+import { useSavePedigree } from "./functions/useSavePedigree";
+import { Whale } from "../../../../db/Types/Entities";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
   const {
     pedigree,
+    setPedigree,
     nodes,
     setNodes,
     onNodesChange,
-    edges,
-    onEdgesChange,
+    // edges,
+    // onEdgesChange,
     onConnect,
-    fetchPedigreeResolver,
-    savePedigreeResolver,
+    setSaveLoading,
     saveLoading,
   } = usePedigreeContext();
+  const { whales, setWhales } = useWhalesContext();
+  console.log("whales in Pedigree", whales);
 
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No pedigree id provided");
 
   useEffect(() => {
-    fetchPedigreeResolver({ id });
+    useFetchPedigree({ id, setPedigree, setWhales, setNodes });
   }, [id]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
@@ -77,36 +83,37 @@ export function Pedigree() {
         })
       );
 
-      const whaleId = uuidv4();
+      const newWhaleId = uuidv4();
 
       const newNode = {
-        id: whaleId,
+        id: newWhaleId,
         type,
         position,
         data: { label: `${type} node` },
       };
 
       setNodes((nds: Node[]) => nds.concat(newNode));
+
+      setWhales((whales: Whale[]) => whales.concat({ id: newWhaleId }));
     },
     [reactFlowInstance]
   );
 
   const onNodeDragStop = (event: any, node: Node) => {
     const { id, position } = node;
-    const roundedPosition = standardizePosition({
+    const standardizedPosition = standardizePosition({
       x: position.x,
       y: position.y,
     });
     const updatedNodes = nodes.map((node: Node) => {
       if (node.id === id) {
-        return { ...node, position: roundedPosition };
+        return { ...node, position: standardizedPosition };
       }
       return node;
     });
     setNodes(updatedNodes);
   };
 
-  if (!pedigree) return null;
   return (
     <div>
       <PedigreeHeader name={pedigree.name} />
@@ -125,9 +132,9 @@ export function Pedigree() {
           <ReactFlow
             nodeTypes={nodeTypes}
             nodes={nodes}
-            edges={edges}
+            // edges={edges}
             onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
+            // onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onDragOver={onDragOver}
             onDrop={onDrop}
@@ -148,7 +155,17 @@ export function Pedigree() {
           </ReactFlow>
         </div>
         <Button
-          onClick={() => savePedigreeResolver({ id: pedigree.id })}
+          onClick={() =>
+            useSavePedigree({
+              id: pedigree.id,
+              nodes,
+              whales,
+              setPedigree,
+              setWhales,
+              setNodes,
+              setSaveLoading,
+            })
+          }
           isLoading={saveLoading}
         >
           Save

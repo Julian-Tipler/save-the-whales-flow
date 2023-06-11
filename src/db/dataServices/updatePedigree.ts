@@ -1,5 +1,5 @@
 import { db } from "../../../firebase";
-import { doc, updateDoc} from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { Node, Edge } from "reactflow";
 import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
 
@@ -8,17 +8,17 @@ import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
  * It also saves the pedigree itself.
  * @param id The first number to add.
  * @param nodes This is taken from PedigreeContext. it is the array of nodes in the pedigree.
- * @param edges This is also taken from PedigreeContext.
+//  * @param edges This is also taken from PedigreeContext.
  * @returns Nothing. Perhaps could also handle refetching the data...
  */
 export const updatePedigree = async ({
   id,
   nodes,
-  edges,
-}: {
+}: // edges,
+{
   id: string;
   nodes: Node[];
-  edges: Edge[];
+  // edges: Edge[];
 }) => {
   const pedigreeRef = doc(db, "pedigrees", id);
 
@@ -30,7 +30,7 @@ export const updatePedigree = async ({
 
   const newData = {
     nodes,
-    edges,
+    // edges,
   };
 
   await updateDoc(pedigreeRef, newData);

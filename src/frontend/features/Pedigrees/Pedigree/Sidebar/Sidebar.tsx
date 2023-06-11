@@ -2,31 +2,38 @@ import { useSidebarContext } from "../context/SidebarContext";
 import { Drawer, DrawerContent } from "@chakra-ui/react";
 import { WhaleDetailsForm } from "../../../Whales/WhaleDetailsForm";
 import { usePedigreeContext } from "../context/PedigreeContext";
+import { useWhalesContext } from "../context/WhalesContext";
+import { Whale } from "../../../../../db/Types/Entities";
 
 export const Sidebar = () => {
-  const { whale, setWhale } = useSidebarContext();
-  const { setNodes } = usePedigreeContext();
+  const { whaleForm, setWhaleForm } = useSidebarContext();
+  const { whales, setWhales } = useWhalesContext();
+
+  if (!whaleForm) return null;
 
   const handleSubmit = ({ formData }: { formData: any }) => {
-    setWhale(null);
-    setNodes((nodes) => {
-      const newNodes = nodes.map((node) => {
-        if (node.id === formData.id) {
-          return { ...node, data: { ...node.data, whale: formData } };
-        }
-        return node;
-      });
-      return newNodes;
+    const newWhales = whales.map((whale: Whale) => {
+      if (whale.id === whaleForm.id) {
+        return formData;
+      }
+      return whale;
     });
+
+    setWhaleForm(null);
+    setWhales(newWhales);
   };
 
-  if (!whale) return null;
+  if (!whaleForm) return null;
   return (
-    <Drawer isOpen={!!whale} onClose={() => {}} placement="right">
+    <Drawer
+      isOpen={!!whaleForm}
+      onClose={() => setWhaleForm(null)}
+      placement="right"
+    >
       {/* <DrawerOverlay /> */}
       <DrawerContent>
         <WhaleDetailsForm
-          whale={whale}
+          whale={whaleForm}
           setEditMode={null as any}
           handleSubmit={handleSubmit}
         />

@@ -12,6 +12,7 @@ export const fetchWhales = async ({ ids }: { ids?: string[] }) => {
     }));
     return whales;
   } else {
+    if(ids.length === 0) return []
     const whaleQuery = query(
       collection(db, "whales"),
       where("__name__", "in", ids)
