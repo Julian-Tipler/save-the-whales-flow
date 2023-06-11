@@ -1,5 +1,5 @@
 import { WhaleDetails } from "./WhaleDetails";
-import { WhaleProvider } from "./context/WhaleContext";
+import { WhaleProvider } from "../context/WhaleContext";
 
 const PedigreePage = () => {
   return (

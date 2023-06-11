@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import AuthContext from "../Auth/context/AuthContext";
+import { useAuthContext } from "../Auth/context/AuthContext";
 import logo from "../../images/save-the-whales-logo.png"; // Import the image file
 
 export const Header = () => {
-  const { logout, loggedIn } = useContext(AuthContext);
+  const { logout, setLoggingIn, admin, loading } = useAuthContext();
+  if (loading) return null;
   return (
     <Flex
       justifyContent={"space-between"}
@@ -17,7 +18,11 @@ export const Header = () => {
         alt="Save the whales logo"
         style={{ height: "100%", borderRadius: "5px" }}
       />
-      <Button onClick={() => logout()}>{loggedIn ? "Logout" : "Login"}</Button>
+      {admin ? (
+        <Button onClick={() => logout()}>Logout</Button>
+      ) : (
+        <Button onClick={() => setLoggingIn(true)}>Admin</Button>
+      )}
     </Flex>
   );
 };

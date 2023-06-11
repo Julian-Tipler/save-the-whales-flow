@@ -68,18 +68,9 @@ export const WhaleNode = ({
               cursor={"pointer"}
               onClick={() => setWhaleForm(whale)}
             >
-              Edit
+              Details
             </Text>
-            <Link to={`/whales/${whale?.id}`}>
-              <Text
-                fontSize={"10px"}
-                color={"#0000FF"}
-                textDecoration={"underline"}
-                cursor={"pointer"}
-              >
-                Details
-              </Text>
-            </Link>
+
           </>
         ) : (
           <Text fontSize={"8px"}>Save pedigree to view details</Text>

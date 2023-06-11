@@ -1,12 +1,8 @@
+import { onDragStart } from "../helpers/pedigreeActions";
 import "./DragNDrop.css";
 import { Card, Flex, Heading } from "@chakra-ui/react";
 
 export const DragNDrop = () => {
-  const onDragStart = (event: any, nodeType: any) => {
-    event.dataTransfer.setData("application/reactflow", nodeType);
-    event.dataTransfer.effectAllowed = "move";
-  };
-
   return (
     <Card padding={"10px"}>
       <Flex direction={"column"} gap="4">

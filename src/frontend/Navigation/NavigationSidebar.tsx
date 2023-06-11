@@ -24,7 +24,7 @@ export const NavigationSidebar = () => {
 
   const fetchData = async () => {
     try {
-      const pedigrees = await fetchPedigrees();
+      const pedigrees = await fetchPedigrees({});
       setPedigrees(pedigrees);
       const whales = await fetchWhales({});
       setWhales(whales);

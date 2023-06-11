@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useWhaleContext } from "./context/WhaleContext";
+import { useWhaleContext } from "../context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
 import { WhaleDetailsCard } from "./WhaleDetailsCard";
 import { useParams } from "react-router-dom";

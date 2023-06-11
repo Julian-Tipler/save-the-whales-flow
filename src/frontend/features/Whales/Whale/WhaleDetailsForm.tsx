@@ -8,8 +8,8 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-import { useWhaleContext } from "./context/WhaleContext";
-import { Whale } from "../../../db/Types/Entities";
+import { useWhaleContext } from "../context/WhaleContext";
+import { Whale } from "../../../../db/Types/Entities";
 
 export const WhaleDetailsForm = ({
   whale,
@@ -106,7 +106,7 @@ export const WhaleDetailsForm = ({
           />
         </Flex>
         <Box>
-          {errors.map((error, i) => (
+          {errors.map((error: any, i: number) => (
             <Text color={"red"} key={`error-${i}`} marginBottom={"4px"}>
               {error}
             </Text>

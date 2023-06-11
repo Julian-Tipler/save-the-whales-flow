@@ -1,13 +1,16 @@
 import { useSidebarContext } from "../context/SidebarContext";
-import { Drawer, DrawerContent } from "@chakra-ui/react";
-import { WhaleDetailsForm } from "../../../Whales/WhaleDetailsForm";
-import { usePedigreeContext } from "../context/PedigreeContext";
+import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
+import { WhaleDetailsForm } from "../../../../features/Whales/Whale/WhaleDetailsForm";
 import { useWhalesContext } from "../context/WhalesContext";
 import { Whale } from "../../../../../db/Types/Entities";
+import { WhaleDetailsCard } from "../../../Whales/Whale/WhaleDetailsCard";
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../../../../Auth/context/AuthContext";
 
 export const Sidebar = () => {
   const { whaleForm, setWhaleForm } = useSidebarContext();
   const { whales, setWhales } = useWhalesContext();
+  const { admin } = useAuthContext();
 
   if (!whaleForm) return null;
 
@@ -32,11 +35,24 @@ export const Sidebar = () => {
     >
       {/* <DrawerOverlay /> */}
       <DrawerContent>
-        <WhaleDetailsForm
-          whale={whaleForm}
-          setEditMode={null as any}
-          handleSubmit={handleSubmit}
-        />
+        {admin ? (
+          <WhaleDetailsForm
+            whale={whaleForm}
+            setEditMode={null as any}
+            handleSubmit={handleSubmit}
+          />
+        ) : (
+          <WhaleDetailsCard whale={whaleForm} />
+        )}
+        <Link to={`/whales/${whaleForm?.id}`}>
+          <Text
+            color={"#0000FF"}
+            textDecoration={"underline"}
+            cursor={"pointer"}
+          >
+            Details
+          </Text>
+        </Link>
       </DrawerContent>
     </Drawer>
   );
