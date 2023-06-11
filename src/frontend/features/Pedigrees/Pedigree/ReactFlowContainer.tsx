@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, useMemo, useEffect } from "react";
+import { useCallback, useRef, useState, useMemo } from "react";
 import ReactFlow, {
   Background,
   NodeToolbar,
@@ -14,17 +14,14 @@ import { usePedigreeContext } from "./context/PedigreeContext";
 import { Button } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
-import { PedigreeHeader } from "./Header/Header";
-import { useParams } from "react-router-dom";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { useWhalesContext } from "./context/WhalesContext";
-import { useFetchPedigree } from "./functions/useFetchPedigree";
 import { useSavePedigree } from "./functions/useSavePedigree";
 import { Whale } from "../../../../db/Types/Entities";
 import { useAuthContext } from "../../../Auth/context/AuthContext";
 import { handleOnNodeDragStop } from "./helpers/pedigreeActions";
 
-export function ReactFlow() {
+export function ReactFlowContainer() {
   const reactFlowWrapper = useRef<any>(null);
   const {
     pedigree,
@@ -33,7 +30,6 @@ export function ReactFlow() {
     setNodes,
     onNodesChange,
     edges,
-    setEdges,
     onEdgesChange,
     onConnect,
     setSaveLoading,
@@ -42,12 +38,6 @@ export function ReactFlow() {
   const { whales, setWhales } = useWhalesContext();
   const { admin } = useAuthContext();
 
-  const { id } = useParams<{ id: string }>();
-  if (!id) throw new Error("No pedigree id provided");
-
-  useEffect(() => {
-    useFetchPedigree({ id, setPedigree, setWhales, setNodes, setEdges });
-  }, [id]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
   const nodeTypes = useMemo(
@@ -98,7 +88,6 @@ export function ReactFlow() {
   if (!pedigree) return null;
   return (
     <div>
-      <PedigreeHeader name={pedigree.name} />
       <ReactFlowProvider>
         <div
           className="reactflow-wrapper"
