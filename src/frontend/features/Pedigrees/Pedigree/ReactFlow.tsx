@@ -24,7 +24,7 @@ import { Whale } from "../../../../db/Types/Entities";
 import { useAuthContext } from "../../../Auth/context/AuthContext";
 import { handleOnNodeDragStop } from "./helpers/pedigreeActions";
 
-export function Pedigree() {
+export function ReactFlow() {
   const reactFlowWrapper = useRef<any>(null);
   const {
     pedigree,
