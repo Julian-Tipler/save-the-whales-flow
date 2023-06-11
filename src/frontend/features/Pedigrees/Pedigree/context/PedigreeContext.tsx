@@ -1,6 +1,5 @@
 import React, {
   useCallback,
-  useEffect,
   createContext,
   useState,
   useContext,
@@ -16,12 +15,9 @@ import {
 
 import {
   fetchPedigree,
-  updatePedigree,
   updatePedigreeDetails,
 } from "../../../../../db/dataServices";
 import { Pedigree } from "../../../../../db/Types/Entities";
-import { fetchWhales } from "../../../../../db/dataServices/fetchWhales";
-import { useParams } from "react-router-dom";
 
 type PedigreeContextValue = {
   pedigree: Pick<Pedigree, "id" | "name"> | null;

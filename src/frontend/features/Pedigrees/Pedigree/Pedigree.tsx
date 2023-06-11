@@ -1,11 +1,4 @@
-import {
-  useCallback,
-  useRef,
-  useState,
-  useMemo,
-  useContext,
-  useEffect,
-} from "react";
+import { useCallback, useRef, useState, useMemo, useEffect } from "react";
 import ReactFlow, {
   Background,
   NodeToolbar,
@@ -28,6 +21,7 @@ import { useWhalesContext } from "./context/WhalesContext";
 import { useFetchPedigree } from "./functions/useFetchPedigree";
 import { useSavePedigree } from "./functions/useSavePedigree";
 import { Whale } from "../../../../db/Types/Entities";
+import { useAuthContext } from "../../../Auth/context/AuthContext";
 
 export function Pedigree() {
   const reactFlowWrapper = useRef<any>(null);
@@ -45,6 +39,7 @@ export function Pedigree() {
     saveLoading,
   } = usePedigreeContext();
   const { whales, setWhales } = useWhalesContext();
+  const { admin } = useAuthContext();
 
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No pedigree id provided");
@@ -115,7 +110,6 @@ export function Pedigree() {
   };
 
   if (!pedigree) return null;
-  console.log(edges);
   return (
     <div>
       <PedigreeHeader name={pedigree.name} />
@@ -156,23 +150,25 @@ export function Pedigree() {
             />
           </ReactFlow>
         </div>
-        <Button
-          onClick={() =>
-            useSavePedigree({
-              id: pedigree.id,
-              nodes,
-              edges,
-              whales,
-              setPedigree,
-              setWhales,
-              setNodes,
-              setSaveLoading,
-            })
-          }
-          isLoading={saveLoading}
-        >
-          Save
-        </Button>
+        {admin && (
+          <Button
+            onClick={() =>
+              useSavePedigree({
+                id: pedigree.id,
+                nodes,
+                edges,
+                whales,
+                setPedigree,
+                setWhales,
+                setNodes,
+                setSaveLoading,
+              })
+            }
+            isLoading={saveLoading}
+          >
+            Save
+          </Button>
+        )}
         <DragNDrop />
         <Sidebar />
       </ReactFlowProvider>

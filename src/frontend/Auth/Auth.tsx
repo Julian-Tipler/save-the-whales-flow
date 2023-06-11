@@ -13,18 +13,12 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import AuthContext from "./context/AuthContext";
+import { useAuthContext } from "./context/AuthContext";
 
 export const Auth = () => {
   const [pageType, setPageType] = useState<"login" | "signup">("login");
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    login,
-    signup,
-  } = useContext(AuthContext);
+  const { email, setEmail, password, setPassword, login, signup } =
+    useAuthContext();
   return (
     <Flex
       minH={"100vh"}

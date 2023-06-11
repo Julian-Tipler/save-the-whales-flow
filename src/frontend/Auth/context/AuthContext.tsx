@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -7,15 +7,19 @@ import {
 import { auth } from "../../../../firebase";
 import { validateEmail } from "./helpers/validateEmail";
 import { validatePassword } from "./helpers/validatePassword";
+import { fetchUser } from "../../../db/dataServices/fetchUser";
 
 const AuthContext = createContext<any>({});
 
 export function AuthProvider({ children }: any) {
   const [loading, setLoading] = useState<Boolean>(true);
   const [loggedIn, setLoggedIn] = useState<Boolean | null>(null);
+  const [user, setUser] = useState<any>(null);
   //formState
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const admin = user && user.admin;
 
   useEffect(() => {
     if (loggedIn === null) {
@@ -23,20 +27,22 @@ export function AuthProvider({ children }: any) {
     } else {
       setLoading(false);
     }
-  },[loggedIn]);
+  }, [loggedIn]);
 
   useEffect(() => {
     checkLogin();
   }, []);
 
   const checkLogin = () => {
-    const unsubscribe = onAuthStateChanged(auth, (u) => {
+    const unsubscribe = onAuthStateChanged(auth, async (u) => {
       if (u) {
         setLoggedIn(true);
-        // getUserData();
+        console.log(u);
+        const user = await fetchUser(u.uid);
+        setUser(user);
       } else {
         setLoggedIn(false);
-        // setUserData(null);
+        setUser(null);
       }
     });
     return unsubscribe;
@@ -88,9 +94,10 @@ export function AuthProvider({ children }: any) {
     login,
     signup,
     logout,
+    admin,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export default AuthContext;
+export const useAuthContext = () => useContext(AuthContext);
