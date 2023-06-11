@@ -14,11 +14,11 @@ import { saveOrUpdateWhale } from "./saveOrUpdateWhale";
 export const updatePedigree = async ({
   id,
   nodes,
-}: // edges,
-{
+  edges,
+}: {
   id: string;
   nodes: Node[];
-  // edges: Edge[];
+  edges: Edge[];
 }) => {
   const pedigreeRef = doc(db, "pedigrees", id);
 
@@ -30,7 +30,7 @@ export const updatePedigree = async ({
 
   const newData = {
     nodes,
-    // edges,
+    edges,
   };
 
   await updateDoc(pedigreeRef, newData);

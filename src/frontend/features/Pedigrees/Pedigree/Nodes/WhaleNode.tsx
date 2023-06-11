@@ -48,6 +48,7 @@ export const WhaleNode = ({
       flexDirection={"column"}
       justifyContent={"space-between"}
     >
+      <Handle id="whale-top-target" type="target" position={Position.Top} />
       <Flex flexDirection={"column"} gap={"2px"}>
         <Flex alignItems={"center"} gap={"2px"}>
           <Text fontSize={"12px"} fontWeight={"bold"}>
@@ -84,6 +85,11 @@ export const WhaleNode = ({
           <Text fontSize={"8px"}>Save pedigree to view details</Text>
         )}
       </Flex>
+      <Handle
+        id="whale-bottom-source"
+        type="source"
+        position={Position.Bottom}
+      />
     </Card>
   );
 };

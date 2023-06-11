@@ -1,4 +1,4 @@
-import { Node } from "reactflow";
+import { Edge, Node } from "reactflow";
 import { Whale } from "../../../../../db/Types/Entities";
 import { createOrUpdateWhales } from "../../../../../db/dataServices/createOrUpdateWhale";
 import { updatePedigree } from "../../../../../db/dataServices";
@@ -6,6 +6,7 @@ import { updatePedigree } from "../../../../../db/dataServices";
 export const useSavePedigree = async ({
   id,
   nodes,
+  edges,
   whales,
   setPedigree,
   setWhales,
@@ -14,6 +15,7 @@ export const useSavePedigree = async ({
 }: {
   id: string;
   nodes: Node[];
+  edges: Edge[];
   whales: Whale[];
   setPedigree: Function;
   setWhales: Function;
@@ -22,6 +24,6 @@ export const useSavePedigree = async ({
 }) => {
   setSaveLoading(true);
   await createOrUpdateWhales({ whales });
-  await updatePedigree({ id, nodes });
+  await updatePedigree({ id, nodes, edges });
   setSaveLoading(false);
 };
