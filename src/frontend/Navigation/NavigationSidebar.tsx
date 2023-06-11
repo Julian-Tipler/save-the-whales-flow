@@ -11,8 +11,8 @@ import { fetchPedigrees } from "../../db/dataServices";
 import { useEffect, useState } from "react";
 import { Pedigree, Whale } from "../../db/Types/Entities";
 import { Link } from "react-router-dom";
-import { NavigationSidebarProvider } from "./context/NavigationSidebarContext";
 import { fetchWhales } from "../../db/dataServices/fetchWhales";
+import { NavigationSidebarProvider } from "./context/NavigationSidebarContext";
 
 export const NavigationSidebar = () => {
   const [pedigrees, setPedigrees] = useState<Pedigree[]>([]);
