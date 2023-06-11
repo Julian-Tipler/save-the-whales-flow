@@ -39,46 +39,81 @@ export const WhaleDetailsForm = ({
   }, []);
 
   return (
-    <Card>
+    <Card
+      padding={"16px"}
+      borderRadius={"8px"}
+      boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
+    >
       <CardBody>
-        <Flex>
-          <Text width={"140px"}>Identification: </Text>
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Identification:
+          </Text>
           <Input
             value={identification}
             onChange={handleOnChange(setIdentification)}
+            borderRadius={"4px"}
           />
         </Flex>
-        <Flex>
-          <Text width={"140px"}>Name: </Text>
-          <Input value={name} onChange={handleOnChange(setName)} />
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Name:
+          </Text>
+          <Input
+            value={name}
+            onChange={handleOnChange(setName)}
+            borderRadius={"4px"}
+          />
         </Flex>
-        <Flex>
-          <Text width={"140px"}>Gender: </Text>
-          <Input value={gender} onChange={handleOnChange(setGender)} />
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Gender:
+          </Text>
+          <Input
+            value={gender}
+            onChange={handleOnChange(setGender)}
+            borderRadius={"4px"}
+          />
         </Flex>
-        <Flex>
-          <Text width={"140px"}>Born: </Text>
-          <Input value={born} onChange={handleOnChange(setBorn)} />
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Born:
+          </Text>
+          <Input
+            value={born}
+            onChange={handleOnChange(setBorn)}
+            borderRadius={"4px"}
+          />
         </Flex>
-        <Flex>
-          <Text width={"140px"}>Died: </Text>
-          <Input value={died} onChange={handleOnChange(setDied)} />
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Died:
+          </Text>
+          <Input
+            value={died}
+            onChange={handleOnChange(setDied)}
+            borderRadius={"4px"}
+          />
         </Flex>
-        <Flex>
-          <Text width={"140px"}>Notes: </Text>
-          <Input value={notes} onChange={handleOnChange(setNotes)} />
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Notes:
+          </Text>
+          <Input
+            value={notes}
+            onChange={handleOnChange(setNotes)}
+            borderRadius={"4px"}
+          />
         </Flex>
         <Box>
-          {errors.map((error: String, i: Number) => {
-            return (
-              <Text color={"red"} key={`error-${i}`}>
-                {error}
-              </Text>
-            );
-          })}
+          {errors.map((error, i) => (
+            <Text color={"red"} key={`error-${i}`} marginBottom={"4px"}>
+              {error}
+            </Text>
+          ))}
         </Box>
       </CardBody>
-      <Flex>
+      <Flex justifyContent={"center"} marginTop={"16px"}>
         <Button
           onClick={() =>
             handleSubmit({
@@ -93,10 +128,18 @@ export const WhaleDetailsForm = ({
               },
             })
           }
+          marginRight={"8px"}
+          borderRadius={"4px"}
         >
-          update
+          Update
         </Button>
-        <Button onClick={() => setEditMode(false)}>Cancel</Button>
+        <Button
+          onClick={() => setEditMode(false)}
+          borderRadius={"4px"}
+          variant={"outline"}
+        >
+          Cancel
+        </Button>
       </Flex>
     </Card>
   );

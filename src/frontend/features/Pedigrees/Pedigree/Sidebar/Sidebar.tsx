@@ -25,7 +25,11 @@ export const Sidebar = () => {
 
   if (!whaleForm) return null;
   return (
-    <Drawer isOpen={!!whaleForm} onClose={() => {}} placement="right">
+    <Drawer
+      isOpen={!!whaleForm}
+      onClose={() => setWhaleForm(null)}
+      placement="right"
+    >
       {/* <DrawerOverlay /> */}
       <DrawerContent>
         <WhaleDetailsForm
