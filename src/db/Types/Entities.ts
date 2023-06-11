@@ -4,7 +4,7 @@ import { Node, Edge } from "reactflow";
 // Not sure if id should be required or not. Every whale db entity has an id but every local one doesn't necessarilly have one.
 // A local whale node doesn't have an id if it was just created and "save" hasn't been pushed yet.
 export type Whale = {
-  id?: string;
+  id: string;
   identification?: string;
   name?: string;
   gender?: string;
@@ -14,7 +14,7 @@ export type Whale = {
 };
 
 export type Pedigree = {
-  id?: string;
+  id: string;
   name?: string;
   nodes: Node[];
   edges?: Edge[];

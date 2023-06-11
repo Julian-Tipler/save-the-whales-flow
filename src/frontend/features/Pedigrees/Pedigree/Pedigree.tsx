@@ -40,7 +40,6 @@ export function Pedigree() {
     // edges,
     // onEdgesChange,
     onConnect,
-    savePedigreeResolver,
     setSaveLoading,
     saveLoading,
   } = usePedigreeContext();
@@ -115,7 +114,6 @@ export function Pedigree() {
     setNodes(updatedNodes);
   };
 
-  if (!pedigree) return null;
   return (
     <div>
       <PedigreeHeader name={pedigree.name} />
