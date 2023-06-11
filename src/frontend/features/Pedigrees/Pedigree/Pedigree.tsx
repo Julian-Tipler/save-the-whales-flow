@@ -38,6 +38,7 @@ export function Pedigree() {
     setNodes,
     onNodesChange,
     edges,
+    setEdges,
     onEdgesChange,
     onConnect,
     setSaveLoading,
@@ -49,7 +50,7 @@ export function Pedigree() {
   if (!id) throw new Error("No pedigree id provided");
 
   useEffect(() => {
-    useFetchPedigree({ id, setPedigree, setWhales, setNodes });
+    useFetchPedigree({ id, setPedigree, setWhales, setNodes, setEdges });
   }, [id]);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
@@ -114,7 +115,7 @@ export function Pedigree() {
   };
 
   if (!pedigree) return null;
-
+  console.log(edges);
   return (
     <div>
       <PedigreeHeader name={pedigree.name} />
@@ -150,7 +151,7 @@ export function Pedigree() {
               variant={BackgroundVariant.Dots}
               gap={20}
               size={1}
-              color="#000000"
+              color={"#000000"}
               style={{ backgroundColor: "#e6e6e6" }}
             />
           </ReactFlow>

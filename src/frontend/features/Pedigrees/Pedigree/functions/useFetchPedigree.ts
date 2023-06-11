@@ -6,11 +6,13 @@ export const useFetchPedigree = async ({
   setPedigree,
   setWhales,
   setNodes,
+  setEdges,
 }: {
   id: string;
   setPedigree: Function;
   setWhales: Function;
   setNodes: Function;
+  setEdges: Function;
 }) => {
   const pedigree = await fetchPedigree({ id });
   if (!pedigree) throw new Error("Pedigree not found");
@@ -19,4 +21,5 @@ export const useFetchPedigree = async ({
   setWhales(whales);
   setPedigree({ name: pedigree.name, id: pedigree.id });
   setNodes(pedigree.nodes);
+  setEdges(pedigree.edges);
 };

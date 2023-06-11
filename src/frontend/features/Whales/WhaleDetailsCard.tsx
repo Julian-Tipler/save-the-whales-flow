@@ -17,7 +17,7 @@ export const WhaleDetailsCard = ({
   whale: Whale;
   setEditMode: any;
 }) => {
-  console.log(whale);
+
   return (
     <Card>
       <CardHeader>
