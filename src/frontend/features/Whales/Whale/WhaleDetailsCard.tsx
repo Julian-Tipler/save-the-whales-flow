@@ -16,7 +16,7 @@ export const WhaleDetailsCard = ({
   setEditMode,
 }: {
   whale: Whale;
-  setEditMode: any;
+  setEditMode?: any;
 }) => {
   const { admin } = useAuthContext();
   return (
@@ -55,7 +55,7 @@ export const WhaleDetailsCard = ({
           <Text>{whale.notes}</Text>
         </Flex>
       </CardBody>
-      {admin && <Button onClick={() => setEditMode(true)}>Edit</Button>}
+      {admin && setEditMode && <Button onClick={() => setEditMode(true)}>Edit</Button>}
     </Card>
   );
 };
