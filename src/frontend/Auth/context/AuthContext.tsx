@@ -22,8 +22,6 @@ export function AuthProvider({ children }: any) {
   const [password, setPassword] = useState<string>("");
   const [loggingIn, setLoggingIn] = useState<Boolean>(false);
 
-  console.log("AUTH CONTEXT", { loggedIn, user, loggingIn });
-
   useEffect(() => {
     if (loggedIn === null) {
       setLoading(true);

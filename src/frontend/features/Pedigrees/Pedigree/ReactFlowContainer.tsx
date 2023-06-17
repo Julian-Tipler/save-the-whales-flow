@@ -11,7 +11,7 @@ import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop/DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
 import { usePedigreeContext } from "./context/PedigreeContext";
-import { Button } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
 import { Sidebar } from "./Sidebar/Sidebar";
@@ -34,6 +34,7 @@ export function ReactFlowContainer() {
     onConnect,
     setSaveLoading,
     saveLoading,
+    saveWarning,
   } = usePedigreeContext();
   const { whales, setWhales } = useWhalesContext();
   const { admin } = useAuthContext();
@@ -128,6 +129,9 @@ export function ReactFlowContainer() {
         </div>
         {admin && (
           <>
+            {saveWarning && (
+              <Text color="red">Make sure to save to persist changes!</Text>
+            )}
             <Button
               onClick={() =>
                 useSavePedigree({

@@ -21,7 +21,7 @@ export const WhaleDetails = () => {
     return (
       <WhaleDetailsForm
         whale={whale}
-        setEditMode={setEditMode}
+        setClose={setEditMode}
         handleSubmit={handleSubmit}
       />
     );

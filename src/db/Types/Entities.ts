@@ -7,7 +7,7 @@ export type Whale = {
   id: string;
   identification?: string;
   name?: string;
-  gender?: string;
+  gender?: "male" | "female" | "unknown";
   born?: string;
   died?: string;
   notes?: string;

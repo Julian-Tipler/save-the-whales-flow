@@ -1,6 +1,6 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import { Box, Card, CardBody, CardFooter, Flex, Text } from "@chakra-ui/react";
+import { Box, Card, CardBody, CardFooter, Flex, Heading, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { whaleStatusIcon } from "../../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../../db/Types/Entities";
@@ -36,11 +36,13 @@ export const WhaleNode = ({
 
   if (!whale) return null;
 
+  const backgroundColor = calculateBackgroundColor(whale);
+
   return (
     <Card
       width={"100px"}
       height={"80px"}
-      backgroundColor={"white"}
+      backgroundColor={backgroundColor}
       boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
       borderRadius={"4px"}
       padding={"4px"}
@@ -50,13 +52,17 @@ export const WhaleNode = ({
     >
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <Flex flexDirection={"column"} gap={"2px"}>
-        <Flex alignItems={"center"} gap={"2px"}>
-          <Text fontSize={"12px"} fontWeight={"bold"}>
+        <Flex
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          gap={"2px"}
+        >
+          <Heading fontSize={"11px"} fontWeight={"extrabold"}>
             {whale?.identification || "<no id>"}
-          </Text>
+          </Heading>
           {whaleStatusIcon({ whale, size: "12px" })}
         </Flex>
-        <Text fontSize={"12px"}>{whale?.name || "unnamed"}</Text>
+        <Text fontSize={"11px"}>{whale?.name || "unnamed"}</Text>
       </Flex>
       <Flex justifyContent={"space-between"} alignItems={"flex-end"}>
         {whale?.id ? (
@@ -70,7 +76,6 @@ export const WhaleNode = ({
             >
               Details
             </Text>
-
           </>
         ) : (
           <Text fontSize={"8px"}>Save pedigree to view details</Text>
@@ -83,4 +88,15 @@ export const WhaleNode = ({
       />
     </Card>
   );
+};
+
+const calculateBackgroundColor = (whale: Whale) => {
+  switch (whale.gender) {
+    case "male":
+      return "blue.200";
+    case "female":
+      return "pink";
+    default:
+      return "white";
+  }
 };

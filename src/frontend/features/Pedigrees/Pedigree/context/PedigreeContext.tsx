@@ -1,4 +1,10 @@
-import React, { useCallback, createContext, useState, useContext } from "react";
+import React, {
+  useCallback,
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+} from "react";
 import {
   Connection,
   Edge,
@@ -35,6 +41,7 @@ type PedigreeContextValue = {
   }) => void;
   saveLoading: boolean;
   setSaveLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  saveWarning: boolean;
 };
 
 const PedigreeContext = createContext<PedigreeContextValue>(
@@ -49,6 +56,11 @@ export function PedigreeProvider({ children }: any) {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [saveLoading, setSaveLoading] = useState(false);
+  const [saveWarning, setSaveWarning] = useState(false);
+
+  useEffect(() => {
+    setSaveWarning(true);
+  }, [nodes, edges]);
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
@@ -84,6 +96,7 @@ export function PedigreeProvider({ children }: any) {
     updatePedigreeDetailsResolver,
     saveLoading,
     setSaveLoading,
+    saveWarning,
   };
   return (
     <PedigreeContext.Provider value={value}>
