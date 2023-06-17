@@ -14,6 +14,7 @@ const theme = extendTheme({
 });
 
 function App() {
+  console.log("APP")
   return (
     <ChakraProvider theme={theme}>
       <AuthProvider>
