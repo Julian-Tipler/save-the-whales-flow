@@ -1,0 +1,22 @@
+/* should add this to a custom Node chakra component */
+
+.whale-node {
+  position: relative;
+}
+
+.whale-node::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 126%;
+  height: 1px;
+  background-color: gray;
+  opacity: 0;
+  transform-origin: bottom left;
+  transform: rotate(-38deg);
+}
+
+.whale-node.dead::before {
+  opacity: 0.2;
+}

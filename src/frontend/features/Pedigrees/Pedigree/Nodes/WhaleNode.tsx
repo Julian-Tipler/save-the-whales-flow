@@ -1,11 +1,20 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import { Box, Card, CardBody, CardFooter, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  CardBody,
+  CardFooter,
+  Flex,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { whaleStatusIcon } from "../../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../../db/Types/Entities";
 import { useSidebarContext } from "../context/SidebarContext";
 import { useWhalesContext } from "../context/WhalesContext";
+import "./WhaleNode.css";
 
 type NodeData = {
   // whale: Whale;
@@ -30,12 +39,13 @@ export const WhaleNode = ({
   selected: Boolean;
 }) => {
   const { setWhaleForm } = useSidebarContext();
+  const { whaleForm } = useSidebarContext();
   const { whales } = useWhalesContext();
 
   const whale = whales.find((whale) => whale.id === id);
-
   if (!whale) return null;
 
+  const highlighted = whaleForm && whale && whaleForm.id === whale.id;
   const backgroundColor = calculateBackgroundColor(whale);
 
   return (
@@ -44,11 +54,13 @@ export const WhaleNode = ({
       height={"80px"}
       backgroundColor={backgroundColor}
       boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
+      border={highlighted ? "3px solid #A2D9A0" : "none"}
       borderRadius={"4px"}
       padding={"4px"}
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"space-between"}
+      className={`whale-node ${whale.died ? "dead" : ""}`}
     >
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <Flex flexDirection={"column"} gap={"2px"}>

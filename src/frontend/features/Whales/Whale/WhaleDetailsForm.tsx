@@ -51,7 +51,7 @@ export const WhaleDetailsForm = ({
       <CardBody>
         <Flex marginBottom={"8px"}>
           <Text width={"140px"} fontWeight={"bold"}>
-            Identification:
+            Id:
           </Text>
           <Input
             value={identification}

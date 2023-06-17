@@ -37,11 +37,12 @@ type PedigreeContextValue = {
     data,
   }: {
     id: string;
-    data: Pedigree;
+    data: Omit<Pedigree, "id" | "nodes" | "edges">;
   }) => void;
   saveLoading: boolean;
   setSaveLoading: React.Dispatch<React.SetStateAction<boolean>>;
   saveWarning: boolean;
+  headerLoading: boolean;
 };
 
 const PedigreeContext = createContext<PedigreeContextValue>(
@@ -57,10 +58,13 @@ export function PedigreeProvider({ children }: any) {
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const [saveLoading, setSaveLoading] = useState(false);
   const [saveWarning, setSaveWarning] = useState(false);
+  const [headerLoading, setHeaderLoading ] = useState(false);
 
   useEffect(() => {
-    setSaveWarning(true);
-  }, [nodes, edges]);
+    setTimeout(() => {
+      setSaveWarning(true);
+    }, 30000);
+  }, [saveLoading]);
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     return setEdges((eds: Edge[]) => {
@@ -74,13 +78,15 @@ export function PedigreeProvider({ children }: any) {
     data,
   }: {
     id: string;
-    data: any;
+    data: Omit<Pedigree, "id" | "nodes" | "edges">;
   }) => {
+    setHeaderLoading(true);
     if (!pedigree) throw new Error("No pedigree found");
     await updatePedigreeDetails({ id, data });
     const updatedPedigree = await fetchPedigree({ id: id });
-    updatedPedigree &&
-      setPedigree({ id: updatedPedigree.id, name: updatedPedigree.name });
+    if(!updatedPedigree) throw new Error("No pedigree found");
+    setPedigree({ id: updatedPedigree.id, name: updatedPedigree.name });
+    setHeaderLoading(false)
   };
 
   const value = {
@@ -97,6 +103,7 @@ export function PedigreeProvider({ children }: any) {
     saveLoading,
     setSaveLoading,
     saveWarning,
+    headerLoading,
   };
   return (
     <PedigreeContext.Provider value={value}>
