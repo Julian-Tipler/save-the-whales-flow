@@ -21,5 +21,6 @@ const router = createBrowserRouter([
 ]);
 
 export const Router = () => {
+  console.log("ROUTER", router);
   return <RouterProvider router={router} />;
 };
