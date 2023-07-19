@@ -18,15 +18,24 @@ export const Layout = () => {
     >
       <GridItem
         pl="2"
-        bg={"blue.400"}
         area={"header"}
         display={"flex"}
         padding={"10px"}
         alignItems={"center"}
+        bg={"brand.background"}
+        borderBottom={"1px solid"}
+        borderColor={"brand.border"}
       >
         <Header />
       </GridItem>
-      <GridItem pl="2" bg={"#E0EBF5"} area={"nav"} padding={"15px"}>
+      <GridItem
+        pl="2"
+        area={"nav"}
+        padding={"15px"}
+        bg={"brand.background"}
+        borderRight={"1px solid"}
+        borderColor={"brand.border"}
+      >
         <NavigationSidebar />
       </GridItem>
       <GridItem
@@ -35,10 +44,11 @@ export const Layout = () => {
         minHeight={"100vh"}
         padding={"30px"}
         width={"100%"}
+        bg={"brand.bodyBackground"}
       >
         <Outlet />
       </GridItem>
-      <GridItem pl="2" bg="blue.300" area={"footer"}></GridItem>
+      <GridItem pl="2" bg="brand.background" area={"footer"}></GridItem>
     </Grid>
   );
 };
