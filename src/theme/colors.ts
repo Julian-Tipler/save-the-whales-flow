@@ -5,7 +5,7 @@ export const colors = {
     tertiary: "#C2B8B2",
     background: "##ffffff",
     bodyBackground: "#f8f9fa",
-    cardBackground: "#172D3A",
+    cardBackground: "#ffffff",
     border: "#cccccc",
   },
   text: {

@@ -1,14 +1,34 @@
+import { useAuthContext } from "../../../../Auth/context/AuthContext";
+import { usePedigreeContext } from "../context/PedigreeContext";
+import { useWhalesContext } from "../context/WhalesContext";
+import { useSavePedigree } from "../functions/useSavePedigree";
 import { onDragStart } from "../helpers/pedigreeActions";
 import "./DragNDrop.css";
-import { Card, Flex, Heading } from "@chakra-ui/react";
+import { Button, Card, Flex, Heading, Text } from "@chakra-ui/react";
 
 export const DragNDrop = () => {
+  const { admin } = useAuthContext();
+  const {
+    pedigree,
+    setPedigree,
+    nodes,
+    setNodes,
+    onNodesChange,
+    edges,
+    onEdgesChange,
+    onConnect,
+    setSaveLoading,
+    saveLoading,
+    saveWarning,
+  } = usePedigreeContext();
+  const { whales, setWhales } = useWhalesContext();
+
+  if (!pedigree) return null;
+
   return (
-    <Card padding={"10px"}>
-      <Flex direction={"column"} gap="4">
-        <div className="description">
-          You can drag these nodes to the pedigree above.
-        </div>
+    <Flex direction={"column"} gap="4" w="400px" padding={"20px"}>
+      <div className="description">Drag onto the pedigree:</div>
+      <Flex>
         <Card
           width={"120px"}
           height={"90px"}
@@ -22,6 +42,30 @@ export const DragNDrop = () => {
           </Flex>
         </Card>
       </Flex>
-    </Card>
+      {admin && (
+        <>
+          {saveWarning && (
+            <Text color="red">Make sure to save to persist changes!</Text>
+          )}
+          <Button
+            onClick={() =>
+              useSavePedigree({
+                id: pedigree.id,
+                nodes,
+                edges,
+                whales,
+                setPedigree,
+                setWhales,
+                setNodes,
+                setSaveLoading,
+              })
+            }
+            isLoading={saveLoading}
+          >
+            Save
+          </Button>
+        </>
+      )}
+    </Flex>
   );
 };
