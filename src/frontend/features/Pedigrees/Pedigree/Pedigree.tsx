@@ -24,7 +24,6 @@ export const Pedigree = () => {
   return (
     <BodyGrid>
       <GridItem rowSpan={1} colSpan={{ base: 4, md: 4 }}>
-        <PedigreeHeader name={pedigree.name} />
         <ReactFlowContainer />
       </GridItem>
     </BodyGrid>

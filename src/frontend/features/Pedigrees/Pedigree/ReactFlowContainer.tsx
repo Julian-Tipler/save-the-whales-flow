@@ -21,23 +21,20 @@ import { Whale } from "../../../../db/Types/Entities";
 import { useAuthContext } from "../../../Auth/context/AuthContext";
 import { handleOnNodeDragStop } from "./helpers/pedigreeActions";
 import { BodyCard } from "../../../../components/BodyCard";
+import { PedigreeHeader } from "./Header/Header";
 
 export function ReactFlowContainer() {
   const reactFlowWrapper = useRef<any>(null);
   const {
     pedigree,
-    setPedigree,
     nodes,
     setNodes,
     onNodesChange,
     edges,
     onEdgesChange,
     onConnect,
-    setSaveLoading,
-    saveLoading,
-    saveWarning,
   } = usePedigreeContext();
-  const { whales, setWhales } = useWhalesContext();
+  const { setWhales } = useWhalesContext();
   const { admin } = useAuthContext();
 
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
@@ -88,10 +85,11 @@ export function ReactFlowContainer() {
   );
 
   if (!pedigree) return null;
-  
+
   return (
     <BodyCard>
       <ReactFlowProvider>
+        <PedigreeHeader name={pedigree.name} />
         <Flex flexDirection="row">
           <div
             className="reactflow-wrapper"
@@ -132,31 +130,6 @@ export function ReactFlowContainer() {
           </div>
           <DragNDrop />
         </Flex>
-
-        {admin && (
-          <>
-            {saveWarning && (
-              <Text color="red">Make sure to save to persist changes!</Text>
-            )}
-            <Button
-              onClick={() =>
-                useSavePedigree({
-                  id: pedigree.id,
-                  nodes,
-                  edges,
-                  whales,
-                  setPedigree,
-                  setWhales,
-                  setNodes,
-                  setSaveLoading,
-                })
-              }
-              isLoading={saveLoading}
-            >
-              Save
-            </Button>
-          </>
-        )}
         <WhaleDrawer />
       </ReactFlowProvider>
     </BodyCard>

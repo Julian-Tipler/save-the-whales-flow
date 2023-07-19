@@ -44,9 +44,6 @@ export const DragNDrop = () => {
       </Flex>
       {admin && (
         <>
-          {saveWarning && (
-            <Text color="red">Make sure to save to persist changes!</Text>
-          )}
           <Button
             onClick={() =>
               useSavePedigree({
@@ -64,6 +61,9 @@ export const DragNDrop = () => {
           >
             Save
           </Button>
+          {saveWarning && (
+            <Text color="red">Make sure to save to persist changes!</Text>
+          )}
         </>
       )}
     </Flex>
