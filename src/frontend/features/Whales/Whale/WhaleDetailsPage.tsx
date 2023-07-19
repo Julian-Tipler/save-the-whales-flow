@@ -6,7 +6,6 @@ const PedigreePage = () => {
   return (
     <WhaleProvider>
       <WhaleDetails />
-      <WhalesPedigrees />
     </WhaleProvider>
   );
 };

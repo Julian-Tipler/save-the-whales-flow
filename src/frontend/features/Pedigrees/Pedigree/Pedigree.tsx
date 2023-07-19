@@ -26,6 +26,9 @@ export const Pedigree = () => {
       <GridItem rowSpan={1} colSpan={{ base: 4, md: 4 }}>
         <ReactFlowContainer />
       </GridItem>
+      <GridItem rowSpan={1} colSpan={{ base: 4, md: 4 }}>
+        {/* <WhalesIndex/> */}
+      </GridItem>
     </BodyGrid>
   );
 };
