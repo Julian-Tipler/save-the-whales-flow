@@ -5,22 +5,31 @@ import { usePedigreeContext } from "../context/PedigreeContext";
 import { useAuthContext } from "../../../../Auth/context/AuthContext";
 
 export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
-  const { updatePedigreeDetailsResolver, saveLoading } = usePedigreeContext();
+  const { updatePedigreeDetailsResolver, pedigree, headerLoading } =
+    usePedigreeContext();
   const { admin } = useAuthContext();
-
   const [editMode, setEditMode] = React.useState(false);
   const [pedigreeName, setPedigreeName] = React.useState(name);
-
-  const handleKeyDown = async (event: any) => {
-    if (event.key === "Enter") {
-      // await updatePedigreeDetailsResolver({ data: { name: pedigreeName } });
-      setEditMode(false);
-    }
-  };
 
   useEffect(() => {
     setPedigreeName(name);
   }, [editMode]);
+
+  if (!pedigree) return null;
+
+  const handleKeyDown = async (event: any) => {
+    if (event.key === "Enter") {
+      const success = updatePedigreeDetailsResolver({
+        id: pedigree?.id,
+        data: { name: pedigreeName },
+      });
+      setEditMode(false);
+    }
+  };
+
+  if (headerLoading) {
+    return <div>Loading...</div>;
+  }
 
   return editMode ? (
     <Input

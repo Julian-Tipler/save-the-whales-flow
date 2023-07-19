@@ -15,7 +15,7 @@ export const updatePedigreeDetails = async ({
   data,
 }: {
   id: string;
-  data: Pedigree;
+  data: Omit<Pedigree, "id" | "nodes" | "edges">;
 }) => {
   const pedigreeRef = doc(db, "pedigrees", id);
 

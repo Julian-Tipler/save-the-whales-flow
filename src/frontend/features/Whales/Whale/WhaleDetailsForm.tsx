@@ -7,32 +7,36 @@ import {
   Input,
   Flex,
   Box,
+  Select,
 } from "@chakra-ui/react";
 import { useWhaleContext } from "../context/WhaleContext";
 import { Whale } from "../../../../db/Types/Entities";
 
 export const WhaleDetailsForm = ({
   whale,
-  setEditMode,
+  setClose,
   handleSubmit,
 }: {
   whale: Whale;
-  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setClose: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: Function;
 }) => {
   const [errors, setErrors] = useState<any>([]);
   const { updateWhaleResolver } = useWhaleContext();
   const [identification, setIdentification] = useState("");
   const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState<"male" | "female" | "unknown">(
+    "unknown"
+  );
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
   const [notes, setNotes] = useState("");
 
+  console.log(gender, "gender");
   useEffect(() => {
     setIdentification(whale.identification || "");
     setName(whale.name || "");
-    setGender(whale.gender || "");
+    setGender(whale.gender || "unknown");
     setBorn(whale.born || "");
     setDied(whale.died || "");
     setNotes(whale.notes || "");
@@ -47,7 +51,7 @@ export const WhaleDetailsForm = ({
       <CardBody>
         <Flex marginBottom={"8px"}>
           <Text width={"140px"} fontWeight={"bold"}>
-            Identification:
+            Id:
           </Text>
           <Input
             value={identification}
@@ -69,11 +73,14 @@ export const WhaleDetailsForm = ({
           <Text width={"140px"} fontWeight={"bold"}>
             Gender:
           </Text>
-          <Input
-            value={gender}
-            onChange={handleOnChange(setGender)}
-            borderRadius={"4px"}
-          />
+          <Select value={gender} onChange={handleOnChange(setGender)}>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="unknown">unknown</option>
+          </Select>
+          {/* // value={gender}
+            // onChange={handleOnChange(setGender)}
+            // borderRadius={"4px"} */}
         </Flex>
         <Flex marginBottom={"8px"}>
           <Text width={"140px"} fontWeight={"bold"}>
@@ -134,7 +141,7 @@ export const WhaleDetailsForm = ({
           Update
         </Button>
         <Button
-          onClick={() => setEditMode(false)}
+          onClick={() => setClose(false)}
           borderRadius={"4px"}
           variant={"outline"}
         >
@@ -146,9 +153,9 @@ export const WhaleDetailsForm = ({
 };
 
 export const handleOnChange = (
-  setState: React.Dispatch<React.SetStateAction<string>>
+  setState: React.Dispatch<React.SetStateAction<any>>
 ) => {
-  return (e: React.ChangeEvent<HTMLInputElement>) => {
+  return (e: React.ChangeEvent<any>) => {
     setState(e.target.value);
   };
 };
@@ -158,7 +165,7 @@ export const handleOnChange = (
 //   whaleFormData,
 //   updateWhaleResolver,
 //   setErrors,
-//   setEditMode,
+//   setClose,
 // }: any) => {
 //   return async () => {
 //     const errors = await updateWhaleResolver({
@@ -168,7 +175,7 @@ export const handleOnChange = (
 //     if (errors.length) {
 //       setErrors(errors);
 //     } else {
-//       setEditMode(false);
+//       setClose(false);
 //     }
 //   };
 // };

@@ -38,7 +38,7 @@ export const Sidebar = () => {
         {admin ? (
           <WhaleDetailsForm
             whale={whaleForm}
-            setEditMode={null as any}
+            setClose={() => setWhaleForm(null)}
             handleSubmit={handleSubmit}
           />
         ) : (
