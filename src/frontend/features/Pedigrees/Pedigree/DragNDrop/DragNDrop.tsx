@@ -4,7 +4,7 @@ import { useWhalesContext } from "../context/WhalesContext";
 import { useSavePedigree } from "../functions/useSavePedigree";
 import { onDragStart } from "../helpers/pedigreeActions";
 import "./DragNDrop.css";
-import { Button, Card, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Card, Flex, Heading, Text } from "@chakra-ui/react";
 
 export const DragNDrop = () => {
   const { admin } = useAuthContext();
@@ -26,46 +26,60 @@ export const DragNDrop = () => {
   if (!pedigree) return null;
 
   return (
-    <Flex direction={"column"} gap="4" w="400px" padding={"20px"}>
-      <div className="description">Drag onto the pedigree:</div>
-      <Flex>
-        <Card
-          width={"120px"}
-          height={"90px"}
-          className="dndnode"
-          onDragStart={(event) => onDragStart(event, "whale")}
-          draggable
-          backgroundColor={"blue.100"}
-        >
-          <Flex height={"100%"} justifyContent={"center"} alignItems={"center"}>
-            <Heading size="sm">Whale</Heading>
-          </Flex>
-        </Card>
-      </Flex>
-      {admin && (
-        <>
-          <Button
-            onClick={() =>
-              useSavePedigree({
-                id: pedigree.id,
-                nodes,
-                edges,
-                whales,
-                setPedigree,
-                setWhales,
-                setNodes,
-                setSaveLoading,
-              })
-            }
-            isLoading={saveLoading}
+    <Flex
+      direction={"column"}
+      w="400px"
+      paddingLeft={"4"}
+      paddingRight={"4"}
+      justifyContent={"space-between"}
+    >
+      <Flex direction={"column"} gap={"4"}>
+        <Text className="description">Drag onto the pedigree:</Text>
+        <Flex>
+          <Card
+            width={"120px"}
+            height={"90px"}
+            className="dndnode"
+            onDragStart={(event) => onDragStart(event, "whale")}
+            draggable
+            backgroundColor={"blue.100"}
           >
-            Save
-          </Button>
-          {saveWarning && (
-            <Text color="red">Make sure to save to persist changes!</Text>
-          )}
-        </>
-      )}
+            <Flex
+              height={"100%"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <Heading size="sm">Whale</Heading>
+            </Flex>
+          </Card>
+        </Flex>
+      </Flex>
+      <Box>
+        {admin && (
+          <>
+            {saveWarning && (
+              <Text color="red">Make sure to save to persist changes!</Text>
+            )}
+            <Button
+              onClick={() =>
+                useSavePedigree({
+                  id: pedigree.id,
+                  nodes,
+                  edges,
+                  whales,
+                  setPedigree,
+                  setWhales,
+                  setNodes,
+                  setSaveLoading,
+                })
+              }
+              isLoading={saveLoading}
+            >
+              Save
+            </Button>
+          </>
+        )}
+      </Box>
     </Flex>
   );
 };
