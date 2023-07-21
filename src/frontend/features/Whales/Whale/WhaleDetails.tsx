@@ -3,7 +3,7 @@ import { useWhaleContext } from "../context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
 import { WhaleDetailsCard } from "./WhaleDetailsCard";
 import { useParams } from "react-router-dom";
-import { BodyGrid } from "../../../../components/BodyGrid";
+import { BodyGrid } from "../../../components/BodyGrid";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { WhalesPedigrees } from "./WhalesPedigrees";
 

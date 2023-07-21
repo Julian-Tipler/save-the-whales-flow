@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useWhaleContext } from "../context/WhaleContext";
 import { Whale } from "../../../../db/Types/Entities";
-import { BodyCard } from "../../../../components/BodyCard";
+import { BodyCard } from "../../../components/BodyCard";
 
 export const WhaleDetailsForm = ({
   whale,

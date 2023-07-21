@@ -5,6 +5,7 @@ export function BodyCard({ children }: { children: React.ReactNode }) {
   return (
     <ChakraCard
       h="100%"
+      w="100%"
       p="20px"
       border="1px solid"
       borderColor={"brand.border"}

@@ -5,8 +5,9 @@ import { usePedigreeContext } from "./context/PedigreeContext";
 import { useEffect } from "react";
 import { useFetchPedigree } from "./functions/useFetchPedigree";
 import { useWhalesContext } from "./context/WhalesContext";
-import { BodyGrid } from "../../../../components/BodyGrid";
+import { BodyGrid } from "../../../components/BodyGrid";
 import { GridItem } from "@chakra-ui/react";
+import { WhalesIndex } from "./WhalesIndex";
 
 export const Pedigree = () => {
   const { pedigree, setPedigree, setNodes, setEdges } = usePedigreeContext();
@@ -23,11 +24,11 @@ export const Pedigree = () => {
 
   return (
     <BodyGrid>
-      <GridItem rowSpan={1} colSpan={{ base: 4, md: 4 }}>
+      <GridItem rowSpan={2} colSpan={{ base: 4, md: 4 }}>
         <ReactFlowContainer />
       </GridItem>
-      <GridItem rowSpan={1} colSpan={{ base: 4, md: 4 }}>
-        {/* <WhalesIndex/> */}
+      <GridItem rowSpan={2} colSpan={{ base: 4, md: 4 }}>
+        <WhalesIndex />
       </GridItem>
     </BodyGrid>
   );

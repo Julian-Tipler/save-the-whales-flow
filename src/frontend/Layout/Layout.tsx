@@ -1,13 +1,13 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import { NavigationSidebar } from "../Navigation/NavigationSidebar";
+import { NavigationSidebar } from "./Navigation/NavigationSidebar";
 
-import { Header } from "../Header/Header";
+import { Header } from "./Header/Header";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
   return (
     <Grid
-      templateAreas={`"header header"
+      templateAreas={`"nav header"
                   "nav main"
                   "nav footer"`}
       gridTemplateRows={"75px 1fr 100px"}
@@ -15,6 +15,7 @@ export const Layout = () => {
       w="100vw"
       color="blackAlpha.700"
       fontWeight="bold"
+      minH="100vh"
     >
       <GridItem
         pl="2"
@@ -45,6 +46,7 @@ export const Layout = () => {
         padding={"30px"}
         width={"100%"}
         bg={"brand.bodyBackground"}
+        overflow={"auto"}
       >
         <Outlet />
       </GridItem>

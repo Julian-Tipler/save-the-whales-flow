@@ -10,7 +10,7 @@ import {
 import { whaleStatusIcon } from "../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 import { useAuthContext } from "../../../Auth/context/AuthContext";
-import { BodyCard } from "../../../../components/BodyCard";
+import { BodyCard } from "../../../components/BodyCard";
 
 export const WhaleDetailsCard = ({
   whale,
