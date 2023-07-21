@@ -6,6 +6,7 @@ export const styles = {
     body: {
       backgroundColor: colors.brand.background,
       color: "#fff",
+      overscrollBehavior: "none"
     },
     // styles for the `a`
     a: {

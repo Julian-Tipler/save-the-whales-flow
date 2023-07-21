@@ -5,6 +5,7 @@ import { createPedigree } from "./createPedigree";
 import { fetchPedigrees } from "./fetchPedigrees";
 import { updatePedigreeDetails } from "./updatePedigreeDetails";
 import { fetchWhale } from "./fetchWhale";
+import { fetchWhales } from "./fetchWhales";
 
 export {
   fetchPedigree,
@@ -14,4 +15,5 @@ export {
   createPedigree,
   updatePedigreeDetails,
   fetchWhale,
+  fetchWhales,
 };

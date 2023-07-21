@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Heading,
   Text,
 } from "@chakra-ui/react";
 import { fetchPedigrees } from "../../../db/dataServices";
@@ -39,7 +40,16 @@ export const NavigationSidebar = () => {
 
   return (
     <NavigationSidebarProvider>
-      <Accordion position={"fixed"}>
+      <Accordion
+        position={"fixed"}
+        width="300px"
+        left="0"
+        top="0"
+        padding={"10px"}
+      >
+        <Heading size={"xl"} padding={"10px"}>
+          SAVE THE WHALES
+        </Heading>
         <AccordionItem>
           <h2>
             <AccordionButton>
