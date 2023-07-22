@@ -1,9 +1,6 @@
 import { useDrawerContext } from "../context/DrawerContext";
-import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
-import { WhaleDetailsForm } from "../../Whale/WhaleForm";
 import { useWhalesContext } from "../context/WhalesContext";
 import { Whale } from "../../../../db/Types/Entities";
-import { WhaleDetailsCard } from "../../Whale/WhaleCard";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../Auth/context/AuthContext";
 
@@ -35,7 +32,7 @@ export const WhaleDrawer = () => {
     >
       {/* <DrawerOverlay /> */}
       <DrawerContent>
-        {admin ? (
+        {/* {admin ? (
           <WhaleDetailsForm
             whale={whaleForm}
             setClose={() => setWhaleForm(null)}
@@ -43,7 +40,7 @@ export const WhaleDrawer = () => {
           />
         ) : (
           <WhaleDetailsCard whale={whaleForm} />
-        )}
+        )} */}
         <Link to={`/whales/${whaleForm?.id}`}>
           <Text
             color={"#0000FF"}

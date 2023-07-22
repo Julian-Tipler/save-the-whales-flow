@@ -1,61 +1,35 @@
-import React, { useContext, useEffect } from "react";
-import { useWhaleContext } from "./context/WhaleContext";
-import { WhaleDetailsForm } from "./WhaleForm";
-import { WhaleDetailsCard } from "./WhaleCard";
-import { useParams } from "react-router-dom";
-import { BodyGrid } from "../../components/BodyGrid";
-import { Grid, GridItem } from "@chakra-ui/react";
-import { WhalesPedigrees } from "./WhalesPedigrees";
+import { Flex, Text } from "@chakra-ui/react";
+import { Whale } from "../../../db/Types/Entities";
 
-export const WhaleDetails = () => {
-  const [editMode, setEditMode] = React.useState(false);
-  const { whale, fetchWhaleResolver } = useWhaleContext();
-
-  const { id } = useParams<{ id: string }>();
-  if (!id) throw new Error("No whale id provided");
-
-  useEffect(() => {
-    fetchWhaleResolver({ id });
-  }, [id]);
-
-  if (!whale) return <div>Loading...</div>;
-
+const WhaleDetails = ({ whale }: { whale: Whale }) => {
   return (
-    <BodyGrid>
-      <GridItem colSpan={1}>
-        {editMode ? (
-          <WhaleDetailsForm
-            whale={whale}
-            setClose={setEditMode}
-            handleSubmit={handleSubmit}
-          />
-        ) : (
-          <WhaleDetailsCard whale={whale} setEditMode={setEditMode} />
-        )}
-      </GridItem>
-      <GridItem colSpan={2}>
-        <WhalesPedigrees />
-      </GridItem>
-    </BodyGrid>
+    <>
+      <Flex padding={"10px"}>
+        <Text width={"140px"}>Status: </Text>
+        <Text>{!whale.died ? "Alive" : "Deceased"}</Text>
+      </Flex>
+      <Flex padding={"10px"}>
+        <Text width={"140px"}>Name: </Text>
+        <Text>{whale.name}</Text>
+      </Flex>
+      <Flex padding={"10px"}>
+        <Text width={"140px"}>Gender: </Text>
+        <Text>{whale.gender}</Text>
+      </Flex>
+      <Flex padding={"10px"}>
+        <Text width={"140px"}>Born: </Text>
+        <Text>{whale.born}</Text>
+      </Flex>
+      <Flex padding={"10px"}>
+        <Text width={"140px"}>Died: </Text>
+        <Text>{whale.died}</Text>
+      </Flex>
+      <Flex padding={"10px"}>
+        <Text width={"140px"}>Notes: </Text>
+        <Text>{whale.notes}</Text>
+      </Flex>
+    </>
   );
 };
 
-export const handleSubmit = ({
-  id,
-  updateWhaleResolver,
-  whaleFormData,
-  setErrors,
-  setEditMode,
-}: any) => {
-  return async () => {
-    const errors = await updateWhaleResolver({
-      id: id,
-      whaleFormData: whaleFormData,
-    });
-    if (errors.length) {
-      setErrors(errors);
-    } else {
-      setEditMode(false);
-    }
-  };
-};
+export default WhaleDetails;

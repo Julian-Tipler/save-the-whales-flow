@@ -1,4 +1,4 @@
-import { WhaleDetails } from "./WhaleDetails";
+import { WhaleDetails } from "./Whale";
 import { WhaleProvider } from "./context/WhaleContext";
 import { WhalesPedigrees } from "./WhalesPedigrees";
 

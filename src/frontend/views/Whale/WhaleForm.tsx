@@ -13,15 +13,15 @@ import { useWhaleContext } from "./context/WhaleContext";
 import { Whale } from "../../../db/Types/Entities";
 import { BodyCard } from "../../components/BodyCard";
 
-export const WhaleDetailsForm = ({
+export const WhaleForm = ({
   whale,
-  setClose,
   handleSubmit,
 }: {
   whale: Whale;
-  setClose: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: Function;
 }) => {
+  console.log("whale", whale);
+  console.log("handleSubmit", handleSubmit);
   const [errors, setErrors] = useState<any>([]);
   const { updateWhaleResolver } = useWhaleContext();
   const [identification, setIdentification] = useState("");
@@ -32,8 +32,6 @@ export const WhaleDetailsForm = ({
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
   const [notes, setNotes] = useState("");
-
-  console.log(gender, "gender");
   useEffect(() => {
     setIdentification(whale.identification || "");
     setName(whale.name || "");
@@ -42,110 +40,105 @@ export const WhaleDetailsForm = ({
     setDied(whale.died || "");
     setNotes(whale.notes || "");
   }, []);
-
   return (
-    <BodyCard>
-      <CardBody>
-        <Flex marginBottom={"8px"}>
-          <Text width={"140px"} fontWeight={"bold"}>
-            Id:
-          </Text>
-          <Input
-            value={identification}
-            onChange={handleOnChange(setIdentification)}
-            borderRadius={"4px"}
-          />
-        </Flex>
-        <Flex marginBottom={"8px"}>
-          <Text width={"140px"} fontWeight={"bold"}>
-            Name:
-          </Text>
-          <Input
-            value={name}
-            onChange={handleOnChange(setName)}
-            borderRadius={"4px"}
-          />
-        </Flex>
-        <Flex marginBottom={"8px"}>
-          <Text width={"140px"} fontWeight={"bold"}>
-            Gender:
-          </Text>
-          <Select value={gender} onChange={handleOnChange(setGender)}>
-            <option value="male">male</option>
-            <option value="female">female</option>
-            <option value="unknown">unknown</option>
-          </Select>
-          {/* // value={gender}
+    <>
+      <Flex marginBottom={"8px"}>
+        <Text width={"140px"} fontWeight={"bold"}>
+          Id:
+        </Text>
+        <Input
+          value={identification}
+          onChange={handleOnChange(setIdentification)}
+          borderRadius={"4px"}
+        />
+      </Flex>
+      <Flex marginBottom={"8px"}>
+        <Text width={"140px"} fontWeight={"bold"}>
+          Name:
+        </Text>
+        <Input
+          value={name}
+          onChange={handleOnChange(setName)}
+          borderRadius={"4px"}
+        />
+      </Flex>
+      <Flex marginBottom={"8px"}>
+        <Text width={"140px"} fontWeight={"bold"}>
+          Gender:
+        </Text>
+        <Select value={gender} onChange={handleOnChange(setGender)}>
+          <option value="male">male</option>
+          <option value="female">female</option>
+          <option value="unknown">unknown</option>
+        </Select>
+        {/* // value={gender}
             // onChange={handleOnChange(setGender)}
             // borderRadius={"4px"} */}
-        </Flex>
-        <Flex marginBottom={"8px"}>
-          <Text width={"140px"} fontWeight={"bold"}>
-            Born:
+      </Flex>
+      <Flex marginBottom={"8px"}>
+        <Text width={"140px"} fontWeight={"bold"}>
+          Born:
+        </Text>
+        <Input
+          value={born}
+          onChange={handleOnChange(setBorn)}
+          borderRadius={"4px"}
+        />
+      </Flex>
+      <Flex marginBottom={"8px"}>
+        <Text width={"140px"} fontWeight={"bold"}>
+          Died:
+        </Text>
+        <Input
+          value={died}
+          onChange={handleOnChange(setDied)}
+          borderRadius={"4px"}
+        />
+      </Flex>
+      <Flex marginBottom={"8px"}>
+        <Text width={"140px"} fontWeight={"bold"}>
+          Notes:
+        </Text>
+        <Input
+          value={notes}
+          onChange={handleOnChange(setNotes)}
+          borderRadius={"4px"}
+        />
+      </Flex>
+      <Box>
+        {errors.map((error: any, i: number) => (
+          <Text color={"red"} key={`error-${i}`} marginBottom={"4px"}>
+            {error}
           </Text>
-          <Input
-            value={born}
-            onChange={handleOnChange(setBorn)}
-            borderRadius={"4px"}
-          />
-        </Flex>
-        <Flex marginBottom={"8px"}>
-          <Text width={"140px"} fontWeight={"bold"}>
-            Died:
-          </Text>
-          <Input
-            value={died}
-            onChange={handleOnChange(setDied)}
-            borderRadius={"4px"}
-          />
-        </Flex>
-        <Flex marginBottom={"8px"}>
-          <Text width={"140px"} fontWeight={"bold"}>
-            Notes:
-          </Text>
-          <Input
-            value={notes}
-            onChange={handleOnChange(setNotes)}
-            borderRadius={"4px"}
-          />
-        </Flex>
-        <Box>
-          {errors.map((error: any, i: number) => (
-            <Text color={"red"} key={`error-${i}`} marginBottom={"4px"}>
-              {error}
-            </Text>
-          ))}
-        </Box>
-      </CardBody>
+        ))}
+      </Box>
       <Flex justifyContent={"center"} marginTop={"16px"}>
         <Button
-          onClick={() =>
-            handleSubmit({
-              formData: {
-                id: whale.id,
-                identification,
-                name,
-                gender,
-                born,
-                died,
-                notes,
-              },
-            })
-          }
+          onClick={handleSubmit({
+            formData: {
+              id: whale.id,
+              identification,
+              name,
+              gender,
+              born,
+              died,
+              notes,
+            },
+          })}
           marginRight={"8px"}
           borderRadius={"4px"}
         >
           Update
         </Button>
-        <Button
+        {/* <Button
           onClick={() => setClose(false)}
           borderRadius={"4px"}
           variant={"outline"}
         >
           Cancel
-        </Button>
+        </Button> */}
       </Flex>
-    </BodyCard>
+    </>
   );
 };
 
@@ -156,23 +149,3 @@ export const handleOnChange = (
     setState(e.target.value);
   };
 };
-
-// export const handleSubmit = ({
-//   id,
-//   whaleFormData,
-//   updateWhaleResolver,
-//   setErrors,
-//   setClose,
-// }: any) => {
-//   return async () => {
-//     const errors = await updateWhaleResolver({
-//       id: id,
-//       whaleFormData: whaleFormData,
-//     });
-//     if (errors.length) {
-//       setErrors(errors);
-//     } else {
-//       setClose(false);
-//     }
-//   };
-// };

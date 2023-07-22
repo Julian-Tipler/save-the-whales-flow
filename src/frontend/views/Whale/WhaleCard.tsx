@@ -1,5 +1,4 @@
 import {
-  Card,
   CardHeader,
   CardBody,
   Text,
@@ -11,14 +10,13 @@ import { whaleStatusIcon } from "../../helpers/whaleStatusIcon";
 import { Whale } from "../../../db/Types/Entities";
 import { useAuthContext } from "../../Auth/context/AuthContext";
 import { BodyCard } from "../../components/BodyCard";
+import WhaleDetails from "./WhaleDetails";
+import { useState } from "react";
+import { WhaleForm } from "./WhaleForm";
 
-export const WhaleDetailsCard = ({
-  whale,
-  setEditMode,
-}: {
-  whale: Whale;
-  setEditMode?: any;
-}) => {
+export const WhaleCard = ({ whale }: { whale: Whale }) => {
+  const [editMode, setEditMode] = useState(false);
+
   const { admin } = useAuthContext();
   return (
     <BodyCard>
@@ -31,34 +29,35 @@ export const WhaleDetailsCard = ({
         </Heading>
       </CardHeader>
       <CardBody>
-        <Flex padding={"10px"}>
-          <Text width={"140px"}>Status: </Text>
-          <Text>{!whale.died ? "Alive" : "Deceased"}</Text>
-        </Flex>
-        <Flex padding={"10px"}>
-          <Text width={"140px"}>Name: </Text>
-          <Text>{whale.name}</Text>
-        </Flex>
-        <Flex padding={"10px"}>
-          <Text width={"140px"}>Gender: </Text>
-          <Text>{whale.gender}</Text>
-        </Flex>
-        <Flex padding={"10px"}>
-          <Text width={"140px"}>Born: </Text>
-          <Text>{whale.born}</Text>
-        </Flex>
-        <Flex padding={"10px"}>
-          <Text width={"140px"}>Died: </Text>
-          <Text>{whale.died}</Text>
-        </Flex>
-        <Flex padding={"10px"}>
-          <Text width={"140px"}>Notes: </Text>
-          <Text>{whale.notes}</Text>
-        </Flex>
+        {editMode ? (
+          <WhaleForm whale={whale} handleSubmit={handleSubmit} />
+        ) : (
+          <WhaleDetails whale={whale} />
+        )}
       </CardBody>
       {admin && setEditMode && (
         <Button onClick={() => setEditMode(true)}>Edit</Button>
       )}
     </BodyCard>
   );
+};
+
+export const handleSubmit = ({
+  id,
+  updateWhaleResolver,
+  whaleFormData,
+  setErrors,
+  setEditMode,
+}: any) => {
+  return async () => {
+    const errors = await updateWhaleResolver({
+      id: id,
+      whaleFormData: whaleFormData,
+    });
+    if (errors.length) {
+      setErrors(errors);
+    } else {
+      setEditMode(false);
+    }
+  };
 };
