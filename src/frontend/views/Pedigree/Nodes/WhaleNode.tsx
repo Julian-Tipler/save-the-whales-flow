@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { whaleStatusIcon } from "../../../helpers/whaleStatusIcon";
+import { whaleStatusIcon } from "../../../components/WhaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";

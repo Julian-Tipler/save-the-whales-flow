@@ -6,7 +6,7 @@ import {
   Flex,
   Heading,
 } from "@chakra-ui/react";
-import { whaleStatusIcon } from "../../helpers/whaleStatusIcon";
+import { whaleStatusIcon } from "../../components/WhaleStatusIcon";
 import { Whale } from "../../../db/Types/Entities";
 import { useAuthContext } from "../../auth/context/AuthContext";
 import { BodyCard } from "../../components/BodyCard";
