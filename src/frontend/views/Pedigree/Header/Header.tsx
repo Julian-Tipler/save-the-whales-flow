@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Input } from "@chakra-ui/react";
+import { Box, Flex, Heading, Input, Spinner } from "@chakra-ui/react";
 import { AiOutlineEdit } from "react-icons/ai";
 import React, { useEffect } from "react";
 import { usePedigreeContext } from "../context/PedigreeContext";
@@ -28,7 +28,7 @@ export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
   };
 
   if (headerLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   return editMode ? (
