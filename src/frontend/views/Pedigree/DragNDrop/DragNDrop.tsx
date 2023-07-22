@@ -1,4 +1,4 @@
-import { useAuthContext } from "../../../Auth/context/AuthContext";
+import { useAuthContext } from "../../../auth/context/AuthContext";
 import { usePedigreeContext } from "../context/PedigreeContext";
 import { useWhalesContext } from "../context/WhalesContext";
 import { useSavePedigree } from "../functions/useSavePedigree";

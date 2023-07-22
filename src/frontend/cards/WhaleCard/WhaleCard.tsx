@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { whaleStatusIcon } from "../../helpers/whaleStatusIcon";
 import { Whale } from "../../../db/Types/Entities";
-import { useAuthContext } from "../../Auth/context/AuthContext";
+import { useAuthContext } from "../../auth/context/AuthContext";
 import { BodyCard } from "../../components/BodyCard";
 import WhaleDetails from "./WhaleDetails";
 import { useState } from "react";

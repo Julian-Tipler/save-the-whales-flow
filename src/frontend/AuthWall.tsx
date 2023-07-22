@@ -1,6 +1,6 @@
-import { useAuthContext } from "./Auth/context/AuthContext";
-import { Auth } from "./Auth";
-import { Router } from "./Layout/Router";
+import { useAuthContext } from "./auth/context/AuthContext";
+import { Auth } from "./auth";
+import { Router } from "./layout/Router";
 
 export const AuthWall = () => {
   const { loggingIn, loading } = useAuthContext();

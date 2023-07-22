@@ -2,7 +2,7 @@ import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
 import { Whale } from "../../../../db/Types/Entities";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../../Auth/context/AuthContext";
+import { useAuthContext } from "../../../auth/context/AuthContext";
 import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
 import { WhaleForm } from "../../../cards/WhaleCard/WhaleForm";
 import WhaleDetails from "../../../cards/WhaleCard/WhaleDetails";

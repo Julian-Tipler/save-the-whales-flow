@@ -18,7 +18,7 @@ import { WhaleDrawer } from "./WhaleDrawer/WhaleDrawer";
 import { useWhalesContext } from "./context/WhalesContext";
 import { useSavePedigree } from "./functions/useSavePedigree";
 import { Whale } from "../../../db/Types/Entities";
-import { useAuthContext } from "../../Auth/context/AuthContext";
+import { useAuthContext } from "../../auth/context/AuthContext";
 import { handleOnNodeDragStop } from "./helpers/pedigreeActions";
 import { BodyCard } from "../../components/BodyCard";
 import { PedigreeHeader } from "./Header/Header";
