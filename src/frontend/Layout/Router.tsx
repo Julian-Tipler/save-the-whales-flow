@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import PedigreesIndexPage from "../features/Pedigrees/PedigreesIndex";
-import PedigreePage from "../features/Pedigrees/Pedigree";
-import WhaleDetailsPage from "../features/Whales/Whale";
+import PedigreesIndexPage from "../views/PedigreesIndex";
+import PedigreePage from "../views/Pedigree";
+import WhaleDetailsPage from "../views/Whale";
 import { Layout } from "./Layout";
 
 const router = createBrowserRouter([
