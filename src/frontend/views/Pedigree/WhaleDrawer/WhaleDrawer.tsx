@@ -1,11 +1,11 @@
 import { useDrawerContext } from "../context/DrawerContext";
-import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
-import { WhaleDetailsForm } from "../../Whale/WhaleForm";
 import { useWhalesContext } from "../context/WhalesContext";
 import { Whale } from "../../../../db/Types/Entities";
-import { WhaleDetailsCard } from "../../Whale/WhaleCard";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../../Auth/context/AuthContext";
+import { useAuthContext } from "../../../auth/context/AuthContext";
+import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
+import { WhaleForm } from "../../../cards/WhaleCard/WhaleForm";
+import WhaleDetails from "../../../cards/WhaleCard/WhaleDetails";
 
 export const WhaleDrawer = () => {
   const { whaleForm, setWhaleForm } = useDrawerContext();
@@ -14,7 +14,15 @@ export const WhaleDrawer = () => {
 
   if (!whaleForm) return null;
 
-  const handleSubmit = ({ formData }: { formData: any }) => {
+  const handleSubmit = ({
+    formData,
+    setErrors,
+    setEditMode,
+  }: {
+    formData: any;
+    setErrors: Function;
+    setEditMode: Function;
+  }) => {
     const newWhales = whales.map((whale: Whale) => {
       if (whale.id === whaleForm.id) {
         return formData;
@@ -36,13 +44,13 @@ export const WhaleDrawer = () => {
       {/* <DrawerOverlay /> */}
       <DrawerContent>
         {admin ? (
-          <WhaleDetailsForm
+          <WhaleForm
             whale={whaleForm}
             setClose={() => setWhaleForm(null)}
             handleSubmit={handleSubmit}
           />
         ) : (
-          <WhaleDetailsCard whale={whaleForm} />
+          <WhaleDetails whale={whaleForm} />
         )}
         <Link to={`/whales/${whaleForm?.id}`}>
           <Text

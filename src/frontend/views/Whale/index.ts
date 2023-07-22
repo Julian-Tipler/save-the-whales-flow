@@ -1,3 +1,3 @@
-import WhaleDetailsPage from "./WhaleDetailsPage";
+import WhaleDetailsPage from "./WhalePage";
 
 export default WhaleDetailsPage;

@@ -6,6 +6,7 @@ import {
   AccordionPanel,
   Box,
   Heading,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 import { fetchPedigrees } from "../../../db/dataServices";
@@ -35,7 +36,7 @@ export const NavigationSidebar = () => {
   };
 
   if (!pedigrees || !whales) {
-    return <div>loading...</div>;
+    return <Spinner />;
   }
 
   return (
