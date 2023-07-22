@@ -1,4 +1,4 @@
-import { useSidebarContext } from "../context/SidebarContext";
+import { useDrawerContext } from "../context/DrawerContext";
 import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
 import { WhaleDetailsForm } from "../../../../features/Whales/Whale/WhaleDetailsForm";
 import { useWhalesContext } from "../context/WhalesContext";
@@ -7,8 +7,8 @@ import { WhaleDetailsCard } from "../../../Whales/Whale/WhaleDetailsCard";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../../Auth/context/AuthContext";
 
-export const Sidebar = () => {
-  const { whaleForm, setWhaleForm } = useSidebarContext();
+export const WhaleDrawer = () => {
+  const { whaleForm, setWhaleForm } = useDrawerContext();
   const { whales, setWhales } = useWhalesContext();
   const { admin } = useAuthContext();
 

@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { whaleStatusIcon } from "../../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../../db/Types/Entities";
-import { useSidebarContext } from "../context/SidebarContext";
+import { useSidebarContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
 import "./WhaleNode.css";
 

@@ -1,15 +1,15 @@
 import { Pedigree } from "./Pedigree";
 import { PedigreeProvider } from "./context/PedigreeContext";
-import { SidebarProvider } from "./context/SidebarContext";
+import { DrawerProvider } from "./context/DrawerContext";
 import { WhalesProvider } from "./context/WhalesContext";
 
 const PedigreePage = () => {
   return (
     <PedigreeProvider>
       <WhalesProvider>
-        <SidebarProvider>
+        <DrawerProvider>
           <Pedigree />
-        </SidebarProvider>
+        </DrawerProvider>
       </WhalesProvider>
     </PedigreeProvider>
   );

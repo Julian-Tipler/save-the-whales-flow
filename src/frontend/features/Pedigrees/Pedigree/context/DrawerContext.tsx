@@ -1,22 +1,22 @@
 import React, { useContext } from "react";
 import { Whale } from "../../../../../db/Types/Entities";
 
-type SidebarContextValue = {
+type DrawerContextValue = {
   whaleForm: Whale | null;
   setWhaleForm: React.Dispatch<React.SetStateAction<Whale | null>>;
 };
 
-export const SidebarContext = React.createContext<SidebarContextValue>(
-  {} as SidebarContextValue
+export const DrawerContext = React.createContext<DrawerContextValue>(
+  {} as DrawerContextValue
 );
 
-export function SidebarProvider({ children }: any) {
+export function DrawerProvider({ children }: any) {
   const [whaleForm, setWhaleForm] = React.useState<Whale | null>(null);
 
   const value = { whaleForm, setWhaleForm };
   return (
-    <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>
+    <DrawerContext.Provider value={value}>{children}</DrawerContext.Provider>
   );
 }
 
-export const useSidebarContext = () => useContext(SidebarContext);
+export const useDrawerContext = () => useContext(DrawerContext);
