@@ -4,8 +4,8 @@ import { Whale } from "../../../../db/Types/Entities";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../Auth/context/AuthContext";
 import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
-import { WhaleForm } from "../../Whale/WhaleForm";
-import WhaleDetails from "../../Whale/WhaleDetails";
+import { WhaleForm } from "../../../cards/WhaleCard/WhaleForm";
+import WhaleDetails from "../../../cards/WhaleCard/WhaleDetails";
 
 export const WhaleDrawer = () => {
   const { whaleForm, setWhaleForm } = useDrawerContext();

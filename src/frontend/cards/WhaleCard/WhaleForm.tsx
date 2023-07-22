@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, Button, Input, Flex, Box, Select } from "@chakra-ui/react";
-import { useWhaleContext } from "./context/WhaleContext";
+import { useWhaleContext } from "../../views/Whale/context/WhaleContext";
 import { Whale } from "../../../db/Types/Entities";
 
 export const WhaleForm = ({

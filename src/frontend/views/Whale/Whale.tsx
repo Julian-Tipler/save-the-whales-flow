@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { useWhaleContext } from "./context/WhaleContext";
-import { WhaleCard } from "./WhaleCard";
+import { WhaleCard } from "../../cards/WhaleCard/WhaleCard";
 import { useParams } from "react-router-dom";
 import { BodyGrid } from "../../components/BodyGrid";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { GridItem, Spinner } from "@chakra-ui/react";
 import { WhalesPedigrees } from "./WhalesPedigrees";
 
 export const Whale = () => {
@@ -30,7 +30,7 @@ export const Whale = () => {
     fetchWhaleResolver({ id });
   }, [id]);
 
-  if (!whale) return <div>Loading...</div>;
+  if (!whale) return <Spinner />;
 
   return (
     <BodyGrid>

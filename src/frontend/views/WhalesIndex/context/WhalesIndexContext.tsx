@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { fetchWhales } from "../../../../../db/dataServices";
+import { fetchWhales } from "../../../../db/dataServices";
 
 type WhalesIndexContextValue = {};
 
