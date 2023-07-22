@@ -14,7 +14,7 @@ import { usePedigreeContext } from "./context/PedigreeContext";
 import { Button, Text } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
-import { Sidebar } from "./Sidebar/Sidebar";
+import { WhaleDrawer } from "./WhaleDrawer/WhaleDrawer";
 import { useWhalesContext } from "./context/WhalesContext";
 import { useSavePedigree } from "./functions/useSavePedigree";
 import { Whale } from "../../../../db/Types/Entities";
@@ -152,7 +152,7 @@ export function ReactFlowContainer() {
             <DragNDrop />
           </>
         )}
-        <Sidebar />
+        <WhaleDrawer />
       </ReactFlowProvider>
     </div>
   );

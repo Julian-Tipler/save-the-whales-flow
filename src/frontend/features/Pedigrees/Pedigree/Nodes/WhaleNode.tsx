@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { whaleStatusIcon } from "../../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../../db/Types/Entities";
-import { useSidebarContext } from "../context/DrawerContext";
+import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
 import "./WhaleNode.css";
 
@@ -38,8 +38,7 @@ export const WhaleNode = ({
   data: NodeData;
   selected: Boolean;
 }) => {
-  const { setWhaleForm } = useSidebarContext();
-  const { whaleForm } = useSidebarContext();
+  const { setWhaleForm, whaleForm } = useDrawerContext();
   const { whales } = useWhalesContext();
 
   const whale = whales.find((whale) => whale.id === id);
