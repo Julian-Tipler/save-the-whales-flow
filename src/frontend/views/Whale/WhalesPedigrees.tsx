@@ -1,5 +1,5 @@
 import { Card, CardHeader } from "@chakra-ui/react";
-import { BodyCard } from "../../components/BodyCard";
+import { BodyCard } from "../../../components/BodyCard";
 
 export function WhalesPedigrees() {
   return (

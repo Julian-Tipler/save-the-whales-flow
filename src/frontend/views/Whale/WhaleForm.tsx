@@ -1,17 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  Card,
-  CardBody,
-  Text,
-  Button,
-  Input,
-  Flex,
-  Box,
-  Select,
-} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Text, Button, Input, Flex, Box, Select } from "@chakra-ui/react";
 import { useWhaleContext } from "./context/WhaleContext";
 import { Whale } from "../../../db/Types/Entities";
-import { BodyCard } from "../../components/BodyCard";
 
 export const WhaleForm = ({
   whale,
@@ -22,10 +12,7 @@ export const WhaleForm = ({
   handleSubmit: Function;
   setEditMode: Function;
 }) => {
-  console.log("whale", whale);
-  console.log("handleSubmit", handleSubmit);
   const [errors, setErrors] = useState<any>([]);
-  const { updateWhaleResolver } = useWhaleContext();
   const [identification, setIdentification] = useState("");
   const [name, setName] = useState("");
   const [gender, setGender] = useState<"male" | "female" | "unknown">(
@@ -117,7 +104,6 @@ export const WhaleForm = ({
       <Flex justifyContent={"center"} marginTop={"16px"}>
         <Button
           onClick={handleSubmit({
-            id: whale.id,
             whaleFormData: {
               id: whale.id,
               identification,
@@ -127,7 +113,6 @@ export const WhaleForm = ({
               died,
               notes,
             },
-            updateWhaleResolver,
             setErrors,
             setEditMode,
           })}

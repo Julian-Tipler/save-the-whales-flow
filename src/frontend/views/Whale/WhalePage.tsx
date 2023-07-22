@@ -1,11 +1,10 @@
-import { WhaleDetails } from "./Whale";
+import { Whale } from "./Whale";
 import { WhaleProvider } from "./context/WhaleContext";
-import { WhalesPedigrees } from "./WhalesPedigrees";
 
 const PedigreePage = () => {
   return (
     <WhaleProvider>
-      <WhaleDetails />
+      <Whale />
     </WhaleProvider>
   );
 };
