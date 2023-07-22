@@ -5,13 +5,14 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Heading,
   Text,
 } from "@chakra-ui/react";
-import { fetchPedigrees } from "../../db/dataServices";
+import { fetchPedigrees } from "../../../db/dataServices";
 import { useEffect, useState } from "react";
-import { Pedigree, Whale } from "../../db/Types/Entities";
+import { Pedigree, Whale } from "../../../db/Types/Entities";
 import { Link } from "react-router-dom";
-import { fetchWhales } from "../../db/dataServices/fetchWhales";
+import { fetchWhales } from "../../../db/dataServices/fetchWhales";
 import { NavigationSidebarProvider } from "./context/NavigationSidebarContext";
 
 export const NavigationSidebar = () => {
@@ -39,7 +40,16 @@ export const NavigationSidebar = () => {
 
   return (
     <NavigationSidebarProvider>
-      <Accordion>
+      <Accordion
+        position={"fixed"}
+        width="300px"
+        left="0"
+        top="0"
+        padding={"10px"}
+      >
+        <Heading size={"xl"} padding={"10px"}>
+          SAVE THE WHALES
+        </Heading>
         <AccordionItem>
           <h2>
             <AccordionButton>

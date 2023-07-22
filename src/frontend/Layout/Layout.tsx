@@ -1,13 +1,13 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import { NavigationSidebar } from "../Navigation/NavigationSidebar";
+import { NavigationSidebar } from "./Navigation/NavigationSidebar";
 
-import { Header } from "../Header/Header";
+import { Header } from "./Header/Header";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
   return (
     <Grid
-      templateAreas={`"header header"
+      templateAreas={`"nav header"
                   "nav main"
                   "nav footer"`}
       gridTemplateRows={"75px 1fr 100px"}
@@ -15,18 +15,28 @@ export const Layout = () => {
       w="100vw"
       color="blackAlpha.700"
       fontWeight="bold"
+      minH="100vh"
     >
       <GridItem
         pl="2"
-        bg={"blue.400"}
         area={"header"}
         display={"flex"}
         padding={"10px"}
         alignItems={"center"}
+        bg={"brand.background"}
+        borderBottom={"1px solid"}
+        borderColor={"brand.border"}
       >
         <Header />
       </GridItem>
-      <GridItem pl="2" bg={"#E0EBF5"} area={"nav"} padding={"15px"}>
+      <GridItem
+        pl="2"
+        area={"nav"}
+        padding={"15px"}
+        bg={"brand.background"}
+        borderRight={"1px solid"}
+        borderColor={"brand.border"}
+      >
         <NavigationSidebar />
       </GridItem>
       <GridItem
@@ -35,10 +45,12 @@ export const Layout = () => {
         minHeight={"100vh"}
         padding={"30px"}
         width={"100%"}
+        bg={"brand.bodyBackground"}
+        overflow={"auto"}
       >
         <Outlet />
       </GridItem>
-      <GridItem pl="2" bg="blue.300" area={"footer"}></GridItem>
+      <GridItem pl="2" bg="brand.background" area={"footer"}></GridItem>
     </Grid>
   );
 };

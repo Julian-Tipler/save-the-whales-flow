@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useWhaleContext } from "../context/WhaleContext";
 import { Whale } from "../../../../db/Types/Entities";
+import { BodyCard } from "../../../components/BodyCard";
 
 export const WhaleDetailsForm = ({
   whale,
@@ -43,11 +44,7 @@ export const WhaleDetailsForm = ({
   }, []);
 
   return (
-    <Card
-      padding={"16px"}
-      borderRadius={"8px"}
-      boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
-    >
+    <BodyCard>
       <CardBody>
         <Flex marginBottom={"8px"}>
           <Text width={"140px"} fontWeight={"bold"}>
@@ -148,7 +145,7 @@ export const WhaleDetailsForm = ({
           Cancel
         </Button>
       </Flex>
-    </Card>
+    </BodyCard>
   );
 };
 

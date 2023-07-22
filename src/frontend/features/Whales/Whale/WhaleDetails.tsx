@@ -3,6 +3,9 @@ import { useWhaleContext } from "../context/WhaleContext";
 import { WhaleDetailsForm } from "./WhaleDetailsForm";
 import { WhaleDetailsCard } from "./WhaleDetailsCard";
 import { useParams } from "react-router-dom";
+import { BodyGrid } from "../../../components/BodyGrid";
+import { Grid, GridItem } from "@chakra-ui/react";
+import { WhalesPedigrees } from "./WhalesPedigrees";
 
 export const WhaleDetails = () => {
   const [editMode, setEditMode] = React.useState(false);
@@ -17,17 +20,24 @@ export const WhaleDetails = () => {
 
   if (!whale) return <div>Loading...</div>;
 
-  if (editMode) {
-    return (
-      <WhaleDetailsForm
-        whale={whale}
-        setClose={setEditMode}
-        handleSubmit={handleSubmit}
-      />
-    );
-  } else {
-    return <WhaleDetailsCard whale={whale} setEditMode={setEditMode} />;
-  }
+  return (
+    <BodyGrid>
+      <GridItem colSpan={1}>
+        {editMode ? (
+          <WhaleDetailsForm
+            whale={whale}
+            setClose={setEditMode}
+            handleSubmit={handleSubmit}
+          />
+        ) : (
+          <WhaleDetailsCard whale={whale} setEditMode={setEditMode} />
+        )}
+      </GridItem>
+      <GridItem colSpan={2}>
+        <WhalesPedigrees />
+      </GridItem>
+    </BodyGrid>
+  );
 };
 
 export const handleSubmit = ({

@@ -10,6 +10,7 @@ import {
 import { whaleStatusIcon } from "../../../helpers/whaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 import { useAuthContext } from "../../../Auth/context/AuthContext";
+import { BodyCard } from "../../../components/BodyCard";
 
 export const WhaleDetailsCard = ({
   whale,
@@ -20,7 +21,7 @@ export const WhaleDetailsCard = ({
 }) => {
   const { admin } = useAuthContext();
   return (
-    <Card>
+    <BodyCard>
       <CardHeader>
         <Heading size={"md"} padding={"4px"}>
           <Flex alignItems={"center"} gap={"2"}>
@@ -55,7 +56,9 @@ export const WhaleDetailsCard = ({
           <Text>{whale.notes}</Text>
         </Flex>
       </CardBody>
-      {admin && setEditMode && <Button onClick={() => setEditMode(true)}>Edit</Button>}
-    </Card>
+      {admin && setEditMode && (
+        <Button onClick={() => setEditMode(true)}>Edit</Button>
+      )}
+    </BodyCard>
   );
 };
