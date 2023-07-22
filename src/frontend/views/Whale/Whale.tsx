@@ -21,11 +21,31 @@ export const WhaleDetails = () => {
   return (
     <BodyGrid>
       <GridItem colSpan={1}>
-        <WhaleCard whale={whale} />
+        <WhaleCard whale={whale} handleSubmit={handleSubmit} />
       </GridItem>
       <GridItem colSpan={2}>
         <WhalesPedigrees />
       </GridItem>
     </BodyGrid>
   );
+};
+
+export const handleSubmit = ({
+  id,
+  updateWhaleResolver,
+  whaleFormData,
+  setErrors,
+  setEditMode,
+}: any) => {
+  return async () => {
+    const errors = await updateWhaleResolver({
+      id: id,
+      whaleFormData: whaleFormData,
+    });
+    if (errors.length) {
+      setErrors(errors);
+    } else {
+      setEditMode(false);
+    }
+  };
 };

@@ -14,7 +14,13 @@ import WhaleDetails from "./WhaleDetails";
 import { useState } from "react";
 import { WhaleForm } from "./WhaleForm";
 
-export const WhaleCard = ({ whale }: { whale: Whale }) => {
+export const WhaleCard = ({
+  whale,
+  handleSubmit,
+}: {
+  whale: Whale;
+  handleSubmit: Function;
+}) => {
   const [editMode, setEditMode] = useState(false);
 
   const { admin } = useAuthContext();
@@ -30,7 +36,11 @@ export const WhaleCard = ({ whale }: { whale: Whale }) => {
       </CardHeader>
       <CardBody>
         {editMode ? (
-          <WhaleForm whale={whale} handleSubmit={handleSubmit} />
+          <WhaleForm
+            whale={whale}
+            handleSubmit={handleSubmit}
+            setEditMode={setEditMode}
+          />
         ) : (
           <WhaleDetails whale={whale} />
         )}
@@ -40,24 +50,4 @@ export const WhaleCard = ({ whale }: { whale: Whale }) => {
       )}
     </BodyCard>
   );
-};
-
-export const handleSubmit = ({
-  id,
-  updateWhaleResolver,
-  whaleFormData,
-  setErrors,
-  setEditMode,
-}: any) => {
-  return async () => {
-    const errors = await updateWhaleResolver({
-      id: id,
-      whaleFormData: whaleFormData,
-    });
-    if (errors.length) {
-      setErrors(errors);
-    } else {
-      setEditMode(false);
-    }
-  };
 };

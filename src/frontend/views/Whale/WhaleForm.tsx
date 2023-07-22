@@ -16,9 +16,11 @@ import { BodyCard } from "../../components/BodyCard";
 export const WhaleForm = ({
   whale,
   handleSubmit,
+  setEditMode,
 }: {
   whale: Whale;
   handleSubmit: Function;
+  setEditMode: Function;
 }) => {
   console.log("whale", whale);
   console.log("handleSubmit", handleSubmit);
@@ -115,7 +117,8 @@ export const WhaleForm = ({
       <Flex justifyContent={"center"} marginTop={"16px"}>
         <Button
           onClick={handleSubmit({
-            formData: {
+            id: whale.id,
+            whaleFormData: {
               id: whale.id,
               identification,
               name,
@@ -124,6 +127,9 @@ export const WhaleForm = ({
               died,
               notes,
             },
+            updateWhaleResolver,
+            setErrors,
+            setEditMode,
           })}
           marginRight={"8px"}
           borderRadius={"4px"}
