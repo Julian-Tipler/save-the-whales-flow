@@ -5,7 +5,7 @@ import { usePedigreeContext } from "./context/PedigreeContext";
 import { useEffect } from "react";
 import { useFetchPedigree } from "./functions/useFetchPedigree";
 import { useWhalesContext } from "./context/WhalesContext";
-import { BodyGrid } from "../../../components/BodyGrid";
+import { BodyGrid } from "../../components/BodyGrid";
 import { GridItem } from "@chakra-ui/react";
 import { WhalesIndex } from "./WhalesIndex";
 

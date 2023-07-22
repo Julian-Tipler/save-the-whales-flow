@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import { BodyCard } from "../../../components/BodyCard";
+import { BodyCard } from "../../components/BodyCard";
 
 export function WhalesIndex() {
   return (
