@@ -29,6 +29,7 @@ export const WhaleForm = ({
     setDied(whale.died || "");
     setNotes(whale.notes || "");
   }, []);
+  console.log("identification", identification, "name", name);
   return (
     <>
       <Flex marginBottom={"8px"}>

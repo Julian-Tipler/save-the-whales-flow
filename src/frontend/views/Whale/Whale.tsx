@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { BodyGrid } from "../../components/BodyGrid";
 import { GridItem, Spinner } from "@chakra-ui/react";
 import { WhalesPedigrees } from "./WhalesPedigrees";
+import { validateWhale } from "../../cards/WhaleCard/validation/validateWhale";
 
 export const Whale = () => {
   const { whale, fetchWhaleResolver, updateWhaleResolver } = useWhaleContext();
@@ -14,15 +15,17 @@ export const Whale = () => {
 
   const handleSubmit = ({ whaleFormData, setErrors, setEditMode }: any) => {
     return async () => {
-      const errors = await updateWhaleResolver({
+      const errors = validateWhale(whaleFormData);
+      if (errors.length) {
+        setErrors(errors);
+        return;
+      }
+      await updateWhaleResolver({
         id: id,
         whaleFormData: whaleFormData,
       });
-      if (errors.length) {
-        setErrors(errors);
-      } else {
-        setEditMode(false);
-      }
+
+      setEditMode(false);
     };
   };
 

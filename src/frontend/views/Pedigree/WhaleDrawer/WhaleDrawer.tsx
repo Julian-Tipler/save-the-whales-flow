@@ -3,9 +3,11 @@ import { useWhalesContext } from "../context/WhalesContext";
 import { Whale } from "../../../../db/Types/Entities";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../auth/context/AuthContext";
-import { Drawer, DrawerContent, Text } from "@chakra-ui/react";
+import { Box, Drawer, DrawerContent, Text } from "@chakra-ui/react";
 import { WhaleForm } from "../../../cards/WhaleCard/WhaleForm";
 import WhaleDetails from "../../../cards/WhaleCard/WhaleDetails";
+import { WhaleCard } from "../../../cards/WhaleCard/WhaleCard";
+import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
 
 export const WhaleDrawer = () => {
   const { whaleForm, setWhaleForm } = useDrawerContext();
@@ -14,25 +16,33 @@ export const WhaleDrawer = () => {
 
   if (!whaleForm) return null;
 
-  const handleSubmit = ({
-    formData,
-    setErrors,
-    setEditMode,
-  }: {
-    formData: any;
-    setErrors: Function;
-    setEditMode: Function;
-  }) => {
-    const newWhales = whales.map((whale: Whale) => {
-      if (whale.id === whaleForm.id) {
-        return formData;
+  const handleSubmit =
+    ({
+      whaleFormData,
+      setErrors,
+      setEditMode,
+    }: {
+      whaleFormData: any;
+      setErrors: Function;
+      setEditMode: Function;
+    }) =>
+    () => {
+      const errors = validateWhale(whaleFormData);
+      if (errors.length) {
+        setErrors(errors);
+        return;
       }
-      return whale;
-    });
+      const newWhales = whales.map((whale: Whale) => {
+        if (whale.id === whaleForm.id) {
+          return whaleFormData;
+        }
+        return whale;
+      });
 
-    setWhaleForm(null);
-    setWhales(newWhales);
-  };
+      setWhaleForm(null);
+      setWhales(newWhales);
+    };
+  // TODO problem no id for form whale
 
   if (!whaleForm) return null;
   return (
@@ -42,16 +52,14 @@ export const WhaleDrawer = () => {
       placement="right"
     >
       {/* <DrawerOverlay /> */}
-      <DrawerContent>
-        {admin ? (
-          <WhaleForm
+      <DrawerContent color={"black"} padding={"10px"}>
+        <Box>
+          <WhaleCard
             whale={whaleForm}
-            setClose={() => setWhaleForm(null)}
             handleSubmit={handleSubmit}
+            justContent={true}
           />
-        ) : (
-          <WhaleDetails whale={whaleForm} />
-        )}
+        </Box>
         <Link to={`/whales/${whaleForm?.id}`}>
           <Text
             color={"#0000FF"}

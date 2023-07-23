@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { saveOrUpdateWhale } from "../../../../db/dataServices/saveOrUpdateWhale";
-import { validateWhale } from "./validation/validateWhale";
+import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
 import { Whale } from "../../../../db/Types/Entities";
 import { fetchWhale } from "../../../../db/dataServices";
 

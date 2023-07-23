@@ -1,4 +1,4 @@
-import { Pedigree } from "./PedigreeDetails";
+import { Pedigree } from "./Pedigree";
 import { PedigreeProvider } from "./context/PedigreeContext";
 import { DrawerProvider } from "./context/DrawerContext";
 import { WhalesProvider } from "./context/WhalesContext";

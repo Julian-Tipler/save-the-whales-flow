@@ -1,4 +1,4 @@
-import { Whale } from "../../../../../db/Types/Entities";
+import { Whale } from "../../../../db/Types/Entities";
 
 export const validateWhale = (whale: Whale) => {
   const errors = [];
