@@ -12,7 +12,6 @@ export const WhalesContext = React.createContext<WhalesContextValue>(
 
 export function WhalesProvider({ children }: any) {
   const [whales, setWhales] = React.useState<Whale[]>([]);
-  console.log("context", whales)
 
   const value = { whales, setWhales };
   return (

@@ -11,7 +11,7 @@ import { WhalesIndex } from "./WhalesIndex";
 
 export const Pedigree = () => {
   const { pedigree, setPedigree, setNodes, setEdges } = usePedigreeContext();
-  const { setWhales } = useWhalesContext();
+  const { whales, setWhales } = useWhalesContext();
 
   const { id } = useParams<{ id: string }>();
   if (!id) throw new Error("No pedigree id provided");
@@ -27,8 +27,8 @@ export const Pedigree = () => {
       <GridItem rowSpan={2} colSpan={{ base: 4, md: 4 }}>
         <ReactFlowContainer />
       </GridItem>
-      <GridItem rowSpan={2} colSpan={{ base: 4, md: 4 }}>
-        <WhalesIndex />
+      <GridItem rowSpan={1} colSpan={{ base: 2, md: 2 }}>
+        <WhalesIndex whales={whales} />
       </GridItem>
     </BodyGrid>
   );
