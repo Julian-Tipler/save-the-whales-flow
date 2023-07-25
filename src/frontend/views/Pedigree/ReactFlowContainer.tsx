@@ -90,13 +90,12 @@ export function ReactFlowContainer() {
     <BodyCard>
       <ReactFlowProvider>
         <PedigreeHeader name={pedigree.name} />
-        <Flex flexDirection="row">
+        <Flex flexDirection="row" height={"100%"}>
           <div
             className="reactflow-wrapper"
             ref={reactFlowWrapper}
             style={{
               width: "100%",
-              height: "70vh",
               border: "2px solid black",
               borderRadius: "5px",
               backgroundColor: "#FFFFFF",

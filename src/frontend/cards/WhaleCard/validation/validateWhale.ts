@@ -1,4 +1,4 @@
-import { Whale } from "../../../../../db/Types/Entities";
+import { Whale } from "../../../../db/Types/Entities";
 
 export const validateWhale = (whale: Whale) => {
   const errors = [];
@@ -7,6 +7,10 @@ export const validateWhale = (whale: Whale) => {
 
   if (identification && identification.length > 30) {
     errors.push("Identification must be less than 30 characters");
+  }
+
+  if (!name) {
+    errors.push("Name is required");
   }
 
   if (name && name.length > 30) {

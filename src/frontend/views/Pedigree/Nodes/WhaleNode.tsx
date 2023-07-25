@@ -40,10 +40,9 @@ export const WhaleNode = ({
 }) => {
   const { setWhaleForm, whaleForm } = useDrawerContext();
   const { whales } = useWhalesContext();
-
+  console.log("whales", whales);
   const whale = whales.find((whale) => whale.id === id);
   if (!whale) return null;
-
   const highlighted = whaleForm && whale && whaleForm.id === whale.id;
   const backgroundColor = calculateBackgroundColor(whale);
 

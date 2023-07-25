@@ -17,37 +17,40 @@ import { WhaleForm } from "./WhaleForm";
 export const WhaleCard = ({
   whale,
   handleSubmit,
+  justContent,
 }: {
   whale: Whale;
   handleSubmit: Function;
+  justContent?: boolean;
 }) => {
   const [editMode, setEditMode] = useState(false);
 
   const { admin } = useAuthContext();
-  return (
-    <BodyCard>
-      <CardHeader>
-        <Heading size={"md"} padding={"4px"}>
+
+  const cardBody = () => {
+    return (
+      <>
+        <Heading size={"md"}>
           <Flex alignItems={"center"} gap={"2"}>
             <Text>{whale.identification}</Text>
             {whaleStatusIcon({ whale, size: "16px" })}
           </Flex>
         </Heading>
-      </CardHeader>
-      <CardBody>
-        {editMode ? (
-          <WhaleForm
-            whale={whale}
-            handleSubmit={handleSubmit}
-            setEditMode={setEditMode}
-          />
-        ) : (
-          <WhaleDetails whale={whale} />
-        )}
-      </CardBody>
-      {admin && setEditMode && (
-        <Button onClick={() => setEditMode(true)}>Edit</Button>
-      )}
-    </BodyCard>
-  );
+        <CardBody>
+          {editMode ? (
+            <WhaleForm
+              whale={whale}
+              handleSubmit={handleSubmit}
+              setEditMode={setEditMode}
+            />
+          ) : (
+            <WhaleDetails whale={whale} setEditMode={setEditMode} />
+          )}
+        </CardBody>
+      </>
+    );
+  };
+
+  if (justContent) return cardBody();
+  return <BodyCard>{cardBody()}</BodyCard>;
 };

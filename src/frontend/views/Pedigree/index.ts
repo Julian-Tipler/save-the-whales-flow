@@ -1,3 +1,3 @@
-import PedigreePage from "./PedigreeDetailsPage";
+import PedigreePage from "./PedigreePage";
 
 export default PedigreePage;
