@@ -31,76 +31,85 @@ export const WhaleForm = ({
   }, []);
   console.log("identification", identification, "name", name);
   return (
-    <>
-      <Flex marginBottom={"8px"}>
-        <Text width={"140px"} fontWeight={"bold"}>
-          Id:
-        </Text>
-        <Input
-          value={identification}
-          onChange={handleOnChange(setIdentification)}
-          borderRadius={"4px"}
-        />
-      </Flex>
-      <Flex marginBottom={"8px"}>
-        <Text width={"140px"} fontWeight={"bold"}>
-          Name:
-        </Text>
-        <Input
-          value={name}
-          onChange={handleOnChange(setName)}
-          borderRadius={"4px"}
-        />
-      </Flex>
-      <Flex marginBottom={"8px"}>
-        <Text width={"140px"} fontWeight={"bold"}>
-          Gender:
-        </Text>
-        <Select value={gender} onChange={handleOnChange(setGender)}>
-          <option value="male">male</option>
-          <option value="female">female</option>
-          <option value="unknown">unknown</option>
-        </Select>
-        {/* // value={gender}
+    <Flex flexDirection="column" justifyContent={"space-between"}>
+      <Box>
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Id:
+          </Text>
+          <Input
+            size={"sm"}
+            value={identification}
+            onChange={handleOnChange(setIdentification)}
+            borderRadius={"4px"}
+          />
+        </Flex>
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Name:
+          </Text>
+          <Input
+            size={"sm"}
+            value={name}
+            onChange={handleOnChange(setName)}
+            borderRadius={"4px"}
+          />
+        </Flex>
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Gender:
+          </Text>
+          <Select
+            size={"sm"}
+            value={gender}
+            onChange={handleOnChange(setGender)}
+          >
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="unknown">unknown</option>
+          </Select>
+          {/* // value={gender}
             // onChange={handleOnChange(setGender)}
             // borderRadius={"4px"} */}
-      </Flex>
-      <Flex marginBottom={"8px"}>
-        <Text width={"140px"} fontWeight={"bold"}>
-          Born:
-        </Text>
-        <Input
-          value={born}
-          onChange={handleOnChange(setBorn)}
-          borderRadius={"4px"}
-        />
-      </Flex>
-      <Flex marginBottom={"8px"}>
-        <Text width={"140px"} fontWeight={"bold"}>
-          Died:
-        </Text>
-        <Input
-          value={died}
-          onChange={handleOnChange(setDied)}
-          borderRadius={"4px"}
-        />
-      </Flex>
-      <Flex marginBottom={"8px"}>
-        <Text width={"140px"} fontWeight={"bold"}>
-          Notes:
-        </Text>
-        <Input
-          value={notes}
-          onChange={handleOnChange(setNotes)}
-          borderRadius={"4px"}
-        />
-      </Flex>
-      <Box>
-        {errors.map((error: any, i: number) => (
-          <Text color={"red"} key={`error-${i}`} marginBottom={"4px"}>
-            {error}
+        </Flex>
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Born:
           </Text>
-        ))}
+          <Input
+            size={"sm"}
+            value={born}
+            onChange={handleOnChange(setBorn)}
+            borderRadius={"4px"}
+          />
+        </Flex>
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Died:
+          </Text>
+          <Input
+            size={"sm"}
+            value={died}
+            onChange={handleOnChange(setDied)}
+            borderRadius={"4px"}
+          />
+        </Flex>
+        <Flex marginBottom={"8px"}>
+          <Text width={"140px"} fontWeight={"bold"}>
+            Notes:
+          </Text>
+          <Input
+            size={"sm"}
+            value={notes}
+            onChange={handleOnChange(setNotes)}
+            borderRadius={"4px"}
+          />
+        </Flex>
+      </Box>
+      <Box height={"20px"} justifyContent={"center"}>
+        <Text color={"red"}  textAlign={"center"}>
+          {errors[0]}
+        </Text>
       </Box>
       <Flex justifyContent={"center"} marginTop={"16px"}>
         <Button
@@ -119,18 +128,20 @@ export const WhaleForm = ({
           })}
           marginRight={"8px"}
           borderRadius={"4px"}
+          width={"100px"}
         >
           Update
         </Button>
-        {/* <Button
-          onClick={() => setClose(false)}
+        <Button
+          onClick={() => setEditMode(false)}
           borderRadius={"4px"}
           variant={"outline"}
+          width={"100px"}
         >
           Cancel
-        </Button> */}
+        </Button>
       </Flex>
-    </>
+    </Flex>
   );
 };
 

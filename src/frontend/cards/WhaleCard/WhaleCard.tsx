@@ -30,14 +30,12 @@ export const WhaleCard = ({
   const cardBody = () => {
     return (
       <>
-        <CardHeader>
-          <Heading size={"md"} padding={"4px"}>
-            <Flex alignItems={"center"} gap={"2"}>
-              <Text>{whale.identification}</Text>
-              {whaleStatusIcon({ whale, size: "16px" })}
-            </Flex>
-          </Heading>
-        </CardHeader>
+        <Heading size={"md"}>
+          <Flex alignItems={"center"} gap={"2"}>
+            <Text>{whale.identification}</Text>
+            {whaleStatusIcon({ whale, size: "16px" })}
+          </Flex>
+        </Heading>
         <CardBody>
           {editMode ? (
             <WhaleForm
@@ -46,12 +44,9 @@ export const WhaleCard = ({
               setEditMode={setEditMode}
             />
           ) : (
-            <WhaleDetails whale={whale} />
+            <WhaleDetails whale={whale} setEditMode={setEditMode} />
           )}
         </CardBody>
-        {admin && setEditMode && (
-          <Button onClick={() => setEditMode(true)}>Edit</Button>
-        )}
       </>
     );
   };

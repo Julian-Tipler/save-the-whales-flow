@@ -37,7 +37,7 @@ export const Whale = () => {
 
   return (
     <BodyGrid>
-      <GridItem colSpan={1}>
+      <GridItem colSpan={2} rowSpan={1}>
         <WhaleCard whale={whale} handleSubmit={handleSubmit} />
       </GridItem>
       <GridItem colSpan={2}>

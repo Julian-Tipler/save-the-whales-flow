@@ -4,7 +4,7 @@ import React, { ReactComponentElement } from "react";
 export const BodyGrid = ({ children }: { children: any }) => {
   return (
     <Grid
-      templateRows="repeat(4, 350px)"
+      templateRows="repeat(4, 400px)"
       templateColumns="repeat(4, 1fr)"
       gap={4}
     >

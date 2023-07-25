@@ -9,6 +9,10 @@ export const validateWhale = (whale: Whale) => {
     errors.push("Identification must be less than 30 characters");
   }
 
+  if (!name) {
+    errors.push("Name is required");
+  }
+
   if (name && name.length > 30) {
     errors.push("Name must be less than 30 characters");
   }
