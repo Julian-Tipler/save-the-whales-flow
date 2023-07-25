@@ -28,7 +28,7 @@ export const DragNDrop = () => {
   return (
     <Flex
       direction={"column"}
-      w="400px"
+      w="200px"
       paddingLeft={"4"}
       paddingRight={"4"}
       justifyContent={"space-between"}
