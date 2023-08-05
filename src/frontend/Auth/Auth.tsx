@@ -1,15 +1,11 @@
-import React, { useContext, useState } from "react";
 import {
   Flex,
   Box,
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
-  Link,
   Button,
-  Heading,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -28,7 +24,9 @@ export const Auth = () => {
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"} justify={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to Save the Whales</Heading>
+          <Text fontSize={"4xl"} color={"black"}>
+            Sign in to Save the Whales
+          </Text>
         </Stack>
         <Box
           rounded={"lg"}
@@ -38,16 +36,18 @@ export const Auth = () => {
         >
           <Stack spacing={4}>
             <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
+              <FormLabel color={"black"}>Email address</FormLabel>
               <Input
+                color={"black"}
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl id="password">
-              <FormLabel>Password</FormLabel>
+              <FormLabel color={"black"}>Password</FormLabel>
               <Input
+                color={"black"}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
