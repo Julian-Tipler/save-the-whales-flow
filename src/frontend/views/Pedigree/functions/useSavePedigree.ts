@@ -1,6 +1,6 @@
 import { Edge, Node } from "reactflow";
 import { Whale } from "../../../../db/Types/Entities";
-import { createOrUpdateWhales } from "../../../../db/dataServices/createOrUpdateWhale";
+import { createOrUpdateWhales } from "../../../../db/dataServices/createOrUpdateWhales";
 import { updatePedigree } from "../../../../db/dataServices";
 
 export const useSavePedigree = async ({
