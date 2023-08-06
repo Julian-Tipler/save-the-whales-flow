@@ -96,7 +96,6 @@ export function ReactFlowContainer() {
   );
 
   if (!pedigree) return null;
-console.log("nodes",nodes)
   return (
     <Card>
       <ReactFlowProvider>

@@ -1,4 +1,3 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { AuthWall } from "./frontend/AuthWall";
 import { AuthProvider } from "./frontend/auth/context/AuthContext";
 

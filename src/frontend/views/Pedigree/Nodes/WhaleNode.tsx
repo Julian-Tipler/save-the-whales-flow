@@ -66,7 +66,13 @@ export const WhaleNode = ({
           justifyContent={"space-between"}
           gap={"2px"}
         >
-          <Heading fontSize={"11px"} fontWeight={"extrabold"}>
+          <Heading
+            fontSize={"11px"}
+            fontWeight={"extrabold"}
+            overflow="hidden"
+            textOverflow="ellipsis"
+            whiteSpace={"nowrap"}
+          >
             {whale?.identification || "<no id>"}
           </Heading>
           {whaleStatusIcon({ whale, size: "12px" })}

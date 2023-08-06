@@ -11,6 +11,6 @@ export const fetchPedigree = async ({ id }: { id: string }) => {
   if (pedigreeDoc.exists()) {
     return { id: pedigreeDoc.id, ...pedigreeDoc.data() } as Pedigree;
   } else {
-    throw new Error("Pedigree not found");
+    return null
   }
 };
