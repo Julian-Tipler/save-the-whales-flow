@@ -86,8 +86,17 @@ export function ReactFlowContainer() {
     [reactFlowInstance]
   );
 
-  if (!pedigree) return null;
+  const onNodesDelete = useCallback(
+    (nodes: Node[]) => {
+      setWhales((whales: Whale[]) =>
+        whales.filter((whale) => nodes.some((node) => node.id !== whale.id))
+      );
+    },
+    [reactFlowInstance]
+  );
 
+  if (!pedigree) return null;
+console.log("nodes",nodes)
   return (
     <Card>
       <ReactFlowProvider>
@@ -109,6 +118,7 @@ export function ReactFlowContainer() {
               edges={edges}
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
+              onNodesDelete={onNodesDelete}
               onConnect={onConnect}
               onDragOver={onDragOver}
               onDrop={onDrop}

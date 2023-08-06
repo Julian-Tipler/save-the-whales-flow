@@ -29,7 +29,6 @@ export const WhaleForm = ({
     setDied(whale.died || "");
     setNotes(whale.notes || "");
   }, []);
-  console.log("identification", identification, "name", name);
   return (
     <Flex flexDirection="column" justifyContent={"space-between"}>
       <Box>

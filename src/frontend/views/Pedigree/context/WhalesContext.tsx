@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Whale } from "../../../../db/Types/Entities";
+import { usePedigreeContext } from "./PedigreeContext";
 
 type WhalesContextValue = {
   whales: Whale[];
@@ -12,8 +13,17 @@ export const WhalesContext = React.createContext<WhalesContextValue>(
 
 export function WhalesProvider({ children }: any) {
   const [whales, setWhales] = React.useState<Whale[]>([]);
-console.log(whales)
   const value = { whales, setWhales };
+
+  const { nodes } = usePedigreeContext();
+
+  // // Handles deleted whales. Kind of sketch because I'm mixing contexts
+  // useEffect(() => {
+  //   const existingWhales = whales.filter((whale) =>
+  //     nodes.some((node) => node.id === whale.id)
+  //   );
+  //   setWhales(existingWhales);
+  // }, [nodes]);
   return (
     <WhalesContext.Provider value={value}>{children}</WhalesContext.Provider>
   );

@@ -19,6 +19,7 @@ import {
   updatePedigreeDetails,
 } from "../../../../db/dataServices";
 import { Pedigree } from "../../../../db/Types/Entities";
+import { useWhalesContext } from "./WhalesContext";
 
 type PedigreeContextValue = {
   pedigree: Pick<Pedigree, "id" | "name"> | null;
@@ -56,9 +57,12 @@ export function PedigreeProvider({ children }: any) {
   > | null>(null);
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
+
   const [saveLoading, setSaveLoading] = useState(false);
   const [saveWarning, setSaveWarning] = useState(false);
   const [headerLoading, setHeaderLoading] = useState(false);
+
+  const { whales, setWhales } = useWhalesContext();
 
   useEffect(() => {
     setTimeout(() => {

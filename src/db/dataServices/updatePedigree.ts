@@ -22,12 +22,6 @@ export const updatePedigree = async ({
 }) => {
   const pedigreeRef = doc(db, "pedigrees", id);
 
-  // Saves whales that aren't in the /whales collection yet
-  for (const node of nodes) {
-    const { id: nodeId, data } = node;
-    await saveOrUpdateWhale({ id: nodeId, data });
-  }
-
   const newData = {
     nodes,
     edges,
