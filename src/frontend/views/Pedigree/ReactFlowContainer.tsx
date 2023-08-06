@@ -79,7 +79,9 @@ export function ReactFlowContainer() {
 
       setNodes((nds: Node[]) => nds.concat(newNode));
 
-      setWhales((whales: Whale[]) => whales.concat({ id: newWhaleId }));
+      setWhales((whales: Whale[]) =>
+        whales.concat({ id: newWhaleId, name: "unnamed" })
+      );
     },
     [reactFlowInstance]
   );

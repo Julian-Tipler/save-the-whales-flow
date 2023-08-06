@@ -23,5 +23,5 @@ export const createOrUpdateWhales = async ({ whales }: { whales: Whale[] }) => {
     }
   }
 
-  await Promise.all(batch);
+  return await Promise.all(batch);
 };

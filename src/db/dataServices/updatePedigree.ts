@@ -25,7 +25,7 @@ export const updatePedigree = async ({
   // Saves whales that aren't in the /whales collection yet
   for (const node of nodes) {
     const { id: nodeId, data } = node;
-    saveOrUpdateWhale({ id: nodeId, data });
+    await saveOrUpdateWhale({ id: nodeId, data });
   }
 
   const newData = {
