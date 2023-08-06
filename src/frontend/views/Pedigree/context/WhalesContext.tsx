@@ -15,15 +15,6 @@ export function WhalesProvider({ children }: any) {
   const [whales, setWhales] = React.useState<Whale[]>([]);
   const value = { whales, setWhales };
 
-  const { nodes } = usePedigreeContext();
-
-  // // Handles deleted whales. Kind of sketch because I'm mixing contexts
-  // useEffect(() => {
-  //   const existingWhales = whales.filter((whale) =>
-  //     nodes.some((node) => node.id === whale.id)
-  //   );
-  //   setWhales(existingWhales);
-  // }, [nodes]);
   return (
     <WhalesContext.Provider value={value}>{children}</WhalesContext.Provider>
   );

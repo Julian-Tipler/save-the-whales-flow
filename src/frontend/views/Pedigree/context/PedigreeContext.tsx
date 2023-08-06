@@ -62,8 +62,6 @@ export function PedigreeProvider({ children }: any) {
   const [saveWarning, setSaveWarning] = useState(false);
   const [headerLoading, setHeaderLoading] = useState(false);
 
-  const { whales, setWhales } = useWhalesContext();
-
   useEffect(() => {
     setTimeout(() => {
       setSaveWarning(true);
