@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Whale } from "../../../../db/Types/Entities";
+import { usePedigreeContext } from "./PedigreeContext";
 
 type WhalesContextValue = {
   whales: Whale[];
@@ -12,8 +13,8 @@ export const WhalesContext = React.createContext<WhalesContextValue>(
 
 export function WhalesProvider({ children }: any) {
   const [whales, setWhales] = React.useState<Whale[]>([]);
-
   const value = { whales, setWhales };
+
   return (
     <WhalesContext.Provider value={value}>{children}</WhalesContext.Provider>
   );

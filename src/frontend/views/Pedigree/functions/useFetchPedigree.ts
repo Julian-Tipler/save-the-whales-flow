@@ -18,8 +18,8 @@ export const useFetchPedigree = async ({
   if (!pedigree) throw new Error("Pedigree not found");
   const whaleIds = pedigree.nodes.map((node) => node.id);
   const whales = await fetchWhales({ ids: whaleIds });
-  setWhales(whales);
   setPedigree({ name: pedigree.name, id: pedigree.id });
+  setWhales(whales);
   setNodes(pedigree.nodes);
   setEdges(pedigree.edges);
 };

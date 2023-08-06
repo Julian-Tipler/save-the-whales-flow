@@ -9,7 +9,7 @@ import {
 import { whaleStatusIcon } from "../../components/WhaleStatusIcon";
 import { Whale } from "../../../db/Types/Entities";
 import { useAuthContext } from "../../auth/context/AuthContext";
-import { BodyCard } from "../../components/BodyCard";
+import { Card } from "../../components/Card";
 import WhaleDetails from "./WhaleDetails";
 import { useState } from "react";
 import { WhaleForm } from "./WhaleForm";
@@ -52,5 +52,5 @@ export const WhaleCard = ({
   };
 
   if (justContent) return cardBody();
-  return <BodyCard>{cardBody()}</BodyCard>;
+  return <Card>{cardBody()}</Card>;
 };
