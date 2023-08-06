@@ -15,10 +15,12 @@ import { Pedigree, Whale } from "../../../db/Types/Entities";
 import { Link } from "react-router-dom";
 import { fetchWhales } from "../../../db/dataServices/fetchWhales";
 import { NavigationSidebarProvider } from "./context/NavigationSidebarContext";
+import { useAuthContext } from "../../auth/context/AuthContext";
 
 export const NavigationSidebar = () => {
   const [pedigrees, setPedigrees] = useState<Pedigree[]>([]);
   const [whales, setWhales] = useState<Whale[]>([]);
+  const { admin } = useAuthContext();
 
   useEffect(() => {
     fetchData();
@@ -89,6 +91,17 @@ export const NavigationSidebar = () => {
             );
           })}
         </AccordionItem>
+        {admin && (
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Link to={`/pedigrees`}>
+                  <Text>Create New Pedigree</Text>
+                </Link>
+              </AccordionButton>
+            </h2>
+          </AccordionItem>
+        )}
       </Accordion>
     </NavigationSidebarProvider>
   );

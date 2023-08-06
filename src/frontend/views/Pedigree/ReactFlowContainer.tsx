@@ -11,7 +11,7 @@ import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop/DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
 import { usePedigreeContext } from "./context/PedigreeContext";
-import { Button, Card, Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
 import { WhaleDrawer } from "./WhaleDrawer/WhaleDrawer";
@@ -20,7 +20,7 @@ import { useSavePedigree } from "./functions/useSavePedigree";
 import { Whale } from "../../../db/Types/Entities";
 import { useAuthContext } from "../../auth/context/AuthContext";
 import { handleOnNodeDragStop } from "./helpers/pedigreeActions";
-import { BodyCard } from "../../components/BodyCard";
+import { Card } from "../../components/Card";
 import { PedigreeHeader } from "./Header/Header";
 
 export function ReactFlowContainer() {
@@ -87,7 +87,7 @@ export function ReactFlowContainer() {
   if (!pedigree) return null;
 
   return (
-    <BodyCard>
+    <Card>
       <ReactFlowProvider>
         <PedigreeHeader name={pedigree.name} />
         <Flex flexDirection="row" height={"100%"}>
@@ -127,10 +127,10 @@ export function ReactFlowContainer() {
               />
             </ReactFlow>
           </div>
-          <DragNDrop />
+          {admin && <DragNDrop />}
         </Flex>
         <WhaleDrawer />
       </ReactFlowProvider>
-    </BodyCard>
+    </Card>
   );
 }

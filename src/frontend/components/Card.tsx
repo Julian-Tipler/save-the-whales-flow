@@ -1,7 +1,11 @@
-import { Card as ChakraCard } from "@chakra-ui/react";
+import { BoxProps, Card as ChakraCard } from "@chakra-ui/react";
 import React from "react";
 
-export function BodyCard({ children }: { children: React.ReactNode }) {
+interface CardProps extends BoxProps {
+  children: React.ReactNode;
+}
+
+export function Card({ children, ...props }: CardProps) {
   return (
     <ChakraCard
       h="100%"
@@ -11,6 +15,7 @@ export function BodyCard({ children }: { children: React.ReactNode }) {
       border="1px solid"
       borderColor={"brand.border"}
       backgroundColor={"brand.cardBackground"}
+      {...props}
     >
       {children}
     </ChakraCard>

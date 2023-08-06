@@ -1,12 +1,12 @@
-import { Card, CardHeader } from "@chakra-ui/react";
-import { BodyCard } from "../../components/BodyCard";
+import { CardHeader } from "@chakra-ui/react";
+import { Card } from "../../components/Card";
 
 export function WhalesPedigrees() {
   return (
-    <BodyCard>
+    <Card>
       <CardHeader>
         <div>WhalesPedigrees</div>
       </CardHeader>
-    </BodyCard>
+    </Card>
   );
 }

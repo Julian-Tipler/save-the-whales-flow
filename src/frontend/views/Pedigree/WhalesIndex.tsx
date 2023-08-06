@@ -1,4 +1,5 @@
 import {
+  Box,
   List,
   ListItem,
   Table,
@@ -10,14 +11,13 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { BodyCard } from "../../components/BodyCard";
+import { Card } from "../../components/Card";
 import { Whale } from "../../../db/Types/Entities";
 
 export function WhalesIndex({ whales }: { whales: Whale[] }) {
   return (
-    <BodyCard>
+    <Card overflowY="auto">
       <Table variant="simple">
-        <TableCaption>Whales in this Pedigree</TableCaption>
         <Thead>
           <Tr>
             <Th>Status</Th>
@@ -38,7 +38,8 @@ export function WhalesIndex({ whales }: { whales: Whale[] }) {
             </Tr>
           ))}
         </Tbody>
+        <TableCaption>Whales in this Pedigree</TableCaption>
       </Table>
-    </BodyCard>
+    </Card>
   );
 }
