@@ -1,21 +1,10 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import {
-  Box,
-  Card,
-  CardBody,
-  CardFooter,
-  Flex,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box, Card, Flex, Heading, Text } from "@chakra-ui/react";
 import { whaleStatusIcon } from "../../../components/WhaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
-import "./WhaleNode.css";
-import withOpacity from "@chakra-ui/theme";
 
 type NodeData = {
   // whale: Whale;
@@ -119,25 +108,16 @@ export const WhaleNode = ({
 
 const calculateBackgroundColor = (whale: Whale) => {
   const dead = whale.died;
-  const gender = whale.gender;
-  let color;
 
-  switch (gender) {
-    case "male":
-      dead
-        ? (color = "whaleNodes.male.dead")
-        : (color = "whaleNodes.male.alive");
-      break;
-    case "female":
-      dead
-        ? (color = "whaleNodes.female.dead")
-        : (color = "whaleNodes.female.alive");
-      break;
-    default:
-      dead
-        ? (color = "whaleNodes.unknown.dead")
-        : (color = "whaleNodes.unknown.alive");
-      break;
+  let colorString = "whaleNodes.";
+
+  colorString += whale.gender;
+  colorString += ".";
+  if (dead) {
+    colorString += "dead";
+  } else {
+    colorString += "alive";
   }
-  return color;
+
+  return colorString;
 };
