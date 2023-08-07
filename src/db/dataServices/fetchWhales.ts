@@ -43,16 +43,6 @@ export const fetchWhales = async ({ ids }: { ids?: string[] }) => {
       // Concatenate the results of the current batch to the main array
       whales = whales.concat(batchWhales);
     }
-
-    // const whaleQuery = query(
-    //   collection(db, "whales"),
-    //   where("__name__", "in", ids)
-    // );
-    // const whaleDocs = await getDocs(whaleQuery);
-    // const whales = whaleDocs.docs.map((doc: any) => ({
-    //   id: doc.id,
-    //   ...doc.data(),
-    // }));
     return whales;
   }
 };
