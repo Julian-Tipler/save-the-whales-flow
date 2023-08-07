@@ -72,7 +72,7 @@ export const NavigationSidebar = () => {
             );
           })}
         </AccordionItem>
-        <AccordionItem>
+        {/* <AccordionItem>
           <h2>
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
@@ -90,7 +90,7 @@ export const NavigationSidebar = () => {
               </AccordionPanel>
             );
           })}
-        </AccordionItem>
+        </AccordionItem> */}
         {admin && (
           <AccordionItem>
             <h2>

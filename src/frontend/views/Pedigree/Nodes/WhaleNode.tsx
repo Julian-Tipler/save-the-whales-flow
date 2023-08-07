@@ -1,20 +1,10 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
-import {
-  Box,
-  Card,
-  CardBody,
-  CardFooter,
-  Flex,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box, Card, Flex, Heading, Text } from "@chakra-ui/react";
 import { whaleStatusIcon } from "../../../components/WhaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
-import "./WhaleNode.css";
 
 type NodeData = {
   // whale: Whale;
@@ -42,14 +32,14 @@ export const WhaleNode = ({
   const { whales } = useWhalesContext();
   const whale = whales.find((whale) => whale.id === id);
   if (!whale) return null;
-  const highlighted = whaleForm && whale && whaleForm.id === whale.id;
+  const highlighted = whaleForm && whaleForm.id === whale.id;
   const backgroundColor = calculateBackgroundColor(whale);
 
   return (
     <Card
       width={"100px"}
-      height={"80px"}
       backgroundColor={backgroundColor}
+      height={"80px"}
       boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
       border={highlighted ? "3px solid #A2D9A0" : "none"}
       borderRadius={"4px"}
@@ -57,8 +47,19 @@ export const WhaleNode = ({
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"space-between"}
-      className={`whale-node ${whale.died ? "dead" : ""}`}
+      position={"relative"}
     >
+      <Box
+        className="whale-node-stripes"
+        position="absolute"
+        top="0"
+        left="0"
+        w="100%"
+        h="100%"
+        opacity="0.2"
+        background="repeating-linear-gradient(45deg, gray 0%, gray 10%, #cccccc 10%, #cccccc 20%)"
+        display={whale.died ? "block" : "none"}
+      />
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <Flex flexDirection={"column"} gap={"2px"}>
         <Flex
@@ -106,12 +107,17 @@ export const WhaleNode = ({
 };
 
 const calculateBackgroundColor = (whale: Whale) => {
-  switch (whale.gender) {
-    case "male":
-      return "blue.200";
-    case "female":
-      return "pink";
-    default:
-      return "white";
+  const dead = whale.died;
+
+  let colorString = "whaleNodes.";
+
+  colorString += whale.gender || "unknown";
+  colorString += ".";
+  if (dead) {
+    colorString += "dead";
+  } else {
+    colorString += "alive";
   }
+
+  return colorString;
 };

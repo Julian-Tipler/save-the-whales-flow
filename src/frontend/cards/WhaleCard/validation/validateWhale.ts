@@ -3,7 +3,7 @@ import { Whale } from "../../../../db/Types/Entities";
 export const validateWhale = (whale: Whale) => {
   const errors = [];
   const { name, born, died, identification } = whale;
-  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  const dateRegex = /^\d{4}$/;
 
   if (identification && identification.length > 30) {
     errors.push("Identification must be less than 30 characters");
@@ -19,7 +19,7 @@ export const validateWhale = (whale: Whale) => {
 
   if (born) {
     if (!dateRegex.test(born)) {
-      errors.push("Invalid 'Born' date format. Must be YYYY-MM-DD");
+      errors.push("Invalid 'Born' date format. Must be YYYY");
     }
     if (!isValidDate(born)) {
       errors.push("Invalid 'Born' date");
@@ -28,7 +28,7 @@ export const validateWhale = (whale: Whale) => {
 
   if (died) {
     if (!dateRegex.test(died)) {
-      errors.push("Invalid 'Died' date format. Must be YYYY-MM-DD");
+      errors.push("Invalid 'Died' date format. Must be YYYY");
     }
     if (!isValidDate(died)) {
       errors.push("Invalid 'Died' date");
@@ -42,12 +42,14 @@ export const validateWhale = (whale: Whale) => {
   return errors;
 };
 
-function isValidDate(dateString: any) {
-  const [year, month, day] = dateString.split("-");
-  const date = new Date(year, month - 1, day);
-  return (
-    date.getFullYear() === Number(year) &&
-    date.getMonth() === Number(month) - 1 &&
-    date.getDate() === Number(day)
-  );
+function isValidDate(year: string) {
+  // Check if the year is a string
+  if (typeof year !== "string") {
+    return false;
+  }
+
+  // Use a regular expression to validate the year format (four digits)
+  const yearRegex = /^\d{4}$/;
+
+  return yearRegex.test(year);
 }
