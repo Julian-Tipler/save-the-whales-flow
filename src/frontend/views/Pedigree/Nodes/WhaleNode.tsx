@@ -111,7 +111,7 @@ const calculateBackgroundColor = (whale: Whale) => {
 
   let colorString = "whaleNodes.";
 
-  colorString += whale.gender;
+  colorString += whale.gender || "unknown";
   colorString += ".";
   if (dead) {
     colorString += "dead";
