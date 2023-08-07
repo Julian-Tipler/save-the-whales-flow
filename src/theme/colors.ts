@@ -8,6 +8,20 @@ export const colors = {
     cardBackground: "#ffffff",
     border: "#cccccc",
   },
+  whaleNodes: {
+    female: {
+      alive: "#FEC9F1",
+      dead: "#FEC9F1",
+    },
+    male: {
+      alive: "#8EDCE6",
+      dead: "#8EDCE6",
+    },
+    unknown: {
+      alive: "white",
+      dead: "white",
+    },
+  },
   text: {
     primary: "#ffffff", // Change to a suitable color for primary text in dark mode
     secondary: "#cccccc", // Change to a suitable color for secondary text in dark mode

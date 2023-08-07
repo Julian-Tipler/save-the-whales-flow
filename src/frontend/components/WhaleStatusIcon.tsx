@@ -1,4 +1,4 @@
-import { FaSkull } from "react-icons/fa";
+import { FaSkullCrossbones } from "react-icons/fa";
 import { Whale } from "../../db/Types/Entities";
 
 export const whaleStatusIcon = ({
@@ -10,7 +10,7 @@ export const whaleStatusIcon = ({
 }) => {
   if (!whale) return null;
   return whale.died ? (
-    <FaSkull style={{ color: "#808080", fontSize: size }} />
+    <FaSkullCrossbones style={{ color: "#808080", fontSize: size }} />
   ) : (
     <></>
   );
