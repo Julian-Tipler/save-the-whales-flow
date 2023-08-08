@@ -1,5 +1,6 @@
 import { Button, Flex, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Splash = () => {
   return (
@@ -16,7 +17,9 @@ export const Splash = () => {
       <Text color="text.secondary" fontSize={"5xl"}>
         Southern Resident killer whales remain in the wild
       </Text>
-      <Button backgroundColor="text.secondary">Learn more</Button>
+      <Button backgroundColor="text.secondary">
+        <Link to="/">Learn more</Link>
+      </Button>
     </Flex>
   );
 };

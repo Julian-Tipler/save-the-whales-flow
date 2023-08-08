@@ -1,8 +1,5 @@
 export const colors = {
   brand: {
-    primary: "#197BBD",
-    secondary: "#125E8A",
-    tertiary: "#C2B8B2",
     background: "linear-gradient(to bottom, #438ecb, #094376)",
     bodyBackground: "#f8f9fa",
     cardBackground: "#ffffff",
