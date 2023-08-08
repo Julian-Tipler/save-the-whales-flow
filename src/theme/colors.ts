@@ -3,7 +3,7 @@ export const colors = {
     primary: "#197BBD",
     secondary: "#125E8A",
     tertiary: "#C2B8B2",
-    background: "##ffffff",
+    background: "linear-gradient(to bottom, #438ecb, #094376)",
     bodyBackground: "#f8f9fa",
     cardBackground: "#ffffff",
     border: "#cccccc",
@@ -24,11 +24,8 @@ export const colors = {
   },
   text: {
     primary: "#ffffff", // Change to a suitable color for primary text in dark mode
-    secondary: "#cccccc", // Change to a suitable color for secondary text in dark mode
+    secondary: "#084175", // Change to a suitable color for secondary text in dark mode
     tertiary: "#999999",
-    splash: {
-      primary: "blue", // Change to a suitable color for primary text in dark mode
-    }
   },
   transparent: "transparent",
   black: "#000",

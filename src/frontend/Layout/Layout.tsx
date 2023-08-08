@@ -13,9 +13,10 @@ export const Layout = () => {
       gridTemplateRows={"5vh 1fr 5vh"}
       gridTemplateColumns={"300px 1fr"}
       w="100vw"
-      color="blackAlpha.700"
+      color="text.primary"
       fontWeight="bold"
       minH="100vh"
+      bg={"brand.background"}
     >
       <GridItem
         pl="2"
@@ -23,10 +24,10 @@ export const Layout = () => {
         display={"flex"}
         padding={"10px"}
         alignItems={"center"}
-        bg={"brand.background"}
         borderBottom={"1px solid"}
         borderColor={"brand.border"}
         height={"5vh"}
+        background={"transparent"}
       >
         <Header />
       </GridItem>
@@ -34,8 +35,6 @@ export const Layout = () => {
         pl="2"
         area={"nav"}
         padding={"15px"}
-        bg={"brand.background"}
-        borderRight={"1px solid"}
         borderColor={"brand.border"}
       >
         <NavigationSidebar />
@@ -49,7 +48,7 @@ export const Layout = () => {
       >
         <Outlet />
       </GridItem>
-      <GridItem pl="2" bg="brand.background" area={"footer"}></GridItem>
+      <GridItem pl="2" bg="transparent" area={"footer"}></GridItem>
     </Grid>
   );
 };

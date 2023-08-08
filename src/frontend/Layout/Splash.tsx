@@ -10,13 +10,13 @@ export const Splash = () => {
       alignItems={"center"}
       justifyContent={"center"}
     >
-      <Text color="text.splash.primary" fontSize={"9xl"}>
+      <Text color="text.secondary" fontSize={"9xl"}>
         69
       </Text>
-      <Text color="text.splash.primary" fontSize={"5xl"}>
+      <Text color="text.secondary" fontSize={"5xl"}>
         Southern Resident killer whales remain in the wild
       </Text>
-      <Button backgroundColor="text.splash.primary">Learn more</Button>
+      <Button backgroundColor="text.secondary">Learn more</Button>
     </Flex>
   );
 };

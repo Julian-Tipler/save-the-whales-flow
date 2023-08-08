@@ -35,6 +35,7 @@ export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
       width={"100%"}
       justifyContent={"center"}
       alignItems={"center"}
+      color={"black"}
     >
       {headerLoading ? (
         <Spinner />
@@ -44,10 +45,11 @@ export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
           value={pedigreeName}
           onChange={(e) => setPedigreeName(e.target.value)}
           onKeyDown={handleKeyDown}
+          color={"text.secondary"}
         />
       ) : (
         <Flex gap={"2"} alignItems={"center"}>
-          <Heading as="h4" size="md">
+          <Heading as="h4" size="md" color={"text.secondary"}>
             {name}
           </Heading>
           {admin && (
