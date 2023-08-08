@@ -26,6 +26,9 @@ export const colors = {
     primary: "#ffffff", // Change to a suitable color for primary text in dark mode
     secondary: "#cccccc", // Change to a suitable color for secondary text in dark mode
     tertiary: "#999999",
+    splash: {
+      primary: "blue", // Change to a suitable color for primary text in dark mode
+    }
   },
   transparent: "transparent",
   black: "#000",
