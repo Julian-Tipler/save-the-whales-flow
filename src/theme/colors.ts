@@ -34,3 +34,14 @@ export const colors = {
   error: "#dc3545",
   warning: "#ffc107",
 };
+
+// Good for future reference for card style:
+// brand: {
+//   primary: "#197BBD",
+//   secondary: "#125E8A",
+//   tertiary: "#C2B8B2",
+//   background: "##ffffff",
+//   bodyBackground: "#f8f9fa",
+//   cardBackground: "#ffffff",
+//   border: "#cccccc",
+// },

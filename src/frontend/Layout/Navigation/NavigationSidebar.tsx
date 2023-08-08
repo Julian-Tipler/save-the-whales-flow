@@ -85,25 +85,6 @@ export const NavigationSidebar = () => {
             );
           })}
         </AccordionItem>
-        {/* <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box as="span" flex="1" textAlign="left">
-                Whales
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          {whales.map((whale, i) => {
-            return (
-              <AccordionPanel pb={4} key={`whale-${i}`}>
-                <Link to={`/whales/${whale.id}`}>
-                  <Text>{whale.name}</Text>
-                </Link>
-              </AccordionPanel>
-            );
-          })}
-        </AccordionItem> */}
         {admin && (
           <AccordionItem>
             <h2>
