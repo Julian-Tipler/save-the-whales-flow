@@ -11,10 +11,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "pedigrees/:id",
+        path: "pods/:id",
         element: <PedigreePage />,
       },
-      { path: "pedigrees", element: <PedigreesIndexPage /> },
+      { path: "pods", element: <PedigreesIndexPage /> },
       { path: "whales/:id", element: <WhaleDetailsPage /> },
     ],
   },

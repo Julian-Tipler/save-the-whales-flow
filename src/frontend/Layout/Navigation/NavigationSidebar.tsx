@@ -51,13 +51,26 @@ export const NavigationSidebar = () => {
         padding={"10px"}
       >
         <Heading size={"xl"} padding={"10px"}>
-          SAVE THE WHALES
+          History of the Southern Residents
         </Heading>
         <AccordionItem>
           <h2>
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-                Pedigrees
+                About
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Text>Text here</Text>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box as="span" flex="1" textAlign="left">
+                Pods
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -65,7 +78,7 @@ export const NavigationSidebar = () => {
           {pedigrees.map((pedigree, i) => {
             return (
               <AccordionPanel pb={4} key={`pedigree-${i}`}>
-                <Link to={`/pedigrees/${pedigree.id}`}>
+                <Link to={`/pods/${pedigree.id}`}>
                   <Text>{pedigree.name}</Text>
                 </Link>
               </AccordionPanel>
@@ -96,7 +109,7 @@ export const NavigationSidebar = () => {
             <h2>
               <AccordionButton>
                 <Link to={`/pedigrees`}>
-                  <Text>Create New Pedigree</Text>
+                  <Text>Create New Pod</Text>
                 </Link>
               </AccordionButton>
             </h2>

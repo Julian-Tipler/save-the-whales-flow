@@ -6,6 +6,8 @@ import ReactFlow, {
   ReactFlowProvider,
   ConnectionMode,
   Node,
+  MiniMap,
+  Controls,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop/DragNDrop";
@@ -137,6 +139,8 @@ export function ReactFlowContainer() {
                 color={admin ? "#000000" : "#E0EBF5"}
                 style={{ backgroundColor: "#E0EBF5" }}
               />
+              <MiniMap />
+              <Controls position={"top-left"} />
             </ReactFlow>
           </div>
           {admin && <DragNDrop />}

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const PedigreeItem = ({ pedigree }: { pedigree: Pedigree }) => {
   return (
     <Card padding={"4"}>
-      <Link to={`/pedigrees/${pedigree.id}`}>{pedigree.name}</Link>
+      <Link to={`/pods/${pedigree.id}`}>{pedigree.name}</Link>
     </Card>
   );
 };

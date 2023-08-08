@@ -34,7 +34,7 @@ export const PedigreesIndex = () => {
           color={"green.500"}
           onClick={() =>
             createPedigreeResolver({
-              data: { name: "new pedigree", nodes: [], edges: [] },
+              data: { name: "New Pod", nodes: [], edges: [] },
             })
           }
         />
