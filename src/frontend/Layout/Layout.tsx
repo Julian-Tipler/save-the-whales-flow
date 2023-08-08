@@ -10,7 +10,7 @@ export const Layout = () => {
       templateAreas={`"nav header"
                   "nav main"
                   "nav footer"`}
-      gridTemplateRows={"75px 1fr 100px"}
+      gridTemplateRows={"5vh 1fr 100px"}
       gridTemplateColumns={"300px 1fr"}
       w="100vw"
       color="blackAlpha.700"
@@ -26,6 +26,7 @@ export const Layout = () => {
         bg={"brand.background"}
         borderBottom={"1px solid"}
         borderColor={"brand.border"}
+        height={"5vh"}
       >
         <Header />
       </GridItem>
@@ -40,10 +41,8 @@ export const Layout = () => {
         <NavigationSidebar />
       </GridItem>
       <GridItem
-        pl="2"
         area={"main"}
-        minHeight={"100vh"}
-        padding={"30px"}
+        minHeight={"95vh"}
         width={"100%"}
         bg={"brand.bodyBackground"}
         overflow={"auto"}
