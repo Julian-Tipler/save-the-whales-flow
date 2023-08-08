@@ -10,7 +10,7 @@ export const Layout = () => {
       templateAreas={`"nav header"
                   "nav main"
                   "nav footer"`}
-      gridTemplateRows={"5vh 1fr 100px"}
+      gridTemplateRows={"5vh 1fr 5vh"}
       gridTemplateColumns={"300px 1fr"}
       w="100vw"
       color="blackAlpha.700"
@@ -42,7 +42,7 @@ export const Layout = () => {
       </GridItem>
       <GridItem
         area={"main"}
-        minHeight={"95vh"}
+        minHeight={"90vh"}
         width={"100%"}
         bg={"brand.bodyBackground"}
         overflow={"auto"}

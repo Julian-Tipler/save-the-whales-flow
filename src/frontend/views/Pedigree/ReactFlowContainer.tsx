@@ -13,7 +13,7 @@ import "reactflow/dist/style.css";
 import { DragNDrop } from "./DragNDrop/DragNDrop";
 import { MarriageNode, WhaleNode } from "./Nodes";
 import { usePedigreeContext } from "./context/PedigreeContext";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
 import { WhaleDrawer } from "./WhaleDrawer/WhaleDrawer";
@@ -99,17 +99,22 @@ export function ReactFlowContainer() {
 
   if (!pedigree) return null;
   return (
-    <Card>
+    <Box
+      h="100%"
+      w="100%"
+      minWidth={"300px"}
+      border="1px solid"
+      borderColor={"brand.border"}
+      backgroundColor={"brand.cardBackground"}
+    >
+      <PedigreeHeader name={pedigree.name} />
       <ReactFlowProvider>
-        <PedigreeHeader name={pedigree.name} />
         <Flex flexDirection="row" height={"100%"}>
           <div
             className="reactflow-wrapper"
             ref={reactFlowWrapper}
             style={{
               width: "100%",
-              border: "2px solid black",
-              borderRadius: "5px",
               backgroundColor: "#FFFFFF",
             }}
           >
@@ -147,6 +152,6 @@ export function ReactFlowContainer() {
         </Flex>
         <WhaleDrawer />
       </ReactFlowProvider>
-    </Card>
+    </Box>
   );
 }
