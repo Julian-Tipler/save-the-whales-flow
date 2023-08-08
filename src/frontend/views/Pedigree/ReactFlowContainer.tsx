@@ -107,7 +107,6 @@ export function ReactFlowContainer() {
       borderColor={"brand.border"}
       backgroundColor={"brand.cardBackground"}
     >
-      <PedigreeHeader name={pedigree.name} />
       <ReactFlowProvider>
         <Flex flexDirection="row" height={"100%"}>
           <div
@@ -116,8 +115,10 @@ export function ReactFlowContainer() {
             style={{
               width: "100%",
               backgroundColor: "#FFFFFF",
+              position: "relative",
             }}
           >
+            <PedigreeHeader name={pedigree.name} />
             <ReactFlow
               nodeTypes={nodeTypes}
               nodes={nodes}
