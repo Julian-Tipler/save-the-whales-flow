@@ -27,25 +27,37 @@ export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
     }
   };
 
-  if (headerLoading) {
-    return <Spinner />;
-  }
-
-  return editMode ? (
-    <Input
-      value={pedigreeName}
-      onChange={(e) => setPedigreeName(e.target.value)}
-      onKeyDown={handleKeyDown}
-    />
-  ) : (
-    <Flex gap={"2"} alignItems={"center"}>
-      <Heading as="h4" size="md">
-        {name}
-      </Heading>
-      {admin && (
-        <Box onClick={() => setEditMode(true)}>
-          <AiOutlineEdit />
-        </Box>
+  return (
+    <Flex
+      position={"absolute"}
+      className="pod-name"
+      zIndex={1}
+      width={"100%"}
+      justifyContent={"center"}
+      alignItems={"center"}
+      color={"black"}
+    >
+      {headerLoading ? (
+        <Spinner />
+      ) : editMode ? (
+        <Input
+          width={"10%"}
+          value={pedigreeName}
+          onChange={(e) => setPedigreeName(e.target.value)}
+          onKeyDown={handleKeyDown}
+          color={"text.secondary"}
+        />
+      ) : (
+        <Flex gap={"2"} alignItems={"center"}>
+          <Heading as="h4" size="md" color={"text.secondary"}>
+            {name}
+          </Heading>
+          {admin && (
+            <Box onClick={() => setEditMode(true)}>
+              <AiOutlineEdit />
+            </Box>
+          )}
+        </Flex>
       )}
     </Flex>
   );
