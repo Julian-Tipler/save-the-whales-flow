@@ -4,8 +4,10 @@ import PedigreesIndexPage from "../views/PedigreesIndex";
 import PedigreePage from "../views/Pedigree";
 import WhaleDetailsPage from "../views/Whale";
 import { Layout } from "./Layout";
+import { Splash } from "./Splash";
 
 const router = createBrowserRouter([
+  { path: "/splash", element: <Splash /> },
   {
     path: "/",
     element: <Layout />,
