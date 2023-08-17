@@ -59,6 +59,7 @@ export const WhaleNode = ({
         opacity="0.2"
         background="repeating-linear-gradient(45deg, gray 0%, gray 10%, #cccccc 10%, #cccccc 20%)"
         display={whale.died ? "block" : "none"}
+        pointerEvents={"none"}
       />
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <Flex flexDirection={"column"} gap={"2px"}>
