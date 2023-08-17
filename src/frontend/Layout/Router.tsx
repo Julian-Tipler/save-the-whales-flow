@@ -4,10 +4,10 @@ import PedigreesIndexPage from "../views/PedigreesIndex";
 import PedigreePage from "../views/Pedigree";
 import WhaleDetailsPage from "../views/Whale";
 import { Layout } from "./Layout";
-import { Splash } from "./Splash";
+import { useState } from "react";
+import { SplashModal } from "./SplashModal";
 
 const router = createBrowserRouter([
-  { path: "/splash", element: <Splash /> },
   {
     path: "/",
     element: <Layout />,
@@ -23,5 +23,16 @@ const router = createBrowserRouter([
 ]);
 
 export const Router = () => {
-  return <RouterProvider router={router} />;
+  const [isOpen, setIsOpen] = useState(localStorage.hasVisited !== "true");
+
+  const closeModal = () => {
+    setIsOpen(false);
+    localStorage.setItem("hasVisited", "true");
+  };
+  return (
+    <>
+      <SplashModal isOpen={isOpen} onClose={closeModal} />
+      {!isOpen && <RouterProvider router={router} />}
+    </>
+  );
 };

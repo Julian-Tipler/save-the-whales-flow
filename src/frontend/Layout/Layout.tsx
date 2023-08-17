@@ -3,6 +3,7 @@ import { NavigationSidebar } from "./Navigation/NavigationSidebar";
 
 import { Header } from "./Header/Header";
 import { Outlet } from "react-router-dom";
+import { SplashModal } from "./SplashModal";
 
 export const Layout = () => {
   return (
@@ -13,9 +14,10 @@ export const Layout = () => {
       gridTemplateRows={"5vh 1fr 5vh"}
       gridTemplateColumns={"300px 1fr"}
       w="100vw"
-      color="blackAlpha.700"
+      color="text.primary"
       fontWeight="bold"
       minH="100vh"
+      bg={"brand.background"}
     >
       <GridItem
         pl="2"
@@ -26,6 +28,7 @@ export const Layout = () => {
         bg={"brand.background"}
         borderBottom={"1px solid"}
         borderColor={"brand.border"}
+        background={"transparent"}
       >
         <Header />
       </GridItem>
@@ -51,9 +54,7 @@ export const Layout = () => {
         <Outlet />
       </GridItem>
       <GridItem pl="2" bg="brand.background" area={"footer"}>
-        <Box bgColor={"orange"}>
-          Footer
-        </Box >
+        <Box>Footer</Box>
       </GridItem>
     </Grid>
   );
