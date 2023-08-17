@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { NavigationSidebar } from "./Navigation/NavigationSidebar";
 
 import { Header } from "./Header/Header";
@@ -10,7 +10,7 @@ export const Layout = () => {
       templateAreas={`"nav header"
                   "nav main"
                   "nav footer"`}
-      gridTemplateRows={"75px 1fr 100px"}
+      gridTemplateRows={"5vh 1fr 5vh"}
       gridTemplateColumns={"300px 1fr"}
       w="100vw"
       color="blackAlpha.700"
@@ -42,15 +42,19 @@ export const Layout = () => {
       <GridItem
         pl="2"
         area={"main"}
-        minHeight={"100vh"}
-        padding={"30px"}
+        padding={"20px"}
         width={"100%"}
         bg={"brand.bodyBackground"}
         overflow={"auto"}
+        minHeight={"90vh"}
       >
         <Outlet />
       </GridItem>
-      <GridItem pl="2" bg="brand.background" area={"footer"}></GridItem>
+      <GridItem pl="2" bg="brand.background" area={"footer"}>
+        <Box bgColor={"orange"}>
+          Footer
+        </Box >
+      </GridItem>
     </Grid>
   );
 };
