@@ -1,0 +1,6 @@
+/* Slow fade effect */
+.slow-fade-modal-content {
+  opacity: 0;
+  background-color: red;
+  transition: opacity 3s ease;
+}

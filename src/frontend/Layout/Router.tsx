@@ -23,16 +23,9 @@ const router = createBrowserRouter([
 ]);
 
 export const Router = () => {
-  const [isOpen, setIsOpen] = useState(localStorage.hasVisited !== "true");
-
-  const closeModal = () => {
-    setIsOpen(false);
-    localStorage.setItem("hasVisited", "true");
-  };
   return (
     <>
-      <SplashModal isOpen={isOpen} onClose={closeModal} />
-      {!isOpen && <RouterProvider router={router} />}
+      <RouterProvider router={router} />
     </>
   );
 };

@@ -7,18 +7,19 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import "./SplashModal.css";
 
 export const SplashModal = ({
-  isOpen,
   onClose,
+  isFadingOut,
 }: {
-  isOpen: boolean;
   onClose: () => void;
+  isFadingOut: boolean;
 }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="full">
+    <Modal isOpen={!isFadingOut} onClose={onClose} size="full">
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent className={isFadingOut ? "slow-fade-modal-content" : ""}>
         <Flex
           height={"100vh"}
           width={"100vw"}
