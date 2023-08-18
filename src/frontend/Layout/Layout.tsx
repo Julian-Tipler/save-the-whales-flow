@@ -2,25 +2,13 @@ import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { NavigationSidebar } from "./Navigation/NavigationSidebar";
 
 import { Header } from "./Header/Header";
-import { Outlet, redirect, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { SplashModal } from "./SplashModal";
-import { useState } from "react";
 
 export const Layout = () => {
-  const [isFadingOut, setIsFadingOut] = useState(
-    localStorage.hasVisited === "true"
-  );
-
-  const navigate = useNavigate();
-  const onClose = () => {
-    navigate("/pods/3KMIIoqRyWVhr8x8vABb");
-    setIsFadingOut(true);
-    localStorage.setItem("hasVisited", "true");
-  };
-
   return (
     <>
-      <SplashModal isFadingOut={isFadingOut} onClose={onClose} />
+      <SplashModal />
       <Grid
         templateAreas={`"nav header"
                   "nav main"

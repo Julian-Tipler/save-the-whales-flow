@@ -8,14 +8,19 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import "./SplashModal.css";
+import { useNavigate } from "react-router-dom";
 
-export const SplashModal = ({
-  onClose,
-  isFadingOut,
-}: {
-  onClose: () => void;
-  isFadingOut: boolean;
-}) => {
+export const SplashModal = () => {
+  const [isFadingOut, setIsFadingOut] = useState(
+    localStorage.hasVisited === "true"
+  );
+
+  const navigate = useNavigate();
+  const onClose = () => {
+    navigate("/pods/3KMIIoqRyWVhr8x8vABb");
+    setIsFadingOut(true);
+    localStorage.setItem("hasVisited", "true");
+  };
   return (
     <Modal isOpen={!isFadingOut} onClose={onClose} size="full">
       <ModalOverlay />
