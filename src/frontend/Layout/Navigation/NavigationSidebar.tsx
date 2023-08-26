@@ -19,17 +19,11 @@ import { Link, useParams } from "react-router-dom";
 import { fetchWhales } from "../../../db/dataServices/fetchWhales";
 import { NavigationSidebarProvider } from "./context/NavigationSidebarContext";
 import { useAuthContext } from "../../auth/context/AuthContext";
-import {
-  FiHome,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiSmartphone,
-} from "react-icons/fi";
+import { FiHome, FiCompass, FiSmartphone } from "react-icons/fi";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import { GiWhaleTail } from "react-icons/gi";
-import { RxDotFilled } from "react-icons/rx"
+import { GiWhaleTail, GiSailboat, GiFishEscape } from "react-icons/gi";
+import { RxDotFilled } from "react-icons/rx";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
 export const NavigationSidebar = () => {
   const [pedigrees, setPedigrees] = useState<Pedigree[]>([]);
@@ -70,36 +64,58 @@ export const NavigationSidebar = () => {
           History of the Southern Residents
         </Heading>
         <AccordionItem>
-          <AccordionButton>
-            <Icon
-              mr="4"
-              fontSize="16"
-              _groupHover={{
-                color: "text.primary",
+          <AccordionButton padding={0}>
+            <Link
+              to={`/about`}
+              style={{
+                display: "block",
+                width: "100%",
+                padding: "8px",
+                paddingLeft: "16px",
               }}
-              as={IoMdInformationCircleOutline}
-            />
-            <Box as="span" flex="1" textAlign="left">
-              About
-            </Box>
-            <AccordionIcon />
+            >
+              <Flex alignItems={"center"}>
+                <Icon
+                  mr="3"
+                  fontSize="20"
+                  _groupHover={{
+                    color: "text.primary",
+                  }}
+                  as={GiSailboat}
+                />
+                <Box as="span" flex="1" textAlign="left">
+                  About the Project
+                </Box>
+              </Flex>
+            </Link>
           </AccordionButton>
-          <AccordionPanel pb={4}>
-            <Text>
-              “A public repository of information on an endangered population of
-              killer whales resident to the coastal eastern North Pacific Ocean,
-              the Southern Residents. Subject to ongoing monitoring since 1976,
-              Southern Resident killer whales (currently numbering just 75
-              living animals) are severely impacted by anthropogenic activity,
-              including reduction of their preferred prey, severe chemical and
-              acoustic pollution, and historical captures for the aquarium
-              industry. Synthesizing census information from multiple sources in
-              a succinct, engaging format, this website enables full
-              visualization of the decline of this icon of the Pacific Northwest
-              like never before, emphasizing the need for immediate and sweeping
-              conservation action.”
-            </Text>
-          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton padding={0}>
+            <Link
+              to={`/about`}
+              style={{
+                display: "block",
+                width: "100%",
+                padding: "8px",
+                paddingLeft: "16px",
+              }}
+            >
+              <Flex alignItems={"center"}>
+                <Icon
+                  mr="4"
+                  fontSize="16"
+                  _groupHover={{
+                    color: "text.primary",
+                  }}
+                  as={GiFishEscape}
+                />
+                <Box as="span" flex="1" textAlign="left">
+                  Personal Page
+                </Box>
+              </Flex>
+            </Link>
+          </AccordionButton>
         </AccordionItem>
         <AccordionItem>
           <AccordionButton>
@@ -119,21 +135,32 @@ export const NavigationSidebar = () => {
           <AccordionPanel padding={0}>
             {pedigrees.map((pedigree, i) => {
               return (
-                <AccordionButton>
-                  {podUrl?.id === pedigree.id ? (
-                    <Icon
-                      mr="3"
-                      fontSize="20"
-                      _groupHover={{
-                        color: "text.primary",
-                      }}
-                      as={RxDotFilled}
-                    />
-                  ) : (
-                    <Box marginRight={"32px"} />
-                  )}
-                  <Link key={`pedigree-${i}`} to={`/pods/${pedigree.id}`}>
-                    <Text>{pedigree.name}</Text>
+                <AccordionButton key={`accordian-${i}`} padding={0}>
+                  <Link
+                    key={`pedigree-${i}`}
+                    to={`/pods/${pedigree.id}`}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      padding: "6px",
+                      paddingLeft: "16px",
+                    }}
+                  >
+                    <Flex>
+                      {podUrl?.id === pedigree.id ? (
+                        <Icon
+                          mr="3"
+                          fontSize="20"
+                          _groupHover={{
+                            color: "text.primary",
+                          }}
+                          as={RxDotFilled}
+                        />
+                      ) : (
+                        <Box marginRight={"32px"} />
+                      )}
+                      <Text>{pedigree.name}</Text>
+                    </Flex>
                   </Link>
                 </AccordionButton>
               );
