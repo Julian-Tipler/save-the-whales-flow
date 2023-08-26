@@ -38,7 +38,7 @@ export const Layout = () => {
           pl="2"
           area={"nav"}
           padding={"15px"}
-          bg={"brand.background"}
+          // bg={"brand.background"}
           borderRight={"1px solid"}
           borderColor={"brand.border"}
         >

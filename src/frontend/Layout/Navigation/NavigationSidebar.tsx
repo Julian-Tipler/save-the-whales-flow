@@ -24,6 +24,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { GiWhaleTail, GiSailboat, GiFishEscape } from "react-icons/gi";
 import { RxDotFilled } from "react-icons/rx";
 import { BsBoxArrowUpRight } from "react-icons/bs";
+import NavigationLink from "./NavigationLink";
 
 export const NavigationSidebar = () => {
   const [pedigrees, setPedigrees] = useState<Pedigree[]>([]);
@@ -38,8 +39,6 @@ export const NavigationSidebar = () => {
     try {
       const pedigrees = await fetchPedigrees({});
       setPedigrees(pedigrees);
-      const whales = await fetchWhales({});
-      setWhales(whales);
     } catch (error) {
       console.error(error);
     }
@@ -48,12 +47,6 @@ export const NavigationSidebar = () => {
   if (!pedigrees || !whales) {
     return <Spinner />;
   }
-
-  const navItems = [
-    { name: "Home", icon: FiHome, href: "/" },
-    { name: "About", icon: FiSmartphone, href: "/post" },
-    { name: "Pods", icon: FiCompass, href: "/" },
-  ];
 
   const podUrl = useParams<{ id: string }>();
 
@@ -64,61 +57,21 @@ export const NavigationSidebar = () => {
           History of the Southern Residents
         </Heading>
         <AccordionItem>
-          <AccordionButton padding={0}>
-            <Link
-              to={`/about`}
-              style={{
-                display: "block",
-                width: "100%",
-                padding: "8px",
-                paddingLeft: "16px",
-              }}
-            >
-              <Flex alignItems={"center"}>
-                <Icon
-                  mr="3"
-                  fontSize="20"
-                  _groupHover={{
-                    color: "text.primary",
-                  }}
-                  as={GiSailboat}
-                />
-                <Box as="span" flex="1" textAlign="left">
-                  About the Project
-                </Box>
-              </Flex>
-            </Link>
-          </AccordionButton>
+          <NavigationLink
+            link={"/about"}
+            icon={GiSailboat}
+            text={"About the Project"}
+          />
         </AccordionItem>
         <AccordionItem>
-          <AccordionButton padding={0}>
-            <Link
-              to={`/about`}
-              style={{
-                display: "block",
-                width: "100%",
-                padding: "8px",
-                paddingLeft: "16px",
-              }}
-            >
-              <Flex alignItems={"center"}>
-                <Icon
-                  mr="4"
-                  fontSize="16"
-                  _groupHover={{
-                    color: "text.primary",
-                  }}
-                  as={GiFishEscape}
-                />
-                <Box as="span" flex="1" textAlign="left">
-                  Personal Page
-                </Box>
-              </Flex>
-            </Link>
-          </AccordionButton>
+          <NavigationLink
+            link={"/personal-placeholder"}
+            icon={GiFishEscape}
+            text={"Personal Page"}
+          />
         </AccordionItem>
         <AccordionItem>
-          <AccordionButton>
+          <AccordionButton paddingTop={3} paddingBottom={3}>
             <Icon
               mr="4"
               fontSize="16"
