@@ -117,6 +117,7 @@ export function ReactFlowContainer() {
               width: "100%",
               borderRadius: "5px",
               backgroundColor: "#FFFFFF",
+              overflow: "hidden",
             }}
           >
             <ReactFlow

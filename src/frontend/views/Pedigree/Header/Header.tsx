@@ -40,6 +40,7 @@ return (
       justifyContent={"center"}
       alignItems={"center"}
       color={"black"}
+      marginTop={5}
     >
       {headerLoading ? (
         <Spinner />
@@ -53,7 +54,7 @@ return (
         />
       ) : (
         <Flex gap={"2"} alignItems={"center"}>
-          <Heading as="h4" size="md" color={"text.secondary"}>
+          <Heading as="h3" size="lg" color={"text.secondary"}>
             {name}
           </Heading>
           {admin && (
