@@ -22,7 +22,7 @@ import { useSavePedigree } from "./functions/useSavePedigree";
 import { Whale } from "../../../db/Types/Entities";
 import { useAuthContext } from "../../auth/context/AuthContext";
 import { handleOnNodeDragStop } from "./helpers/pedigreeActions";
-import { Card } from "../../components/Card";
+import { Card as ChakraCard } from "@chakra-ui/react";
 import { PedigreeHeader } from "./Header/Header";
 
 export function ReactFlowContainer() {
@@ -99,7 +99,14 @@ export function ReactFlowContainer() {
 
   if (!pedigree) return null;
   return (
-    <Card>
+    <ChakraCard
+      h="100%"
+      w="100%"
+      minWidth={"300px"}
+      border="1px solid"
+      borderColor={"brand.border"}
+      backgroundColor={"brand.cardBackground"}
+    >
       <ReactFlowProvider>
         <PedigreeHeader name={pedigree.name} />
         <Flex flexDirection="row" height={"100%"}>
@@ -108,7 +115,6 @@ export function ReactFlowContainer() {
             ref={reactFlowWrapper}
             style={{
               width: "100%",
-              border: "2px solid black",
               borderRadius: "5px",
               backgroundColor: "#FFFFFF",
             }}
@@ -147,6 +153,6 @@ export function ReactFlowContainer() {
         </Flex>
         <WhaleDrawer />
       </ReactFlowProvider>
-    </Card>
+    </ChakraCard>
   );
 }
