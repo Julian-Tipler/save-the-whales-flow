@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { PedigreeHeader } from "./Header/Header";
 import { ReactFlowContainer } from "./ReactFlowContainer";
 import { usePedigreeContext } from "./context/PedigreeContext";
 import { useEffect, useState } from "react";

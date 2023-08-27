@@ -4,7 +4,7 @@ import { useAuthContext } from "../../auth/context/AuthContext";
 import logo from "../../images/save-the-whales-logo.png";
 
 export const Header = () => {
-  const { logout, setLoggingIn, admin, loading } = useAuthContext();
+  const {loading } = useAuthContext();
   if (loading) return null;
   return (
     <Flex

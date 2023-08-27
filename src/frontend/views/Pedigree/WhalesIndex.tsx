@@ -18,7 +18,7 @@ const tableCellStyle = {
 
 export function WhalesIndex({ whales }: { whales: Whale[] }) {
   return (
-    <Card overflowY="auto">
+    <Card overflowY="auto" title="Whales">
       <Table variant="simple">
         <Thead>
           <Tr>
