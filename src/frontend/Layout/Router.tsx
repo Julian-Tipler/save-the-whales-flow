@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       },
       { path: "pods", element: <PedigreesIndexPage /> },
       { path: "whales/:id", element: <WhaleDetailsPage /> },
+      { path: "about", element: <div>About</div> },
     ],
   },
 ]);

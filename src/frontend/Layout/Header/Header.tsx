@@ -19,11 +19,11 @@ export const Header = () => {
         alt="Save the whales logo"
         style={{ height: "100%", borderRadius: "5px" }}
       /> */}
-      {admin ? (
+      {/* {admin ? (
         <Button onClick={() => logout()}>Logout</Button>
       ) : (
         <Button onClick={() => setLoggingIn(true)}>Admin</Button>
-      )}
+      )} */}
     </Flex>
   );
 };

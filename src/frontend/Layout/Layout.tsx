@@ -14,11 +14,11 @@ export const Layout = () => {
                   "nav main"
                   "nav footer"`}
         gridTemplateRows={"5vh 1fr 5vh"}
-        gridTemplateColumns={"300px 1fr"}
+        gridTemplateColumns={"auto 1fr"}
         w="100vw"
+        minH="100vh"
         color="text.primary"
         fontWeight="bold"
-        minH="100vh"
         bg={"brand.background"}
       >
         <GridItem
@@ -38,7 +38,7 @@ export const Layout = () => {
           pl="2"
           area={"nav"}
           padding={"15px"}
-          bg={"brand.background"}
+          // bg={"brand.background"}
           borderRight={"1px solid"}
           borderColor={"brand.border"}
         >
