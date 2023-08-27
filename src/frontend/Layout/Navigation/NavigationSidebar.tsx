@@ -52,7 +52,7 @@ export const NavigationSidebar = () => {
 
   return (
     <NavigationSidebarProvider>
-      <Accordion left="0" top="0" padding={"10px"} width={300} allowToggle>
+      <Accordion left="0" top="0" padding={"10px"} width={275} allowToggle>
         <Heading size={"xl"} padding={"10px"} fontWeight={600}>
           History of the Southern Residents
         </Heading>
