@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/react";
 
-export function About() {
+export default function AboutPage() {
   return (
     <Text>
       “A public repository of information on an endangered population of killer
