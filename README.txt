@@ -16,3 +16,7 @@ Frontend framework:
 Backend framework:
 * Right now including state setting in my resolver. In the future, should have a frontend (in context) function that gets called
 * and calls the resolver which then handles state setting.
+
+Deployment:
+* npm run build
+* firebase deploy
