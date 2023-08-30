@@ -5,7 +5,7 @@ import { Whale } from "../../../../db/Types/Entities";
 import { useState } from "react";
 
 export const WhaleDrawerShell = ({ whale }: { whale: Whale }) => {
-  const [isForm, setIsForm] = useState();
+  const [isForm, setIsForm] = useState(false);
 
   return (
     <>

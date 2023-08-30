@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
 import { WhaleDrawerShell } from "./WhaleDrawerShell";
+import { WhaleDrawerInfo } from "./WhaleDrawerInfo";
 
 export const WhaleDrawer = () => {
   const { formWhale, setFormWhale } = useDrawerContext();
@@ -47,7 +48,6 @@ export const WhaleDrawer = () => {
       setFormWhale(null);
       setWhales(newWhales);
     };
-  // TODO problem no id for form whale
 
   if (!formWhale) return null;
   return (
@@ -62,7 +62,7 @@ export const WhaleDrawer = () => {
           <Text>{formWhale.identification}</Text>
         </DrawerHeader>
         <Box>
-          <WhaleDrawerShell whale={formWhale} />
+          <WhaleDrawerInfo whale={formWhale} />
         </Box>
         <Link to={`/whales/${formWhale?.id}`}>
           <Text
