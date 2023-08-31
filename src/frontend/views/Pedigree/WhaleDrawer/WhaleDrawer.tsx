@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../auth/context/AuthContext";
 import {
   Box,
+  Divider,
   Drawer,
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
@@ -57,22 +59,25 @@ export const WhaleDrawer = () => {
       placement="right"
     >
       <DrawerOverlay />
-      <DrawerContent padding={"10px"} color={"text.primary"}>
+      <DrawerContent padding={"10px"} color={"text.primary"} borderRight={""}>
         <DrawerHeader>
           <Text>{formWhale.identification}</Text>
         </DrawerHeader>
-        <Box>
-          <WhaleDrawerInfo whale={formWhale} />
-        </Box>
-        <Link to={`/whales/${formWhale?.id}`}>
-          <Text
-            color={"#0000FF"}
-            textDecoration={"underline"}
-            cursor={"pointer"}
-          >
-            Details
-          </Text>
-        </Link>
+        <Divider />
+        <DrawerBody>
+          <Box>
+            <WhaleDrawerInfo whale={formWhale} />
+          </Box>
+          <Link to={`/whales/${formWhale?.id}`}>
+            <Text
+              color={"#0000FF"}
+              textDecoration={"underline"}
+              cursor={"pointer"}
+            >
+              Details
+            </Text>
+          </Link>
+        </DrawerBody>
       </DrawerContent>
     </Drawer>
   );

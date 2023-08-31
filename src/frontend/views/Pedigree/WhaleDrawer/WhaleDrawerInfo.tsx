@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Input, Text } from "@chakra-ui/react";
 import { Gender, Whale } from "../../../../db/Types/Entities";
 import { useState } from "react";
 
@@ -72,6 +72,15 @@ export const WhaleDrawerInfo = ({ whale }: { whale: Whale }) => {
 
   return (
     <Flex flexDirection="column" justifyContent={"space-between"}>
+      <Flex alignItems={"center"} padding={"16px"}>
+        <Text flex={1} fontSize={"xs"}>
+          field
+        </Text>
+        <Text flex={1} fontSize={"xs"}>
+          value
+        </Text>
+      </Flex>
+      <Divider />
       {fields.map(({ field, type }, i) => {
         return (
           <Box>
@@ -81,12 +90,12 @@ export const WhaleDrawerInfo = ({ whale }: { whale: Whale }) => {
         );
       })}
       {editMode ? (
-        <Flex>
+        <Flex justifyContent={"space-around"}>
           <Button>Submit</Button>
           <Button onClick={toggleEditMode}>Cancel</Button>
         </Flex>
       ) : (
-        <Flex>
+        <Flex justifyContent={"space-around"}>
           <Button onClick={toggleEditMode}>Edit</Button>
         </Flex>
       )}
@@ -107,15 +116,9 @@ const TextField = ({
   value: string | undefined;
   editMode: boolean;
 }) => (
-  <Flex padding={"16px"}>
-    {editMode ? (
-      <div>edit</div>
-    ) : (
-      <>
-        <FieldHeader label={label} />
-        <Text flex={1}>{value}</Text>
-      </>
-    )}
+  <Flex padding={"16px"} alignItems={"center"}>
+    <FieldHeader label={label} />
+    {editMode ? <Input flex={1} /> : <Text flex={1}>{value}</Text>}
   </Flex>
 );
 
@@ -150,13 +153,15 @@ const TextBoxField = ({
   editMode: boolean;
 }) => (
   <>
-    {editMode ? (
-      <div>edit</div>
-    ) : (
-      <Flex padding={"16px"} flexDirection={"column"}>
-        <FieldHeader label={label} />
-        <Text flex={1}>{value}</Text>
-      </Flex>
-    )}
+    <Flex padding={"16px"} flexDirection={"column"}>
+      {editMode ? (
+        <div>edit</div>
+      ) : (
+        <>
+          <FieldHeader label={label} />
+          <Text flex={1}>{value}</Text>
+        </>
+      )}
+    </Flex>
   </>
 );
