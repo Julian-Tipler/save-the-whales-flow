@@ -6,8 +6,8 @@ enum Sizes {
   xs = "4px",
   sm = "8px",
   md = "16px",
-  lg = "32px",
-  xl = "64px",
+  lg = "24px",
+  xl = "36px",
 }
 
 export const Spacer = ({ size = Sizes.md }: { size?: Sizes }) => {
