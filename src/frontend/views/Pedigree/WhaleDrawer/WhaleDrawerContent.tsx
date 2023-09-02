@@ -62,7 +62,7 @@ export const WhaleDrawerContent = ({
   // Handler for user changes to a field
   const createInputChange = (field: Field) => {
     const { label } = field;
-    return (event: ChangeEvent<HTMLInputElement>) =>
+    return (event: ChangeEvent<any>) =>
       setFormState((prevState) => ({
         ...prevState,
         [label]: event.target.value,
@@ -206,7 +206,7 @@ const TextBoxField = ({
       {editMode ? (
         <Input onChange={handleInputChange} flex={1} value={value} />
       ) : (
-          <Text flex={1}>{value}</Text>
+        <Text flex={1}>{value}</Text>
       )}
     </Flex>
   </>
@@ -223,13 +223,13 @@ const DropdownField = ({
   value: string | undefined;
   editMode: boolean;
   options: string[];
-  handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleInputChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }) => {
   return (
     <Flex padding={"16px"} height={16} alignItems={"center"}>
       <FieldHeader label={label} />
       {editMode ? (
-        <Select flex={1} height={10}>
+        <Select flex={1} height={10} onChange={handleInputChange}>
           {options.map((option) => {
             return <option value={option}>{option}</option>;
           })}
