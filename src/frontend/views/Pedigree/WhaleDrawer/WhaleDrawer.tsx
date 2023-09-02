@@ -11,11 +11,12 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Flex,
   Text,
 } from "@chakra-ui/react";
 import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
-import { WhaleDrawerShell } from "./WhaleDrawerShell";
-import { WhaleDrawerInfo } from "./WhaleDrawerInfo";
+import { WhaleDrawerShell } from "./unused/WhaleDrawerShell";
+import { WhaleDrawerContent } from "./WhaleDrawerContent";
 
 export const WhaleDrawer = () => {
   const { formWhale, setFormWhale } = useDrawerContext();
@@ -59,24 +60,27 @@ export const WhaleDrawer = () => {
       placement="right"
     >
       <DrawerOverlay />
-      <DrawerContent padding={"10px"} color={"text.primary"} borderRight={""}>
+      <DrawerContent color={"text.primary"} borderRadius={"4px"}>
         <DrawerHeader>
-          <Text>{formWhale.identification}</Text>
+          <Flex alignItems={"flex-end"}>
+            <Text marginRight={"4px"}>{formWhale.identification}</Text>
+            <Link to={`/whales/${formWhale?.id}`}>
+              <Text
+                color={"#0000FF"}
+                textDecoration={"underline"}
+                cursor={"pointer"}
+                fontSize={"sm"}
+              >
+                {`(Details)`}
+              </Text>
+            </Link>
+          </Flex>
         </DrawerHeader>
         <Divider />
-        <DrawerBody>
+        <DrawerBody padding={"10px"}>
           <Box>
-            <WhaleDrawerInfo whale={formWhale} />
+            <WhaleDrawerContent whale={formWhale} />
           </Box>
-          <Link to={`/whales/${formWhale?.id}`}>
-            <Text
-              color={"#0000FF"}
-              textDecoration={"underline"}
-              cursor={"pointer"}
-            >
-              Details
-            </Text>
-          </Link>
         </DrawerBody>
       </DrawerContent>
     </Drawer>
