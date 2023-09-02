@@ -5,7 +5,7 @@ import { About } from "./About";
 export default function AboutPage() {
   return (
     <BodyGrid>
-      <GridItem rowSpan={1} colSpan={{ base: 2, md: 2 }}>
+      <GridItem rowSpan={2} colSpan={{ base: 2, md: 2 }}>
         <About />
       </GridItem>
     </BodyGrid>
