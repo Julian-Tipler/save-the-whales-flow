@@ -56,8 +56,9 @@ export const WhaleNode = ({
         left="0"
         w="100%"
         h="100%"
-        opacity="0.2"
-        background="repeating-linear-gradient(45deg, gray 0%, gray 10%, #cccccc 10%, #cccccc 20%)"
+        opacity="0.3"
+        // background="repeating-linear-gradient(45deg, gray 0%, gray 10%, #cccccc 10%, #cccccc 20%)"
+        backgroundColor={"black"}
         display={whale.died ? "block" : "none"}
         pointerEvents={"none"}
       />
@@ -74,29 +75,15 @@ export const WhaleNode = ({
             overflow="hidden"
             textOverflow="ellipsis"
             whiteSpace={"nowrap"}
+            color={whale?.id ? "#0000FF" : "#000000"}
+            onClick={whale?.id ? () => setDrawerWhale(whale) : () => {}}
           >
             {whale?.identification || "<no id>"}
           </Heading>
-          {whaleStatusIcon({ whale, size: "12px" })}
+          {whaleStatusIcon({ whale, size: "16px" })}
         </Flex>
         <Text fontSize={"11px"}>{whale?.name || "unnamed"}</Text>
-      </Flex>
-      <Flex justifyContent={"space-between"} alignItems={"flex-end"}>
-        {whale?.id ? (
-          <>
-            <Text
-              fontSize={"10px"}
-              fontWeight={"bold"}
-              color={"#0000FF"}
-              cursor={"pointer"}
-              onClick={() => setDrawerWhale(whale)}
-            >
-              Details
-            </Text>
-          </>
-        ) : (
-          <Text fontSize={"8px"}>Save pedigree to view details</Text>
-        )}
+        {whale?.died && <Text fontSize={"11px"}>{whale.died}</Text>}
       </Flex>
       <Handle
         id="whale-bottom-source"
