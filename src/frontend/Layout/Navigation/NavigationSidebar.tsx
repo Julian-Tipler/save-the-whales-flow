@@ -8,7 +8,6 @@ import {
   Flex,
   Heading,
   Icon,
-  Spacer,
   Spinner,
   Text,
 } from "@chakra-ui/react";
@@ -16,14 +15,10 @@ import { fetchPedigrees } from "../../../db/dataServices";
 import { useEffect, useState } from "react";
 import { Pedigree, Whale } from "../../../db/Types/Entities";
 import { Link, useParams } from "react-router-dom";
-import { fetchWhales } from "../../../db/dataServices/fetchWhales";
 import { NavigationSidebarProvider } from "./context/NavigationSidebarContext";
 import { useAuthContext } from "../../auth/context/AuthContext";
-import { FiHome, FiCompass, FiSmartphone } from "react-icons/fi";
-import { IoMdInformationCircleOutline } from "react-icons/io";
 import { GiWhaleTail, GiSailboat, GiFishEscape } from "react-icons/gi";
 import { RxDotFilled } from "react-icons/rx";
-import { BsBoxArrowUpRight } from "react-icons/bs";
 import NavigationLink from "./NavigationLink";
 
 export const NavigationSidebar = () => {

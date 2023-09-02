@@ -3,72 +3,59 @@ import { useWhalesContext } from "../context/WhalesContext";
 import { Whale } from "../../../../db/Types/Entities";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../auth/context/AuthContext";
-import { Box, Drawer, DrawerContent, Text } from "@chakra-ui/react";
-import { WhaleForm } from "../../../cards/WhaleCard/WhaleForm";
-import WhaleDetails from "../../../cards/WhaleCard/WhaleDetails";
-import { WhaleCard } from "../../../cards/WhaleCard/WhaleCard";
+import {
+  Box,
+  Divider,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  Text,
+} from "@chakra-ui/react";
 import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
+import { WhaleDrawerShell } from "./unused/WhaleDrawerShell";
+import { WhaleDrawerContent } from "./WhaleDrawerContent";
 
 export const WhaleDrawer = () => {
-  const { whaleForm, setWhaleForm } = useDrawerContext();
+  const { drawerWhale, setDrawerWhale } = useDrawerContext();
   const { whales, setWhales } = useWhalesContext();
   const { admin } = useAuthContext();
 
-  if (!whaleForm) return null;
-
-  const handleSubmit =
-    ({
-      whaleFormData,
-      setErrors,
-      setEditMode,
-    }: {
-      whaleFormData: any;
-      setErrors: Function;
-      setEditMode: Function;
-    }) =>
-    () => {
-      const errors = validateWhale(whaleFormData);
-      if (errors.length) {
-        setErrors(errors);
-        return;
-      }
-      const newWhales = whales.map((whale: Whale) => {
-        if (whale.id === whaleForm.id) {
-          return whaleFormData;
-        }
-        return whale;
-      });
-
-      setWhaleForm(null);
-      setWhales(newWhales);
-    };
-  // TODO problem no id for form whale
-
-  if (!whaleForm) return null;
+  if (!drawerWhale) return null;
   return (
     <Drawer
-      isOpen={!!whaleForm}
-      onClose={() => setWhaleForm(null)}
+      isOpen={!!drawerWhale}
+      onClose={() => setDrawerWhale(null)}
       placement="right"
     >
-      {/* <DrawerOverlay /> */}
-      <DrawerContent color={"black"} padding={"10px"}>
-        <Box>
-          <WhaleCard
-            whale={whaleForm}
-            handleSubmit={handleSubmit}
-            justContent={true}
-          />
-        </Box>
-        <Link to={`/whales/${whaleForm?.id}`}>
-          <Text
-            color={"#0000FF"}
-            textDecoration={"underline"}
-            cursor={"pointer"}
-          >
-            Details
-          </Text>
-        </Link>
+      <DrawerOverlay />
+      <DrawerContent color={"text.primary"} borderRadius={"10px"}>
+        <DrawerHeader>
+          <Flex alignItems={"flex-end"}>
+            <Text marginRight={"4px"}>{drawerWhale.identification}</Text>
+            <Link to={`/whales/${drawerWhale?.id}`}>
+              <Text
+                color={"#0000FF"}
+                textDecoration={"underline"}
+                cursor={"pointer"}
+                fontSize={"sm"}
+              >
+                {`(Details)`}
+              </Text>
+            </Link>
+          </Flex>
+        </DrawerHeader>
+        <Divider />
+        <DrawerBody padding={"10px"}>
+          <Box>
+            <WhaleDrawerContent
+              whale={drawerWhale}
+              setDrawerWhale={setDrawerWhale}
+            />
+          </Box>
+        </DrawerBody>
       </DrawerContent>
     </Drawer>
   );
