@@ -152,7 +152,7 @@ export function ReactFlowContainer() {
           </div>
           {admin && <DragNDrop />}
         </Flex>
-        <WhaleDrawer />
+        <WhaleDrawer/>
       </ReactFlowProvider>
     </ChakraCard>
   );

@@ -24,9 +24,8 @@ export const colors = {
     },
   },
   text: {
-    // primary: "#ffffff", // Change to a suitable color for primary text in dark mode
     primary: "#084175",
-    secondary: "#084175", // Change to a suitable color for secondary text in dark mode
+    secondary: "#666666", // Change to a suitable color for secondary text in dark mode
     tertiary: "#999999",
   },
   transparent: "transparent",
