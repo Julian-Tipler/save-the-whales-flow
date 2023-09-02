@@ -11,12 +11,12 @@ export const colors = {
   },
   whaleNodes: {
     female: {
-      alive: "#FEC9F1",
-      dead: "#FEC9F1",
+      alive: "#FFF3F3",
+      dead: "#FFF3F3",
     },
     male: {
-      alive: "#8EDCE6",
-      dead: "#8EDCE6",
+      alive: "#F0F7F8",
+      dead: "#F0F7F8",
     },
     unknown: {
       alive: "white",

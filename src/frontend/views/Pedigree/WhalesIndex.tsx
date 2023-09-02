@@ -12,14 +12,12 @@ import { Card } from "../../components/Card";
 import { Whale } from "../../../db/Types/Entities";
 import { Link } from "react-router-dom";
 
-const tableCellStyle = {
-
-};
+const tableCellStyle = {};
 
 export function WhalesIndex({ whales }: { whales: Whale[] }) {
   return (
-    <Card overflowY="auto">
-      <Table variant="simple">
+    <Card overflowY="auto" title="Whales">
+      <Table variant="striped">
         <Thead>
           <Tr>
             <Th style={tableCellStyle}>Id</Th>
