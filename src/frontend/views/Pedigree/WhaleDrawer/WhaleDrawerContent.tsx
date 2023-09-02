@@ -206,9 +206,7 @@ const TextBoxField = ({
       {editMode ? (
         <Input onChange={handleInputChange} flex={1} value={value} />
       ) : (
-        <>
           <Text flex={1}>{value}</Text>
-        </>
       )}
     </Flex>
   </>

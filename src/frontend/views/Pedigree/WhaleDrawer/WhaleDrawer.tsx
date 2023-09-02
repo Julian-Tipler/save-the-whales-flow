@@ -31,7 +31,7 @@ export const WhaleDrawer = () => {
       placement="right"
     >
       <DrawerOverlay />
-      <DrawerContent color={"text.primary"} borderRadius={"4px"}>
+      <DrawerContent color={"text.primary"} borderRadius={"10px"}>
         <DrawerHeader>
           <Flex alignItems={"flex-end"}>
             <Text marginRight={"4px"}>{drawerWhale.identification}</Text>
