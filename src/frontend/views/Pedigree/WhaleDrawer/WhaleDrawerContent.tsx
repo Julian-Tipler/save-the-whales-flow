@@ -167,6 +167,7 @@ const FieldHeader = ({ label }: { label: string }) => (
   </Text>
 );
 
+//Fields
 const TextField = ({
   label,
   value,
@@ -178,7 +179,7 @@ const TextField = ({
   editMode: boolean;
   handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }) => (
-  <Flex padding={"16px"} alignItems={"center"}>
+  <Flex padding={"16px"} height={16} alignItems={"center"}>
     <FieldHeader label={label} />
     {editMode ? (
       <Input onChange={handleInputChange} flex={1} value={value} />
@@ -227,7 +228,7 @@ const DropdownField = ({
   handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
-    <Flex padding={"16px"} alignItems={"center"}>
+    <Flex padding={"16px"} height={16} alignItems={"center"}>
       <FieldHeader label={label} />
       {editMode ? (
         <Select flex={1} height={10}>
