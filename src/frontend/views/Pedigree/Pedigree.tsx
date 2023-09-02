@@ -34,10 +34,10 @@ export const Pedigree = () => {
 
   return (
     <BodyGrid>
-      <GridItem rowSpan={2} colSpan={{ base: 4, md: 4 }}>
+      <GridItem rowSpan={3} colSpan={{ base: 4, md: 4 }}>
         <ReactFlowContainer />
       </GridItem>
-      <GridItem rowSpan={1} colSpan={{ base: 3, md: 3 }}>
+      <GridItem rowSpan={3} colSpan={{ base: 3, md: 3 }}>
         <WhalesIndex whales={whales} />
       </GridItem>
     </BodyGrid>
