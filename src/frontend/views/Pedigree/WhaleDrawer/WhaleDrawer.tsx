@@ -19,52 +19,23 @@ import { WhaleDrawerShell } from "./unused/WhaleDrawerShell";
 import { WhaleDrawerContent } from "./WhaleDrawerContent";
 
 export const WhaleDrawer = () => {
-  const { formWhale, setFormWhale } = useDrawerContext();
+  const { drawerWhale, setDrawerWhale } = useDrawerContext();
   const { whales, setWhales } = useWhalesContext();
   const { admin } = useAuthContext();
 
-  if (!formWhale) return null;
-
-  const handleSubmit =
-    ({
-      formWhaleData,
-      setErrors,
-      setEditMode,
-    }: {
-      formWhaleData: any;
-      setErrors: Function;
-      setEditMode: Function;
-    }) =>
-    () => {
-      const errors = validateWhale(formWhaleData);
-      if (errors.length) {
-        setErrors(errors);
-        return;
-      }
-      const newWhales = whales.map((whale: Whale) => {
-        if (whale.id === formWhale.id) {
-          return formWhaleData;
-        }
-        return whale;
-      });
-
-      setFormWhale(null);
-      setWhales(newWhales);
-    };
-
-  if (!formWhale) return null;
+  if (!drawerWhale) return null;
   return (
     <Drawer
-      isOpen={!!formWhale}
-      onClose={() => setFormWhale(null)}
+      isOpen={!!drawerWhale}
+      onClose={() => setDrawerWhale(null)}
       placement="right"
     >
       <DrawerOverlay />
       <DrawerContent color={"text.primary"} borderRadius={"4px"}>
         <DrawerHeader>
           <Flex alignItems={"flex-end"}>
-            <Text marginRight={"4px"}>{formWhale.identification}</Text>
-            <Link to={`/whales/${formWhale?.id}`}>
+            <Text marginRight={"4px"}>{drawerWhale.identification}</Text>
+            <Link to={`/whales/${drawerWhale?.id}`}>
               <Text
                 color={"#0000FF"}
                 textDecoration={"underline"}
@@ -79,7 +50,10 @@ export const WhaleDrawer = () => {
         <Divider />
         <DrawerBody padding={"10px"}>
           <Box>
-            <WhaleDrawerContent whale={formWhale} />
+            <WhaleDrawerContent
+              whale={drawerWhale}
+              setDrawerWhale={setDrawerWhale}
+            />
           </Box>
         </DrawerBody>
       </DrawerContent>

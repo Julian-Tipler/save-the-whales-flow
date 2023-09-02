@@ -28,11 +28,11 @@ export const WhaleNode = ({
   data: NodeData;
   selected: Boolean;
 }) => {
-  const { setFormWhale, formWhale } = useDrawerContext();
+  const { setDrawerWhale, drawerWhale } = useDrawerContext();
   const { whales } = useWhalesContext();
   const whale = whales.find((whale) => whale.id === id);
   if (!whale) return null;
-  const highlighted = formWhale && formWhale.id === whale.id;
+  const highlighted = drawerWhale && drawerWhale.id === whale.id;
   const backgroundColor = calculateBackgroundColor(whale);
 
   return (
@@ -89,7 +89,7 @@ export const WhaleNode = ({
               fontWeight={"bold"}
               color={"#0000FF"}
               cursor={"pointer"}
-              onClick={() => setFormWhale(whale)}
+              onClick={() => setDrawerWhale(whale)}
             >
               Details
             </Text>

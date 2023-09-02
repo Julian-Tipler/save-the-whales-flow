@@ -10,6 +10,8 @@ import {
 import { Gender, Whale } from "../../../../db/Types/Entities";
 import { ChangeEvent, useState } from "react";
 import { Spacer } from "../../../components/Spacer";
+import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
+import { useWhalesContext } from "../context/WhalesContext";
 
 type Field = TextField | DropdownField;
 
@@ -41,7 +43,13 @@ const fields: Field[] = [
   { label: "notes", type: "textBox" },
 ];
 
-export const WhaleDrawerContent = ({ whale }: { whale: Whale }) => {
+export const WhaleDrawerContent = ({
+  whale,
+  setDrawerWhale,
+}: {
+  whale: Whale;
+  setDrawerWhale: React.Dispatch<React.SetStateAction<Whale | null>>;
+}) => {
   //TODO need to map the incoming whale to the form state and fields.
   const initialFormState: FormState = fields.reduce((state, { label }) => {
     state[label] = whale[label] || "";
@@ -64,6 +72,25 @@ export const WhaleDrawerContent = ({ whale }: { whale: Whale }) => {
   const toggleEditMode = () => {
     setEditMode(!editMode);
     setFormState(initialFormState);
+  };
+
+  const { whales, setWhales } = useWhalesContext();
+
+  const createSubmit = () => {
+    // const errors = validateWhale(formWhaleData);
+    // if (errors.length) {
+    //   setErrors(errors);
+    //   return;
+    // }
+    const newWhales = whales.map((currWhale: Whale) => {
+      if (currWhale.id === whale.id) {
+        return { id: whale.id, ...formState };
+      }
+      return whale;
+    });
+
+    setDrawerWhale(null);
+    setWhales(newWhales);
   };
 
   const returnField = (field: Field) => {
@@ -122,7 +149,7 @@ export const WhaleDrawerContent = ({ whale }: { whale: Whale }) => {
       <Spacer />
       {editMode ? (
         <Flex justifyContent={"space-around"}>
-          {/* <Button onClick={handleSubmit()}>Submit</Button> */}
+          <Button onClick={createSubmit}>Submit</Button>
           <Button onClick={toggleEditMode}>Cancel</Button>
         </Flex>
       ) : (
