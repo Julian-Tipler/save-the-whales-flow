@@ -5,6 +5,7 @@ import PedigreePage from "../views/Pedigree";
 import WhaleDetailsPage from "../views/Whale";
 import { Layout } from "./Layout";
 import AboutPage from "../views/About";
+import { PersonalPage } from "../views/PersonalPage/PersonalPage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "pods", element: <PedigreesIndexPage /> },
       { path: "whales/:id", element: <WhaleDetailsPage /> },
       { path: "about", element: <AboutPage /> },
+      { path: "personal-placeholder", element: <PersonalPage /> },
     ],
   },
 ]);
