@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Footer = () => {
   return (
-    <Flex paddingY={"10px"} flexDirection={"column"} gap={"10px"}>
+    <Flex padding={"15px"} flexDirection={"column"} gap={"10px"}>
       <Text fontWeight={600}>About the developer:</Text>
       <Text>Julian Tipler</Text>
       <Text>tipler.julian@gmail.com</Text>
