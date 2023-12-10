@@ -10,8 +10,8 @@ import {
 import { Gender, Whale } from "../../../../db/Types/Entities";
 import { ChangeEvent, useState } from "react";
 import { Spacer } from "../../../components/Spacer";
-import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
 import { useWhalesContext } from "../context/WhalesContext";
+import { useAuthContext } from "../../../auth/context/AuthContext";
 
 type Field = TextField | DropdownField;
 
@@ -58,6 +58,7 @@ export const WhaleDrawerContent = ({
 
   const [editMode, setEditMode] = useState(false);
   const [formState, setFormState] = useState(initialFormState);
+  const { user } = useAuthContext();
 
   // Handler for user changes to a field
   const createInputChange = (field: Field) => {
@@ -99,6 +100,7 @@ export const WhaleDrawerContent = ({
       case "text":
         return (
           <TextField
+            key={label}
             label={label}
             value={formState[label]}
             editMode={editMode}
@@ -108,6 +110,7 @@ export const WhaleDrawerContent = ({
       case "textBox":
         return (
           <TextBoxField
+            key={label}
             label={field.label}
             value={formState[label]}
             editMode={editMode}
@@ -117,6 +120,7 @@ export const WhaleDrawerContent = ({
       case "dropdown":
         return (
           <DropdownField
+            key={label}
             label={field.label}
             value={formState[label]}
             editMode={editMode}
@@ -140,23 +144,24 @@ export const WhaleDrawerContent = ({
       <Divider />
       {fields.map((field, i) => {
         return (
-          <Box>
+          <Box key={`${field.label}`}>
             {returnField(field)}
             <Divider />
           </Box>
         );
       })}
       <Spacer />
-      {editMode ? (
-        <Flex justifyContent={"space-around"}>
-          <Button onClick={createSubmit}>Submit</Button>
-          <Button onClick={toggleEditMode}>Cancel</Button>
-        </Flex>
-      ) : (
-        <Flex justifyContent={"space-around"}>
-          <Button onClick={toggleEditMode}>Edit</Button>
-        </Flex>
-      )}
+      {user?.admin &&
+        (editMode ? (
+          <Flex justifyContent={"space-around"}>
+            <Button onClick={createSubmit}>Submit</Button>
+            <Button onClick={toggleEditMode}>Cancel</Button>
+          </Flex>
+        ) : (
+          <Flex justifyContent={"space-around"}>
+            <Button onClick={toggleEditMode}>Edit</Button>
+          </Flex>
+        ))}
     </Flex>
   );
 };
@@ -231,7 +236,11 @@ const DropdownField = ({
       {editMode ? (
         <Select flex={1} height={10} onChange={handleInputChange}>
           {options.map((option) => {
-            return <option value={option}>{option}</option>;
+            return (
+              <option value={option} key={option}>
+                {option}
+              </option>
+            );
           })}
         </Select>
       ) : (
