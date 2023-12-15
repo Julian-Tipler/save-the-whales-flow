@@ -1,22 +1,32 @@
-Features custom node should have:
-* male vs female vs unknown
-* alive vs dead
-* 
+## Table of Contents
 
-Features custom edge should have:
-* connect to other edges
+- [Introduction](#introduction)
+- [Features](#features)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Acknowledgements](#acknowledgements)
 
+## Introduction
 
-Frontend framework:
-* Backend data should basically be the node edge structure. Upon changes, this node structure should also change.
-* Whales will store NO relationship data? I think that's fine for now. That can be added manually by Chloe maybe
-* The only information the node will know about the whale is it will have an ID associated with it.
-* Whale will know nothing about node
+A data display dashboard for whale research including a custom pedigree creation tool. 
 
-Backend framework:
-* Right now including state setting in my resolver. In the future, should have a frontend (in context) function that gets called
-* and calls the resolver which then handles state setting.
+## Features
 
-Deployment:
+* A whale pedigree tool which allows researchers to create diagrams detailing Orca familial relationships.
+* A details page for each whale for the researcher to document demographic information or take general notes.
+
+## Usage
+
+The traditional user view is read only. Only admin can update the whale pod diagrams.
+
+## Technologies Used
+
+React, Typescript, Firebase, Chakra UI
+
+## Acknowledgements
+
+Chloe Kotik for providing the whale data and being a great collaborator.
+
+## Deployment:
 * npm run build
 * firebase deploy
