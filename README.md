@@ -2,13 +2,13 @@
 
 <a href='https://save-the-whales-ee45b.web.app/pods/3KMIIoqRyWVhr8x8vABb'>History of the Southern Residents</a> is a data display dashboard for Orca whale research including a custom pedigree creation tool. 
 
+<img width="731" alt="dashboard" src="https://github.com/Julian-Tipler/save-the-whales-flow/assets/59591817/77cbb72f-c65e-4a95-96b1-af2f70e923eb">
+
 ## Table of Contents
 - [Features](#features)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Acknowledgements](#acknowledgements)
-
-<img width="731" alt="dashboard" src="https://github.com/Julian-Tipler/save-the-whales-flow/assets/59591817/77cbb72f-c65e-4a95-96b1-af2f70e923eb">
 
 ## Features
 
