@@ -1,3 +1,5 @@
+<h1 align="center">History of the Southern Residents</h1>
+
 ## Table of Contents
 
 - [Introduction](#introduction)
