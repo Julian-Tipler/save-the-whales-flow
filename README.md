@@ -10,8 +10,6 @@
 
 <img width="731" alt="dashboard" src="https://github.com/Julian-Tipler/save-the-whales-flow/assets/59591817/77cbb72f-c65e-4a95-96b1-af2f70e923eb">
 
-## About the Project
-
 ## Features
 
 **Whale pedigree tool:**  
