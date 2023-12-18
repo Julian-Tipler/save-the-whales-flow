@@ -31,7 +31,7 @@ export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
     return <Spinner />;
   }
 
-return (
+  return (
     <Flex
       position={"absolute"}
       className="pod-name"
@@ -41,6 +41,7 @@ return (
       alignItems={"center"}
       color={"black"}
       marginTop={5}
+      pointerEvents={"none"}
     >
       {headerLoading ? (
         <Spinner />
