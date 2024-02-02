@@ -37,3 +37,4 @@ Chloe Kotik for providing the whale data and being a great collaborator.
 ## Deployment:
 * npm run build
 * firebase deploy
+  
