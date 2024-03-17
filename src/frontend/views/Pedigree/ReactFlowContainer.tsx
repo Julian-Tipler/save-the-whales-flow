@@ -18,7 +18,6 @@ import { standardizePosition } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
 import { WhaleDrawer } from "./WhaleDrawer/WhaleDrawer";
 import { useWhalesContext } from "./context/WhalesContext";
-import { useSavePedigree } from "./functions/useSavePedigree";
 import { Whale } from "../../../db/Types/Entities";
 import { useAuthContext } from "../../auth/context/AuthContext";
 import { handleOnNodeDragStop } from "./helpers/pedigreeActions";
@@ -144,7 +143,7 @@ export function ReactFlowContainer() {
                 gap={20}
                 size={1}
                 color={admin ? "#000000" : "#E0EBF5"}
-                style={{ backgroundColor: "#E0EBF5" }}
+                style={{ backgroundColor: "white" }}
               />
               <MiniMap />
               <Controls position={"top-left"} />
@@ -152,7 +151,7 @@ export function ReactFlowContainer() {
           </div>
           {admin && <DragNDrop />}
         </Flex>
-        <WhaleDrawer/>
+        <WhaleDrawer />
       </ReactFlowProvider>
     </ChakraCard>
   );

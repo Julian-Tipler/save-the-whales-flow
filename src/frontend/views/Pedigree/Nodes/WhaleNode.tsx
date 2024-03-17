@@ -6,6 +6,7 @@ import { Whale } from "../../../../db/Types/Entities";
 import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
 import { NodeIcon } from "./NodeIcon";
+import { useAuthContext } from "../../../auth/context/AuthContext";
 
 type NodeData = {
   // whale: Whale;
@@ -29,6 +30,7 @@ export const WhaleNode = ({
   data: NodeData;
   selected: Boolean;
 }) => {
+  const { admin } = useAuthContext();
   const { setDrawerWhale, drawerWhale } = useDrawerContext();
   const { whales } = useWhalesContext();
   const whale = whales.find((whale) => whale.id === id);
@@ -43,7 +45,7 @@ export const WhaleNode = ({
       padding={"4px"}
       display={"flex"}
       flexDirection={"column"}
-      justifyContent={"space-between"}
+      justifyContent={"start"}
       alignItems={"center"}
       position={"relative"}
     >
@@ -52,26 +54,24 @@ export const WhaleNode = ({
         gender={whale.gender}
         died={whale.died}
       />
-      <Handle id="whale-top-target" type="target" position={Position.Top} />
-      <Flex flexDirection={"column"} gap={"2px"}>
-        <Flex
-          alignItems={"center"}
-          justifyContent={"space-between"}
-          gap={"2px"}
+      <Handle
+        id="whale-top-target"
+        type="target"
+        position={Position.Top}
+        hidden={!admin}
+      />
+      <Flex flexDirection={"column"} gap={"2px"} alignItems={"center"}>
+        <Heading
+          fontSize={"11px"}
+          fontWeight={"extrabold"}
+          overflow="hidden"
+          textOverflow="ellipsis"
+          whiteSpace={"nowrap"}
+          color={whale?.id ? "#0000FF" : "#000000"}
+          onClick={whale?.id ? () => setDrawerWhale(whale) : () => {}}
         >
-          <Heading
-            fontSize={"11px"}
-            fontWeight={"extrabold"}
-            overflow="hidden"
-            textOverflow="ellipsis"
-            whiteSpace={"nowrap"}
-            color={whale?.id ? "#0000FF" : "#000000"}
-            onClick={whale?.id ? () => setDrawerWhale(whale) : () => {}}
-          >
-            {whale?.identification || "<no id>"}
-          </Heading>
-          {whaleStatusIcon({ whale, size: "16px" })}
-        </Flex>
+          {whale?.identification || "<no id>"}
+        </Heading>
         <Text fontSize={"11px"}>{whale?.name || "unnamed"}</Text>
         {whale?.died && <Text fontSize={"11px"}>{whale.died}</Text>}
       </Flex>
@@ -79,6 +79,7 @@ export const WhaleNode = ({
         id="whale-bottom-source"
         type="source"
         position={Position.Bottom}
+        hidden={!admin}
       />
     </Box>
   );

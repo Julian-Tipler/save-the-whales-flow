@@ -5,9 +5,9 @@ export const whaleStatusIcon = ({
   size,
   style,
 }: {
-  died: boolean | undefined;
+  died: string | undefined;
   size: "12px" | "16px";
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }) => {
   return died ? (
     <FaSkullCrossbones

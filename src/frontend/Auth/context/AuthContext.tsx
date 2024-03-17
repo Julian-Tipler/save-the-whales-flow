@@ -11,7 +11,21 @@ import { fetchUser } from "../../../db/dataServices/fetchUser";
 
 const AuthContext = createContext<any>({});
 
-export function AuthProvider({ children }: any) {
+type AuthContextType = {
+  loggedIn: Boolean | null;
+  loading: Boolean;
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  login: () => void;
+  logout: () => void;
+  admin: Boolean;
+  loggingIn: Boolean;
+  setLoggingIn: (loggingIn: Boolean) => void;
+};
+
+export function AuthProvider({ children }: AuthContextType) {
   const [loading, setLoading] = useState<Boolean>(true);
   const [loggedIn, setLoggedIn] = useState<Boolean | null>(null);
   const [user, setUser] = useState<any>(null);
@@ -63,20 +77,6 @@ export function AuthProvider({ children }: any) {
       console.error("Error logging in", error);
     }
   };
-
-  // Keep for future projects to reference
-  // const signup = async () => {
-  //   try {
-  //     const userCredential = await createUserWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     );
-  //     const user = userCredential.user;
-  //   } catch (error) {
-  //     console.error("Error signing up", error);
-  //   }
-  // };
 
   const logout = async () => {
     try {
