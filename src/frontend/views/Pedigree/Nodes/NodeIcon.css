@@ -1,0 +1,16 @@
+
+/* Female - pink circle */
+.female {
+  background-color: pink;
+  border-radius: 50%;
+}
+
+/* Male - blue square */
+.male {
+  background-color: blue;
+}
+
+/* Deceased - overrides color to black */
+.deceased {
+  background-color: black;
+}

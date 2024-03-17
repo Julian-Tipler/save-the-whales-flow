@@ -5,6 +5,7 @@ import { whaleStatusIcon } from "../../../components/WhaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
+import { NodeIcon } from "./NodeIcon";
 
 type NodeData = {
   // whale: Whale;
@@ -32,35 +33,24 @@ export const WhaleNode = ({
   const { whales } = useWhalesContext();
   const whale = whales.find((whale) => whale.id === id);
   if (!whale) return null;
-  const highlighted = drawerWhale && drawerWhale.id === whale.id;
+  const highlighted = !!drawerWhale && drawerWhale.id === whale.id;
   const backgroundColor = calculateBackgroundColor(whale);
-
   return (
-    <Card
+    <Box
       width={"100px"}
-      backgroundColor={backgroundColor}
       height={"80px"}
-      boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
-      border={highlighted ? "3px solid #A2D9A0" : "none"}
       borderRadius={"4px"}
       padding={"4px"}
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"space-between"}
+      alignItems={"center"}
       position={"relative"}
     >
-      <Box
-        className="whale-node-stripes"
-        position="absolute"
-        top="0"
-        left="0"
-        w="100%"
-        h="100%"
-        opacity="0.3"
-        // background="repeating-linear-gradient(45deg, gray 0%, gray 10%, #cccccc 10%, #cccccc 20%)"
-        backgroundColor={"black"}
-        display={whale.died ? "block" : "none"}
-        pointerEvents={"none"}
+      <NodeIcon
+        highlighted={highlighted}
+        gender={whale.gender}
+        died={whale.died}
       />
       <Handle id="whale-top-target" type="target" position={Position.Top} />
       <Flex flexDirection={"column"} gap={"2px"}>
@@ -90,7 +80,7 @@ export const WhaleNode = ({
         type="source"
         position={Position.Bottom}
       />
-    </Card>
+    </Box>
   );
 };
 
