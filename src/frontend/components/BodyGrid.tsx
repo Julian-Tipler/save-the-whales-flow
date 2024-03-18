@@ -1,11 +1,18 @@
 import { Grid } from "@chakra-ui/react";
-import React, { ReactComponentElement } from "react";
 
-export const BodyGrid = ({ children }: { children: any }) => {
+export const BodyGrid = ({
+  children,
+  numRows = 8,
+  numCols = 4,
+}: {
+  children: any;
+  numRows?: number;
+  numCols?: number;
+}) => {
   return (
     <Grid
-      templateRows="repeat(8, 200px)"
-      templateColumns="repeat(4, 1fr)"
+      templateRows={`repeat(${numRows}, 200px)`}
+      templateColumns={`repeat(${numCols}, 1fr)`}
       gap={4}
     >
       {children}
