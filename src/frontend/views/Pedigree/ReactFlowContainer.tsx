@@ -105,6 +105,7 @@ export function ReactFlowContainer() {
       border="1px solid"
       borderColor={"brand.border"}
       backgroundColor={"brand.cardBackground"}
+      p={"20px"}
     >
       <ReactFlowProvider>
         <PedigreeHeader name={pedigree.name} />

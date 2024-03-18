@@ -9,7 +9,7 @@ import { validateEmail } from "./helpers/validateEmail";
 import { validatePassword } from "./helpers/validatePassword";
 import { fetchUser } from "../../../db/dataServices/fetchUser";
 
-const AuthContext = createContext<any>({});
+const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 type AuthContextType = {
   loggedIn: Boolean | null;
@@ -25,7 +25,7 @@ type AuthContextType = {
   setLoggingIn: (loggingIn: Boolean) => void;
 };
 
-export function AuthProvider({ children }: AuthContextType) {
+export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<Boolean>(true);
   const [loggedIn, setLoggedIn] = useState<Boolean | null>(null);
   const [user, setUser] = useState<any>(null);

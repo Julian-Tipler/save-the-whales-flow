@@ -36,7 +36,6 @@ export const WhaleNode = ({
   const whale = whales.find((whale) => whale.id === id);
   if (!whale) return null;
   const highlighted = !!drawerWhale && drawerWhale.id === whale.id;
-  const backgroundColor = calculateBackgroundColor(whale);
   return (
     <Box
       width={"100px"}
@@ -58,7 +57,7 @@ export const WhaleNode = ({
         id="whale-top-target"
         type="target"
         position={Position.Top}
-        hidden={!admin}
+        style={{ backgroundColor: admin ? "black" : "transparent" }}
       />
       <Flex flexDirection={"column"} gap={"2px"} alignItems={"center"}>
         <Heading
@@ -73,13 +72,23 @@ export const WhaleNode = ({
           {whale?.identification || "<no id>"}
         </Heading>
         <Text fontSize={"11px"}>{whale?.name || "unnamed"}</Text>
-        {whale?.died && <Text fontSize={"11px"}>{whale.died}</Text>}
+        {whale?.died ? (
+          <Text fontSize={"11px"}>{whale.died}</Text>
+        ) : (
+          <Box
+            width={"1px"}
+            height={"22px"}
+            backgroundColor={"brand.border"}
+            zIndex={1}
+            marginRight={"0.5px"}
+          />
+        )}
       </Flex>
       <Handle
         id="whale-bottom-source"
         type="source"
         position={Position.Bottom}
-        hidden={!admin}
+        style={{ backgroundColor: admin ? "black" : "transparent" }}
       />
     </Box>
   );
