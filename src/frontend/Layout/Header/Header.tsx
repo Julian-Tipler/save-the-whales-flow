@@ -25,7 +25,6 @@ export const Header = () => {
       >
         <FontAwesomeIcon
           target="_blank"
-          rel="noopener noreferrer"
           className="fa-lg"
           icon={faGithub}
           width={"20px"}
@@ -38,7 +37,6 @@ export const Header = () => {
       >
         <FontAwesomeIcon
           target="_blank"
-          rel="noopener noreferrer"
           className="fa-lg"
           icon={faLinkedin}
           width={"20px"}
