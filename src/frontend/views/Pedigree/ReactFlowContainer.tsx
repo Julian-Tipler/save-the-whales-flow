@@ -137,6 +137,8 @@ export function ReactFlowContainer() {
               connectionMode={ConnectionMode.Loose}
               nodesDraggable={admin ? true : false}
               fitView={true}
+              preventScrolling={false}
+              zoomOnPinch={true}
             >
               <NodeToolbar />
               <Background

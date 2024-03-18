@@ -10,9 +10,13 @@ export const NodeIcon = ({
   gender?: string;
   died?: string;
 }) => {
-
   return (
-    <Box display={"flex"} position={"relative"} alignItems={"center"}>
+    <Box
+      display={"flex"}
+      position={"relative"}
+      alignItems={"center"}
+      cursor={"pointer"}
+    >
       <Box
         width={"25px"}
         height={"25px"}
@@ -27,7 +31,7 @@ export const NodeIcon = ({
           position: "absolute",
           top: "50%",
           left: "51%",
-          transform: "translate(-47%, -50%)",
+          transform: "translate(-52%, -50%)",
           zIndex: 1,
         },
       })}

@@ -9,27 +9,17 @@ import { NodeIcon } from "./NodeIcon";
 import { useAuthContext } from "../../../auth/context/AuthContext";
 
 type NodeData = {
-  // whale: Whale;
   label: string;
 };
 
 /**
  * WhaleNode is populated by ReactFlow. ReactFLow is passed nodes array which it maps through
- * and renders WhaleNodes one by one. Whatever I pass to ReactFlow (in this case nodes array)
+ * and renders WhaleNodes one by one. Whatever is passed to ReactFlow (in this case nodes array)
  * will be rendered as WhaleNodes. If the right data is in nodes, then the right data will be in WhaleNode
  * @param id
  * @param data contains a whale object
- * @param selected
  */
-export const WhaleNode = ({
-  id,
-  data,
-  selected,
-}: {
-  id: string;
-  data: NodeData;
-  selected: Boolean;
-}) => {
+export const WhaleNode = ({ id, data }: { id: string; data: NodeData }) => {
   const { admin } = useAuthContext();
   const { setDrawerWhale, drawerWhale } = useDrawerContext();
   const { whales } = useWhalesContext();
@@ -68,6 +58,7 @@ export const WhaleNode = ({
           whiteSpace={"nowrap"}
           color={whale?.id ? "#0000FF" : "#000000"}
           onClick={whale?.id ? () => setDrawerWhale(whale) : () => {}}
+          cursor={"pointer"}
         >
           {whale?.identification || "<no id>"}
         </Heading>
