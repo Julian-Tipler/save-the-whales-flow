@@ -14,8 +14,6 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
-import { validateWhale } from "../../../cards/WhaleCard/validation/validateWhale";
-import { WhaleDrawerShell } from "./unused/WhaleDrawerShell";
 import { WhaleDrawerContent } from "./WhaleDrawerContent";
 
 export const WhaleDrawer = () => {

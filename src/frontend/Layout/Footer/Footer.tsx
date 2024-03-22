@@ -16,7 +16,6 @@ export const Footer = () => {
         >
           <FontAwesomeIcon
             target="_blank"
-            rel="noopener noreferrer"
             className="fa-lg"
             icon={faGithub}
             width={"20px"}
@@ -29,7 +28,6 @@ export const Footer = () => {
         >
           <FontAwesomeIcon
             target="_blank"
-            rel="noopener noreferrer"
             className="fa-lg"
             icon={faLinkedin}
             width={"20px"}
