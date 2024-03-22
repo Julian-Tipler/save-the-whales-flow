@@ -40,7 +40,6 @@ export const PedigreeHeader = ({ name }: { name: string | undefined }) => {
       justifyContent={"center"}
       alignItems={"center"}
       color={"black"}
-      marginTop={5}
       pointerEvents={"none"}
     >
       {headerLoading ? (

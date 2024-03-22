@@ -5,7 +5,7 @@ export const colors = {
     tertiary: "#C2B8B2",
     // background: "linear-gradient(to bottom, #438ecb, #094376)",
     background: "white",
-    bodyBackground: "#f8f9fa",
+    bodyBackground: "#ffffff",
     cardBackground: "#ffffff",
     border: "#cccccc",
   },

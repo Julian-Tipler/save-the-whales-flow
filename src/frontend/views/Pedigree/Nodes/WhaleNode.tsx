@@ -5,92 +5,83 @@ import { whaleStatusIcon } from "../../../components/WhaleStatusIcon";
 import { Whale } from "../../../../db/Types/Entities";
 import { useDrawerContext } from "../context/DrawerContext";
 import { useWhalesContext } from "../context/WhalesContext";
+import { NodeIcon } from "./NodeIcon";
+import { useAuthContext } from "../../../auth/context/AuthContext";
 
 type NodeData = {
-  // whale: Whale;
   label: string;
 };
 
 /**
  * WhaleNode is populated by ReactFlow. ReactFLow is passed nodes array which it maps through
- * and renders WhaleNodes one by one. Whatever I pass to ReactFlow (in this case nodes array)
+ * and renders WhaleNodes one by one. Whatever is passed to ReactFlow (in this case nodes array)
  * will be rendered as WhaleNodes. If the right data is in nodes, then the right data will be in WhaleNode
  * @param id
  * @param data contains a whale object
- * @param selected
  */
-export const WhaleNode = ({
-  id,
-  data,
-  selected,
-}: {
-  id: string;
-  data: NodeData;
-  selected: Boolean;
-}) => {
+export const WhaleNode = ({ id, data }: { id: string; data: NodeData }) => {
+  const { admin } = useAuthContext();
   const { setDrawerWhale, drawerWhale } = useDrawerContext();
   const { whales } = useWhalesContext();
   const whale = whales.find((whale) => whale.id === id);
   if (!whale) return null;
-  const highlighted = drawerWhale && drawerWhale.id === whale.id;
-  const backgroundColor = calculateBackgroundColor(whale);
-
+  const highlighted = !!drawerWhale && drawerWhale.id === whale.id;
   return (
-    <Card
+    <Box
       width={"100px"}
-      backgroundColor={backgroundColor}
       height={"80px"}
-      boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.1)"}
-      border={highlighted ? "3px solid #A2D9A0" : "none"}
       borderRadius={"4px"}
       padding={"4px"}
       display={"flex"}
       flexDirection={"column"}
-      justifyContent={"space-between"}
+      justifyContent={"start"}
+      alignItems={"center"}
       position={"relative"}
     >
-      <Box
-        className="whale-node-stripes"
-        position="absolute"
-        top="0"
-        left="0"
-        w="100%"
-        h="100%"
-        opacity="0.3"
-        // background="repeating-linear-gradient(45deg, gray 0%, gray 10%, #cccccc 10%, #cccccc 20%)"
-        backgroundColor={"black"}
-        display={whale.died ? "block" : "none"}
-        pointerEvents={"none"}
+      <NodeIcon
+        highlighted={highlighted}
+        gender={whale.gender}
+        died={whale.died}
       />
-      <Handle id="whale-top-target" type="target" position={Position.Top} />
-      <Flex flexDirection={"column"} gap={"2px"}>
-        <Flex
-          alignItems={"center"}
-          justifyContent={"space-between"}
-          gap={"2px"}
+      <Handle
+        id="whale-top-target"
+        type="target"
+        position={Position.Top}
+        style={{ backgroundColor: admin ? "black" : "transparent" }}
+      />
+      <Flex flexDirection={"column"} gap={"2px"} alignItems={"center"}>
+        <Heading
+          fontSize={"11px"}
+          fontWeight={"extrabold"}
+          overflow="hidden"
+          textOverflow="ellipsis"
+          whiteSpace={"nowrap"}
+          color={whale?.id ? "#0000FF" : "#000000"}
+          onClick={whale?.id ? () => setDrawerWhale(whale) : () => {}}
+          cursor={"pointer"}
         >
-          <Heading
-            fontSize={"11px"}
-            fontWeight={"extrabold"}
-            overflow="hidden"
-            textOverflow="ellipsis"
-            whiteSpace={"nowrap"}
-            color={whale?.id ? "#0000FF" : "#000000"}
-            onClick={whale?.id ? () => setDrawerWhale(whale) : () => {}}
-          >
-            {whale?.identification || "<no id>"}
-          </Heading>
-          {whaleStatusIcon({ whale, size: "16px" })}
-        </Flex>
+          {whale?.identification || "<no id>"}
+        </Heading>
         <Text fontSize={"11px"}>{whale?.name || "unnamed"}</Text>
-        {whale?.died && <Text fontSize={"11px"}>{whale.died}</Text>}
+        {whale?.died ? (
+          <Text fontSize={"11px"}>{whale.died}</Text>
+        ) : (
+          <Box
+            width={"1px"}
+            height={"22px"}
+            backgroundColor={"brand.border"}
+            zIndex={1}
+            marginRight={"0.5px"}
+          />
+        )}
       </Flex>
       <Handle
         id="whale-bottom-source"
         type="source"
         position={Position.Bottom}
+        style={{ backgroundColor: admin ? "black" : "transparent" }}
       />
-    </Card>
+    </Box>
   );
 };
 

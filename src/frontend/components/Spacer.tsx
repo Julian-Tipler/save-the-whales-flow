@@ -1,15 +1,18 @@
-
 import { Box as ChakraBox } from "@chakra-ui/react";
 
-enum Sizes {
-  xxs = "2px",
-  xs = "4px",
-  sm = "8px",
-  md = "16px",
-  lg = "24px",
-  xl = "36px",
-}
+const sizes = {
+  xxs: "2px",
+  xs: "4px",
+  sm: "8px",
+  md: "16px",
+  lg: "24px",
+  xl: "36px",
+  xxl: "48px",
+  xxxl: "64px",
+} as const;
 
-export const Spacer = ({ size = Sizes.md }: { size?: Sizes }) => {
-  return <ChakraBox height={size} />;
+type SizeKeys = keyof typeof sizes;
+
+export const Spacer = ({ size = "md" }: { size?: SizeKeys }) => {
+  return <ChakraBox height={sizes[size]} />;
 };

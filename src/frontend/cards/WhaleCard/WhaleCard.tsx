@@ -33,7 +33,7 @@ export const WhaleCard = ({
         <Heading size={"md"}>
           <Flex alignItems={"center"} gap={"2"}>
             <Text>{whale.identification}</Text>
-            {whaleStatusIcon({ whale, size: "16px" })}
+            {whaleStatusIcon({ died: whale.died, size: "16px" })}
           </Flex>
         </Heading>
         <CardBody>

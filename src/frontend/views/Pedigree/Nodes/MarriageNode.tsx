@@ -1,6 +1,4 @@
-import React from "react";
 import { Handle, Position } from "reactflow";
-import "./MarriageNode.css";
 
 export const MarriageNode = ({ onDragStart }: any) => {
   return (

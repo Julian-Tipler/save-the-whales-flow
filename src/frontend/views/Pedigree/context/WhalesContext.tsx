@@ -15,8 +15,6 @@ export function WhalesProvider({ children }: any) {
   const [whales, setWhales] = React.useState<Whale[]>([]);
   const value = { whales, setWhales };
 
-  console.log(whales)
-
   return (
     <WhalesContext.Provider value={value}>{children}</WhalesContext.Provider>
   );
