@@ -58,7 +58,7 @@ export const WhaleDrawerContent = ({
 
   const [editMode, setEditMode] = useState(false);
   const [formState, setFormState] = useState(initialFormState);
-  const { user } = useAuthContext();
+  const { admin } = useAuthContext();
 
   // Handler for user changes to a field
   const createInputChange = (field: Field) => {
@@ -151,7 +151,7 @@ export const WhaleDrawerContent = ({
         );
       })}
       <Spacer />
-      {user?.admin &&
+      {admin &&
         (editMode ? (
           <Flex justifyContent={"space-around"}>
             <Button onClick={createSubmit}>Submit</Button>

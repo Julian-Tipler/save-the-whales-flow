@@ -1,6 +1,4 @@
 import { Button, Flex } from "@chakra-ui/react";
-import { WhaleDrawerForm } from "./WhaleDrawerForm";
-import { WhaleDrawerInfo } from "../WhaleDrawerContent";
 import { Whale } from "../../../../../db/Types/Entities";
 import { useState } from "react";
 
@@ -10,7 +8,7 @@ export const WhaleDrawerShell = ({ whale }: { whale: Whale }) => {
   return (
     <>
       {/* Info Or Form */}
-      {isForm ? <WhaleDrawerForm /> : <WhaleDrawerInfo whale={whale} />}
+      {/* {isForm ? <WhaleDrawerForm /> : <WhaleDrawerInfo whale={whale} />} */}
 
       {/* Buttons */}
       {isForm ? (
